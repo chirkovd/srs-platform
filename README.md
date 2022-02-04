@@ -1,2 +1,2 @@
-# srs-platform
-Search and Rescue Squad
+# SRS-Platform
+Application for the Search and Rescue Squad.

@@ -1,14 +1,16 @@
-.gradle
-/build/
+# Compiled Java class files
+*.class
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Log files
+*.log
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# Package files
+*.jar
 
-# Cache of project
-.gradletasknamecache
+# JetBrains IDE
+.idea/
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# Gradle
+.gradle/
+build/
+

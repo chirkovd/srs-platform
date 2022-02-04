@@ -1,0 +1,71 @@
+buildscript {
+    ext {
+        encoding = 'UTF-8'
+
+        springBootVersion = '2.6.3'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.6.3'
+}
+
+allprojects {
+
+    group 'org.systems.dipe'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "$encoding"
+    }
+
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+        dependencies {
+            dependency 'org.apache.commons:commons-collections4:4.4'
+            dependency 'org.apache.commons:commons-lang3:3.12.0'
+        }
+    }
+
+    dependencies {
+        implementation 'org.apache.commons:commons-collections4'
+        implementation 'org.apache.commons:commons-lang3'
+
+        testImplementation 'org.mockito:mockito-core'
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+

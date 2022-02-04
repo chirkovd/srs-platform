@@ -1,0 +1,11 @@
+rootProject.name = 'srs-platform'
+
+include ':srs-core-service'
+project(':srs-core-service').projectDir = "$rootDir/services/srs-core-service" as File
+
+include ':srs-domain-request-api'
+project(':srs-domain-request-api').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-api" as File
+include ':srs-domain-request-module'
+project(':srs-domain-request-module').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-module" as File
+
+
