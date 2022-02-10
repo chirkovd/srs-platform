@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':srs-domain-inventory-api')
+
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
+}

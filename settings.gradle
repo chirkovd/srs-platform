@@ -1,11 +1,41 @@
 rootProject.name = 'srs-platform'
 
-include ':srs-core-service'
-project(':srs-core-service').projectDir = "$rootDir/services/srs-core-service" as File
+// domain
+include ':srs-domain-inventory-api'
+project(':srs-domain-inventory-api').projectDir = "$rootDir/modules/domain/srs-domain-inventory/srs-domain-inventory-api" as File
+include ':srs-domain-inventory-module'
+project(':srs-domain-inventory-module').projectDir = "$rootDir/modules/domain/srs-domain-inventory/srs-domain-inventory-module" as File
+
+include ':srs-domain-location-api'
+project(':srs-domain-location-api').projectDir = "$rootDir/modules/domain/srs-domain-location/srs-domain-location-api" as File
+include ':srs-domain-location-module'
+project(':srs-domain-location-module').projectDir = "$rootDir/modules/domain/srs-domain-location/srs-domain-location-module" as File
+
+include ':srs-domain-person-api'
+project(':srs-domain-person-api').projectDir = "$rootDir/modules/domain/srs-domain-person/srs-domain-person-api" as File
+include ':srs-domain-person-module'
+project(':srs-domain-person-module').projectDir = "$rootDir/modules/domain/srs-domain-person/srs-domain-person-module" as File
 
 include ':srs-domain-request-api'
 project(':srs-domain-request-api').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-api" as File
 include ':srs-domain-request-module'
 project(':srs-domain-request-module').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-module" as File
 
+include ':srs-domain-search-process-api'
+project(':srs-domain-search-process-api').projectDir = "$rootDir/modules/domain/srs-domain-search-process/srs-domain-search-process-api" as File
+include ':srs-domain-search-process-module'
+project(':srs-domain-search-process-module').projectDir = "$rootDir/modules/domain/srs-domain-search-process/srs-domain-search-process-module" as File
+
+include ':srs-domain-squad-api'
+project(':srs-domain-squad-api').projectDir = "$rootDir/modules/domain/srs-domain-squad/srs-domain-squad-api" as File
+include ':srs-domain-squad-module'
+project(':srs-domain-squad-module').projectDir = "$rootDir/modules/domain/srs-domain-squad/srs-domain-squad-module" as File
+
+// integrations
+
+// orchestration
+
+// services
+include ':srs-core-service'
+project(':srs-core-service').projectDir = "$rootDir/services/srs-core-service" as File
 

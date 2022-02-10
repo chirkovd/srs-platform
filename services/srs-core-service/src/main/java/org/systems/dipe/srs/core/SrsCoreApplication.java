@@ -3,10 +3,13 @@ package org.systems.dipe.srs.core;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.context.annotation.Import;
+import org.systems.dipe.srs.inventory.config.InventoryConfig;
 
+@Import(
+        InventoryConfig.Client.class
+)
 @SpringBootApplication
-@EnableTransactionManagement
 public class SrsCoreApplication {
 
     public static void main(String... args) {
