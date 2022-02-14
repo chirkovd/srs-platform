@@ -1,6 +1,10 @@
 dependencies {
     implementation project(':srs-domain-inventory-module')
+    implementation project(':srs-domain-location-module')
+    implementation project(':srs-domain-person-module')
     implementation project(':srs-domain-request-module')
+    implementation project(':srs-domain-squad-module')
+    implementation project(':srs-domain-search-process-module')
 
     implementation 'org.springframework.boot:spring-boot-starter'
 }

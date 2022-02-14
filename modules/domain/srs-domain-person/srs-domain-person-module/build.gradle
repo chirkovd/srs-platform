@@ -1,2 +1,5 @@
 dependencies {
+    implementation project(':srs-domain-person-api')
+
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
 }
