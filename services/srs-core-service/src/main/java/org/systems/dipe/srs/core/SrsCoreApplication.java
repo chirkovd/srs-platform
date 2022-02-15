@@ -5,10 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Import;
 import org.systems.dipe.srs.inventory.config.InventoryConfig;
+import org.systems.dipe.srs.person.config.PersonConfig;
+import org.systems.dipe.srs.request.config.RequestConfig;
 
-@Import(
-        InventoryConfig.Client.class
-)
+@Import({
+        InventoryConfig.Module.class,
+        PersonConfig.Module.class,
+        RequestConfig.Module.class
+})
 @SpringBootApplication
 public class SrsCoreApplication {
 

@@ -15,7 +15,7 @@ import java.util.Collections;
 public class PersonConfig {
 
     @ComponentScan(basePackages = "org.systems.dipe.srs.person")
-    public static class Client {
+    public static class Module {
 
         @Bean
         public PersonRolesConfig personRoles(RoleClient roleClient) {
@@ -25,7 +25,7 @@ public class PersonConfig {
     }
 
     @AllArgsConstructor
-    public static class PersonRolesConfig {
+    private static class PersonRolesConfig {
 
         private final RoleClient roleClient;
 
