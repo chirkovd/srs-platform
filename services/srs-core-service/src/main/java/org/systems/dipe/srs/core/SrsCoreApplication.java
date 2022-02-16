@@ -7,12 +7,14 @@ import org.systems.dipe.srs.inventory.config.InventoryConfig;
 import org.systems.dipe.srs.location.config.LocationConfig;
 import org.systems.dipe.srs.person.config.PersonConfig;
 import org.systems.dipe.srs.request.config.RequestConfig;
+import org.systems.dipe.srs.squad.config.SquadConfig;
 
 @Import({
         InventoryConfig.Module.class,
         PersonConfig.Module.class,
         RequestConfig.Module.class,
-        LocationConfig.Module.class
+        LocationConfig.Module.class,
+        SquadConfig.Module.class
 })
 public class SrsCoreApplication {
 

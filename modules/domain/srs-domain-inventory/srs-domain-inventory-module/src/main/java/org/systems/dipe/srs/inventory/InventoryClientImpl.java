@@ -6,15 +6,15 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class EquipmentClientImpl implements EquipmentClient {
+public class InventoryClientImpl implements InventoryClient {
 
     @Override
-    public Equipment create(Equipment equipment) {
+    public Inventory create(Inventory inventory) {
         return null;
     }
 
     @Override
-    public List<Equipment> search(EquipmentSearch search) {
+    public List<Inventory> search(InventorySearch search) {
         return Collections.emptyList();
     }
 }
