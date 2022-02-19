@@ -6,5 +6,8 @@ dependencies {
     implementation project(':srs-domain-squad-module')
     implementation project(':srs-domain-search-process-module')
 
+    runtimeOnly 'org.postgresql:postgresql'
+
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
 }
