@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.person.contacts;
+package org.systems.dipe.srs.person.identifications;
 
 import lombok.*;
 
@@ -10,23 +10,23 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public final class Contact {
-    private String contactId;
+public class Identification {
+
+    private String id;
+    private String type;
     private String personId;
-    private String phone;
-    private String email;
     private ZonedDateTime created;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Contact contact = (Contact) o;
-        return Objects.equals(contactId, contact.contactId);
+        Identification that = (Identification) o;
+        return Objects.equals(id, that.id) && Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contactId);
+        return Objects.hash(id, type);
     }
 }

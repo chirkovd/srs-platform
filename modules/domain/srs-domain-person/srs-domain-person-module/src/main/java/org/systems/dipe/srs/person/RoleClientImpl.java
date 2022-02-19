@@ -7,6 +7,7 @@ import org.systems.dipe.srs.person.roles.RoleSearch;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class RoleClientImpl implements RoleClient {
@@ -22,7 +23,12 @@ public class RoleClientImpl implements RoleClient {
     }
 
     @Override
-    public void assign(String roleId, String personId) {
+    public void assign(Set<String> roleIds, String personId) {
 
+    }
+
+    @Override
+    public Map<String, Set<Role>> fetchAssignment(Set<String> personIds) {
+        return null;
     }
 }

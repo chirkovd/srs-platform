@@ -12,17 +12,17 @@ import java.util.Collection;
 public class ContactClientImpl implements ContactClient {
 
     @Override
-    public Contact create(Contact contact) {
-        return null;
+    public void create(Collection<Contact> contacts) {
+
     }
 
     @Override
-    public Contact update(Contact contact) {
-        return null;
+    public void update(Collection<Contact> contacts) {
+
     }
 
     @Override
-    public Collection<Contact> find(ContactSearch search) {
+    public Collection<Contact> search(ContactSearch search) {
         return null;
     }
 }

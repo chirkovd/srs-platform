@@ -4,9 +4,9 @@ import java.util.Collection;
 
 public interface ContactClient {
 
-    Contact create(Contact contact);
+    void create(Collection<Contact> contacts);
 
-    Contact update(Contact contact);
+    void update(Collection<Contact> contacts);
 
-    Collection<Contact> find(ContactSearch search);
+    Collection<Contact> search(ContactSearch search);
 }

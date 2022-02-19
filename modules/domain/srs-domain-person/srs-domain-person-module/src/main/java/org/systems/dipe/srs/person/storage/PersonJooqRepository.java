@@ -5,12 +5,14 @@ import org.jooq.impl.DefaultDSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.person.Person;
+import org.systems.dipe.srs.person.PersonSearch;
 import org.systems.dipe.srs.person.jooq.tables.JPerson;
 import org.systems.dipe.srs.person.jooq.tables.records.JPersonRecord;
 import org.systems.dipe.srs.person.storage.mapper.PeopleMapper;
 
-import java.util.Objects;
+import java.util.Collection;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -21,19 +23,32 @@ public class PersonJooqRepository implements PersonRepository {
     private final PeopleMapper mapper;
 
     @Override
-    public Person create(Person person) {
+    public void create(Person person) {
         JPersonRecord record = mapper.toJooq(person);
-
-        if (Objects.isNull(record.getPersonId())) {
-            record.setPersonId(UUID.randomUUID());
-        }
 
         dsl.insertInto(JPerson.PERSON)
                 .set(record)
-                .onDuplicateKeyUpdate()
+                .execute();
+    }
+
+    @Override
+    public void update(Person person) {
+        JPersonRecord record = mapper.toJooq(person);
+
+        dsl.update(JPerson.PERSON)
                 .set(record)
                 .execute();
+    }
 
-        return person;
+    @Override
+    public Collection<Person> find(PersonSearch search) {
+        return dsl.selectFrom(JPerson.PERSON)
+                .where(JPerson.PERSON.PERSON_ID.in(
+                        search.getPersonIds().stream()
+                                .map(UUID::fromString)
+                                .collect(Collectors.toSet()))
+                )
+                .fetch()
+                .map(mapper::fromJooq);
     }
 }

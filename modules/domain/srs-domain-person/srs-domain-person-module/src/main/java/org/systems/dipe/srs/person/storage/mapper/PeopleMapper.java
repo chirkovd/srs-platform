@@ -18,6 +18,7 @@ public interface PeopleMapper {
 
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "contacts", ignore = true)
+    @Mapping(target = "identifications", ignore = true)
     Person fromJooq(JPersonRecord record);
 
     default LocalDateTime fromZdt(ZonedDateTime zdt) {
