@@ -21,7 +21,7 @@ import org.systems.dipe.srs.person.jooq.tables.records.JRoleRecord;
 
 /**
  * A class modelling foreign key relationships and constraints of tables in
- * srs_people.
+ * people.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Keys {
@@ -30,15 +30,15 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<JContactRecord> PK_SRS_PEOPLE_CONTACT = Internal.createUniqueKey(JContact.CONTACT, DSL.name("PK.srs_people.contact"), new TableField[] { JContact.CONTACT.CONTACT_ID }, true);
-    public static final UniqueKey<JPersonRecord> PK_SRS_PEOPLE_PERSON = Internal.createUniqueKey(JPerson.PERSON, DSL.name("PK.srs_people.person"), new TableField[] { JPerson.PERSON.PERSON_ID }, true);
-    public static final UniqueKey<JRoleRecord> PK_SRS_PEOPLE_ROLE = Internal.createUniqueKey(JRole.ROLE, DSL.name("PK.srs_people.role"), new TableField[] { JRole.ROLE.ROLE_ID }, true);
+    public static final UniqueKey<JContactRecord> PK_PEOPLE_CONTACT = Internal.createUniqueKey(JContact.CONTACT, DSL.name("PK.people.contact"), new TableField[] { JContact.CONTACT.CONTACT_ID }, true);
+    public static final UniqueKey<JPersonRecord> PK_PEOPLE_PERSON = Internal.createUniqueKey(JPerson.PERSON, DSL.name("PK.people.person"), new TableField[] { JPerson.PERSON.PERSON_ID }, true);
+    public static final UniqueKey<JRoleRecord> PK_PEOPLE_ROLE = Internal.createUniqueKey(JRole.ROLE, DSL.name("PK.people.role"), new TableField[] { JRole.ROLE.ROLE_ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<JContactRecord, JPersonRecord> CONTACT__FK_SRS_PEOPLE_CONTACT_PERSON = Internal.createForeignKey(JContact.CONTACT, DSL.name("FK.srs_people.contact.person"), new TableField[] { JContact.CONTACT.PERSON_ID }, Keys.PK_SRS_PEOPLE_PERSON, new TableField[] { JPerson.PERSON.PERSON_ID }, true);
-    public static final ForeignKey<JRoleLinkRecord, JPersonRecord> ROLE_LINK__FK_SRS_PEOPLE_ROLE_LINK_PERSON = Internal.createForeignKey(JRoleLink.ROLE_LINK, DSL.name("FK.srs_people.role_link.person"), new TableField[] { JRoleLink.ROLE_LINK.PERSON_ID }, Keys.PK_SRS_PEOPLE_PERSON, new TableField[] { JPerson.PERSON.PERSON_ID }, true);
-    public static final ForeignKey<JRoleLinkRecord, JRoleRecord> ROLE_LINK__FK_SRS_PEOPLE_ROLE_LINK_ROLE = Internal.createForeignKey(JRoleLink.ROLE_LINK, DSL.name("FK.srs_people.role_link.role"), new TableField[] { JRoleLink.ROLE_LINK.ROLE_ID }, Keys.PK_SRS_PEOPLE_ROLE, new TableField[] { JRole.ROLE.ROLE_ID }, true);
+    public static final ForeignKey<JContactRecord, JPersonRecord> CONTACT__FK_PEOPLE_CONTACT_PERSON = Internal.createForeignKey(JContact.CONTACT, DSL.name("FK.people.contact.person"), new TableField[] { JContact.CONTACT.PERSON_ID }, Keys.PK_PEOPLE_PERSON, new TableField[] { JPerson.PERSON.PERSON_ID }, true);
+    public static final ForeignKey<JRoleLinkRecord, JPersonRecord> ROLE_LINK__FK_PEOPLE_ROLE_LINK_PERSON = Internal.createForeignKey(JRoleLink.ROLE_LINK, DSL.name("FK.people.role_link.person"), new TableField[] { JRoleLink.ROLE_LINK.PERSON_ID }, Keys.PK_PEOPLE_PERSON, new TableField[] { JPerson.PERSON.PERSON_ID }, true);
+    public static final ForeignKey<JRoleLinkRecord, JRoleRecord> ROLE_LINK__FK_PEOPLE_ROLE_LINK_ROLE = Internal.createForeignKey(JRoleLink.ROLE_LINK, DSL.name("FK.people.role_link.role"), new TableField[] { JRoleLink.ROLE_LINK.ROLE_ID }, Keys.PK_PEOPLE_ROLE, new TableField[] { JRole.ROLE.ROLE_ID }, true);
 }

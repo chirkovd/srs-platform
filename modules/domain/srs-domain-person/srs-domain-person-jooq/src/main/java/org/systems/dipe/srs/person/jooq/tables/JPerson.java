@@ -10,7 +10,7 @@ import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 import org.systems.dipe.srs.person.jooq.Indexes;
-import org.systems.dipe.srs.person.jooq.JSrsPeople;
+import org.systems.dipe.srs.person.jooq.JPeople;
 import org.systems.dipe.srs.person.jooq.Keys;
 import org.systems.dipe.srs.person.jooq.tables.records.JPersonRecord;
 
@@ -29,7 +29,7 @@ public class JPerson extends TableImpl<JPersonRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>srs_people.person</code>
+     * The reference instance of <code>people.person</code>
      */
     public static final JPerson PERSON = new JPerson();
 
@@ -42,17 +42,17 @@ public class JPerson extends TableImpl<JPersonRecord> {
     }
 
     /**
-     * The column <code>srs_people.person.person_id</code>.
+     * The column <code>people.person.person_id</code>.
      */
     public final TableField<JPersonRecord, UUID> PERSON_ID = createField(DSL.name("person_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>srs_people.person.username</code>.
+     * The column <code>people.person.username</code>.
      */
     public final TableField<JPersonRecord, String> USERNAME = createField(DSL.name("username"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>srs_people.person.created</code>.
+     * The column <code>people.person.created</code>.
      */
     public final TableField<JPersonRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
 
@@ -65,21 +65,21 @@ public class JPerson extends TableImpl<JPersonRecord> {
     }
 
     /**
-     * Create an aliased <code>srs_people.person</code> table reference
+     * Create an aliased <code>people.person</code> table reference
      */
     public JPerson(String alias) {
         this(DSL.name(alias), PERSON);
     }
 
     /**
-     * Create an aliased <code>srs_people.person</code> table reference
+     * Create an aliased <code>people.person</code> table reference
      */
     public JPerson(Name alias) {
         this(alias, PERSON);
     }
 
     /**
-     * Create a <code>srs_people.person</code> table reference
+     * Create a <code>people.person</code> table reference
      */
     public JPerson() {
         this(DSL.name("person"), null);
@@ -91,17 +91,17 @@ public class JPerson extends TableImpl<JPersonRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JSrsPeople.SRS_PEOPLE;
+        return aliased() ? null : JPeople.PEOPLE;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.IX_SRS_PEOPLE_PERSON_USERNAME);
+        return Arrays.asList(Indexes.IX_PEOPLE_PERSON_USERNAME);
     }
 
     @Override
     public UniqueKey<JPersonRecord> getPrimaryKey() {
-        return Keys.PK_SRS_PEOPLE_PERSON;
+        return Keys.PK_PEOPLE_PERSON;
     }
 
     @Override

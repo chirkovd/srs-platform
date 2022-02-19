@@ -24,7 +24,7 @@ public class JRoleRecord extends UpdatableRecordImpl<JRoleRecord> implements Rec
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>srs_people.role.role_id</code>.
+     * Setter for <code>people.role.role_id</code>.
      */
     public JRoleRecord setRoleId(UUID value) {
         set(0, value);
@@ -32,14 +32,14 @@ public class JRoleRecord extends UpdatableRecordImpl<JRoleRecord> implements Rec
     }
 
     /**
-     * Getter for <code>srs_people.role.role_id</code>.
+     * Getter for <code>people.role.role_id</code>.
      */
     public UUID getRoleId() {
         return (UUID) get(0);
     }
 
     /**
-     * Setter for <code>srs_people.role.role</code>.
+     * Setter for <code>people.role.role</code>.
      */
     public JRoleRecord setRole(String value) {
         set(1, value);
@@ -47,14 +47,14 @@ public class JRoleRecord extends UpdatableRecordImpl<JRoleRecord> implements Rec
     }
 
     /**
-     * Getter for <code>srs_people.role.role</code>.
+     * Getter for <code>people.role.role</code>.
      */
     public String getRole() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>srs_people.role.description</code>.
+     * Setter for <code>people.role.description</code>.
      */
     public JRoleRecord setDescription(String value) {
         set(2, value);
@@ -62,14 +62,14 @@ public class JRoleRecord extends UpdatableRecordImpl<JRoleRecord> implements Rec
     }
 
     /**
-     * Getter for <code>srs_people.role.description</code>.
+     * Getter for <code>people.role.description</code>.
      */
     public String getDescription() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>srs_people.role.created</code>.
+     * Setter for <code>people.role.created</code>.
      */
     public JRoleRecord setCreated(LocalDateTime value) {
         set(3, value);
@@ -77,7 +77,7 @@ public class JRoleRecord extends UpdatableRecordImpl<JRoleRecord> implements Rec
     }
 
     /**
-     * Getter for <code>srs_people.role.created</code>.
+     * Getter for <code>people.role.created</code>.
      */
     public LocalDateTime getCreated() {
         return (LocalDateTime) get(3);

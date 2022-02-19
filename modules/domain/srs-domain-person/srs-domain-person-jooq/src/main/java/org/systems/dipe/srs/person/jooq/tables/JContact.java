@@ -9,7 +9,7 @@ import org.jooq.*;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
-import org.systems.dipe.srs.person.jooq.JSrsPeople;
+import org.systems.dipe.srs.person.jooq.JPeople;
 import org.systems.dipe.srs.person.jooq.Keys;
 import org.systems.dipe.srs.person.jooq.tables.records.JContactRecord;
 
@@ -28,7 +28,7 @@ public class JContact extends TableImpl<JContactRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>srs_people.contact</code>
+     * The reference instance of <code>people.contact</code>
      */
     public static final JContact CONTACT = new JContact();
 
@@ -41,27 +41,27 @@ public class JContact extends TableImpl<JContactRecord> {
     }
 
     /**
-     * The column <code>srs_people.contact.contact_id</code>.
+     * The column <code>people.contact.contact_id</code>.
      */
     public final TableField<JContactRecord, UUID> CONTACT_ID = createField(DSL.name("contact_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>srs_people.contact.person_id</code>.
+     * The column <code>people.contact.person_id</code>.
      */
     public final TableField<JContactRecord, UUID> PERSON_ID = createField(DSL.name("person_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>srs_people.contact.phone</code>.
+     * The column <code>people.contact.phone</code>.
      */
     public final TableField<JContactRecord, String> PHONE = createField(DSL.name("phone"), SQLDataType.VARCHAR(100), this, "");
 
     /**
-     * The column <code>srs_people.contact.email</code>.
+     * The column <code>people.contact.email</code>.
      */
     public final TableField<JContactRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(255), this, "");
 
     /**
-     * The column <code>srs_people.contact.created</code>.
+     * The column <code>people.contact.created</code>.
      */
     public final TableField<JContactRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
 
@@ -74,21 +74,21 @@ public class JContact extends TableImpl<JContactRecord> {
     }
 
     /**
-     * Create an aliased <code>srs_people.contact</code> table reference
+     * Create an aliased <code>people.contact</code> table reference
      */
     public JContact(String alias) {
         this(DSL.name(alias), CONTACT);
     }
 
     /**
-     * Create an aliased <code>srs_people.contact</code> table reference
+     * Create an aliased <code>people.contact</code> table reference
      */
     public JContact(Name alias) {
         this(alias, CONTACT);
     }
 
     /**
-     * Create a <code>srs_people.contact</code> table reference
+     * Create a <code>people.contact</code> table reference
      */
     public JContact() {
         this(DSL.name("contact"), null);
@@ -100,27 +100,27 @@ public class JContact extends TableImpl<JContactRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JSrsPeople.SRS_PEOPLE;
+        return aliased() ? null : JPeople.PEOPLE;
     }
 
     @Override
     public UniqueKey<JContactRecord> getPrimaryKey() {
-        return Keys.PK_SRS_PEOPLE_CONTACT;
+        return Keys.PK_PEOPLE_CONTACT;
     }
 
     @Override
     public List<ForeignKey<JContactRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.CONTACT__FK_SRS_PEOPLE_CONTACT_PERSON);
+        return Arrays.asList(Keys.CONTACT__FK_PEOPLE_CONTACT_PERSON);
     }
 
     private transient JPerson _person;
 
     /**
-     * Get the implicit join path to the <code>srs_people.person</code> table.
+     * Get the implicit join path to the <code>people.person</code> table.
      */
     public JPerson person() {
         if (_person == null)
-            _person = new JPerson(this, Keys.CONTACT__FK_SRS_PEOPLE_CONTACT_PERSON);
+            _person = new JPerson(this, Keys.CONTACT__FK_PEOPLE_CONTACT_PERSON);
 
         return _person;
     }

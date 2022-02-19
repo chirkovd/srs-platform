@@ -1,5 +1,7 @@
 package org.systems.dipe.srs.inventory;
 
-public record Inventory(String id, String name) {
+import java.time.ZonedDateTime;
+
+public record Inventory(String inventoryId, String name, ZonedDateTime created) {
 
 }

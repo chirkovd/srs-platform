@@ -8,6 +8,8 @@ public interface LocationClient {
 
     Location update(Location location);
 
+    Collection<Location> search(LocationSearch search);
+
     void addPoints(Collection<Point> points);
 
     void addComments(Collection<Comment> comments);

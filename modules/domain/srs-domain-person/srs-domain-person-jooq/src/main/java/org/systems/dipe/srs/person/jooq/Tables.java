@@ -11,28 +11,28 @@ import org.systems.dipe.srs.person.jooq.tables.JRoleLink;
 
 
 /**
- * Convenience access to all tables in srs_people.
+ * Convenience access to all tables in people.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
 
     /**
-     * The table <code>srs_people.contact</code>.
+     * The table <code>people.contact</code>.
      */
     public static final JContact CONTACT = JContact.CONTACT;
 
     /**
-     * The table <code>srs_people.person</code>.
+     * The table <code>people.person</code>.
      */
     public static final JPerson PERSON = JPerson.PERSON;
 
     /**
-     * The table <code>srs_people.role</code>.
+     * The table <code>people.role</code>.
      */
     public static final JRole ROLE = JRole.ROLE;
 
     /**
-     * The table <code>srs_people.role_link</code>.
+     * The table <code>people.role_link</code>.
      */
     public static final JRoleLink ROLE_LINK = JRoleLink.ROLE_LINK;
 }

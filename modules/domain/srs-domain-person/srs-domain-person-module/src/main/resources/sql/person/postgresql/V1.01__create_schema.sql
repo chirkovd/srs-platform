@@ -1,5 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS srs_people;
-SET search_path TO srs_people;
+CREATE SCHEMA IF NOT EXISTS people;
+SET search_path TO people;
 
 CREATE TABLE IF NOT EXISTS person
 (
@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS person
 
     created  TIMESTAMP              NOT NULL DEFAULT now(),
 
-    CONSTRAINT "PK.srs_people.person" PRIMARY KEY (person_id)
+    CONSTRAINT "PK.people.person" PRIMARY KEY (person_id)
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS "IX_srs_people.person.username" ON person (username);
+CREATE UNIQUE INDEX IF NOT EXISTS "IX_people.person.username" ON person (username);
 
 CREATE TABLE IF NOT EXISTS contact
 (
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS contact
     email       VARCHAR(255),
     created     TIMESTAMP   NOT NULL DEFAULT now(),
 
-    CONSTRAINT "PK.srs_people.contact" PRIMARY KEY (contact_id),
-    CONSTRAINT "FK.srs_people.contact.person" FOREIGN KEY (person_id) REFERENCES person (person_id)
+    CONSTRAINT "PK.people.contact" PRIMARY KEY (contact_id),
+    CONSTRAINT "FK.people.contact.person" FOREIGN KEY (person_id) REFERENCES person (person_id)
 );
 
 CREATE TABLE IF NOT EXISTS role
@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS role
     description TEXT,
     created     TIMESTAMP       NOT NULL DEFAULT now(),
 
-    CONSTRAINT "PK.srs_people.role" PRIMARY KEY (role_id)
+    CONSTRAINT "PK.people.role" PRIMARY KEY (role_id)
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS "IX_srs_people.role.role" ON role (role);
+CREATE UNIQUE INDEX IF NOT EXISTS "IX_people.role.role" ON role (role);
 
 CREATE TABLE IF NOT EXISTS role_link
 (
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS role_link
 
     created     TIMESTAMP       NOT NULL DEFAULT now(),
 
-    CONSTRAINT "FK.srs_people.role_link.role" FOREIGN KEY (role_id) REFERENCES role (role_id),
-    CONSTRAINT "FK.srs_people.role_link.person" FOREIGN KEY (person_id) REFERENCES person (person_id)
+    CONSTRAINT "FK.people.role_link.role" FOREIGN KEY (role_id) REFERENCES role (role_id),
+    CONSTRAINT "FK.people.role_link.person" FOREIGN KEY (person_id) REFERENCES person (person_id)
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS "IX_srs_people.role_link.role_person" ON role_link (role_id, person_id);
+CREATE UNIQUE INDEX IF NOT EXISTS "IX_people.role_link.role_person" ON role_link (role_id, person_id);

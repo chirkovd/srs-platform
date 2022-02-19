@@ -14,7 +14,7 @@ import org.systems.dipe.srs.person.jooq.tables.JRoleLink;
 
 
 /**
- * A class modelling indexes of tables in srs_people.
+ * A class modelling indexes of tables in people.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Indexes {
@@ -23,7 +23,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
-    public static final Index IX_SRS_PEOPLE_PERSON_USERNAME = Internal.createIndex(DSL.name("IX_srs_people.person.username"), JPerson.PERSON, new OrderField[] { JPerson.PERSON.USERNAME }, true);
-    public static final Index IX_SRS_PEOPLE_ROLE_ROLE = Internal.createIndex(DSL.name("IX_srs_people.role.role"), JRole.ROLE, new OrderField[] { JRole.ROLE.ROLE_ }, true);
-    public static final Index IX_SRS_PEOPLE_ROLE_LINK_ROLE_PERSON = Internal.createIndex(DSL.name("IX_srs_people.role_link.role_person"), JRoleLink.ROLE_LINK, new OrderField[] { JRoleLink.ROLE_LINK.ROLE_ID, JRoleLink.ROLE_LINK.PERSON_ID }, true);
+    public static final Index IX_PEOPLE_PERSON_USERNAME = Internal.createIndex(DSL.name("IX_people.person.username"), JPerson.PERSON, new OrderField[] { JPerson.PERSON.USERNAME }, true);
+    public static final Index IX_PEOPLE_ROLE_ROLE = Internal.createIndex(DSL.name("IX_people.role.role"), JRole.ROLE, new OrderField[] { JRole.ROLE.ROLE_ }, true);
+    public static final Index IX_PEOPLE_ROLE_LINK_ROLE_PERSON = Internal.createIndex(DSL.name("IX_people.role_link.role_person"), JRoleLink.ROLE_LINK, new OrderField[] { JRoleLink.ROLE_LINK.ROLE_ID, JRoleLink.ROLE_LINK.PERSON_ID }, true);
 }
