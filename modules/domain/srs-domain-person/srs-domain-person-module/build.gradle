@@ -3,6 +3,7 @@ dependencies {
     implementation project(':srs-domain-person-jooq')
 
     implementation 'org.flywaydb:flyway-core'
+    implementation 'org.mapstruct:mapstruct'
 
     compileClasspath 'org.springframework.boot:spring-boot-starter'
     compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'

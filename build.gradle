@@ -44,7 +44,11 @@ allprojects {
             dependency 'org.jooq:jooq:3.16.4'
             dependency 'org.jooq:jooq-meta:3.16.4'
             dependency 'org.jooq:jooq-codegen:3.16.4'
+
             dependency 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
+
+            dependency 'org.mapstruct:mapstruct:1.4.2.Final'
+            dependency 'org.mapstruct:mapstruct-processor:1.4.2.Final'
         }
     }
 
@@ -63,6 +67,9 @@ allprojects {
         testAnnotationProcessor 'org.projectlombok:lombok'
 
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        compileOnly 'org.mapstruct:mapstruct-processor'
+        annotationProcessor 'org.mapstruct:mapstruct-processor'
     }
 
     configurations {
