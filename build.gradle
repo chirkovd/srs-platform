@@ -9,6 +9,7 @@ buildscript {
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.6.3'
+    id "nu.studer.jooq" version "7.1.1"
 }
 
 allprojects {
@@ -25,6 +26,7 @@ allprojects {
         options.encoding = "$encoding"
     }
 
+    apply plugin: "nu.studer.jooq"
     apply plugin: 'io.spring.dependency-management'
 
     repositories {
@@ -38,6 +40,11 @@ allprojects {
         dependencies {
             dependency 'org.apache.commons:commons-collections4:4.4'
             dependency 'org.apache.commons:commons-lang3:3.12.0'
+
+            dependency 'org.jooq:jooq:3.16.4'
+            dependency 'org.jooq:jooq-meta:3.16.4'
+            dependency 'org.jooq:jooq-codegen:3.16.4'
+            dependency 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
         }
     }
 
@@ -69,3 +76,4 @@ allprojects {
     }
 }
 
+apply from: "${rootDir}/gradle/jooq.gradle"

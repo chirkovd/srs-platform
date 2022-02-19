@@ -1,2 +1,9 @@
 dependencies {
+    implementation project(':srs-domain-location-api')
+    implementation project(':srs-domain-location-jooq')
+
+    implementation 'org.flywaydb:flyway-core'
+
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
+    compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
 }

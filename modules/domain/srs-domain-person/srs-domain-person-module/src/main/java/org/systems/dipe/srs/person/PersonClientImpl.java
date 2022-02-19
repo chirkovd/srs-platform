@@ -1,16 +1,21 @@
 package org.systems.dipe.srs.person;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.systems.dipe.srs.person.storage.PersonRepository;
 
 import java.util.Collection;
 
 
 @Service
-public class PersonClientImpl implements PersonClient{
+@AllArgsConstructor
+public class PersonClientImpl implements PersonClient {
+
+    private final PersonRepository personRepository;
 
     @Override
     public Person create(Person person) {
-        return null;
+        return personRepository.create(person);
     }
 
     @Override

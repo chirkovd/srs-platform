@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: srs-core-platform
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: false
+
+logging:
+  level:
+    root: INFO
+    org.systems.dipe: DEBUG
+  config: classpath:logback.xml

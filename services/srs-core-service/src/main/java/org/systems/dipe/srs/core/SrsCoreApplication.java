@@ -4,12 +4,24 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.systems.dipe.srs.inventory.config.InventoryConfig;
+import org.systems.dipe.srs.location.config.LocationConfig;
+import org.systems.dipe.srs.person.config.PersonConfig;
+import org.systems.dipe.srs.request.config.RequestConfig;
+import org.systems.dipe.srs.search.config.SearchProcessConfig;
+import org.systems.dipe.srs.squad.config.SquadConfig;
 
-@Import(
-        InventoryConfig.Client.class
-)
+@Import({
+        InventoryConfig.Module.class,
+        PersonConfig.Module.class,
+        RequestConfig.Module.class,
+        LocationConfig.Module.class,
+        SquadConfig.Module.class,
+        SearchProcessConfig.Module.class
+})
 @SpringBootApplication
+@EnableTransactionManagement
 public class SrsCoreApplication {
 
     public static void main(String... args) {

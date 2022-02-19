@@ -3,7 +3,6 @@ package org.systems.dipe.srs.person;
 import org.springframework.stereotype.Service;
 import org.systems.dipe.srs.person.roles.Role;
 import org.systems.dipe.srs.person.roles.RoleClient;
-import org.systems.dipe.srs.person.roles.RoleLink;
 import org.systems.dipe.srs.person.roles.RoleSearch;
 
 import java.util.Collection;
@@ -23,12 +22,7 @@ public class RoleClientImpl implements RoleClient {
     }
 
     @Override
-    public RoleLink assign(String roleId, String personId) {
-        return null;
-    }
+    public void assign(String roleId, String personId) {
 
-    @Override
-    public Map<RoleLink, Role> find(String personId) {
-        return null;
     }
 }
