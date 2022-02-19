@@ -12,6 +12,6 @@ public interface RequestClient {
 
     void addItems(Collection<RequestItem> items);
 
-    void addLocation(RequestLocation location);
+    void addLocations(Collection<RequestLocation> locations);
 
 }
