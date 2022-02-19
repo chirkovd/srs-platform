@@ -1,18 +1,9 @@
 dependencies {
     implementation project(':srs-domain-person-api')
+    implementation project(':srs-domain-person-jooq')
 
     implementation 'org.flywaydb:flyway-core'
-    implementation 'org.jooq:jooq'
-    implementation 'org.jooq:jooq-codegen'
-
-    jooqGenerator 'org.postgresql:postgresql'
 
     compileClasspath 'org.springframework.boot:spring-boot-starter'
     compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
 }
-
-ext.jooqProps = [
-        db         : 'jdbc:postgresql://localhost:5432/srs-platform',
-        packageName: 'org.systems.dipe.srs.person.storage.jooq',
-        inputSchema: 'srs_person'
-]

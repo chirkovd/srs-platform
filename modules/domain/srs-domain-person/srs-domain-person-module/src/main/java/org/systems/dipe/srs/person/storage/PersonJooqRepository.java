@@ -1,13 +1,12 @@
-package org.systems.dipe.srs.person.storage.jooq;
+package org.systems.dipe.srs.person.storage;
 
 import lombok.AllArgsConstructor;
 import org.jooq.impl.DefaultDSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.person.Person;
-import org.systems.dipe.srs.person.storage.PersonRepository;
-import org.systems.dipe.srs.person.storage.jooq.tables.JPerson;
-import org.systems.dipe.srs.person.storage.jooq.tables.records.JPersonRecord;
+import org.systems.dipe.srs.person.jooq.tables.JPerson;
+import org.systems.dipe.srs.person.jooq.tables.records.JPersonRecord;
 
 @Repository
 @Transactional

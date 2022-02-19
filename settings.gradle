@@ -13,6 +13,8 @@ project(':srs-domain-location-module').projectDir = "$rootDir/modules/domain/srs
 
 include ':srs-domain-person-api'
 project(':srs-domain-person-api').projectDir = "$rootDir/modules/domain/srs-domain-person/srs-domain-person-api" as File
+include ':srs-domain-person-jooq'
+project(':srs-domain-person-jooq').projectDir = "$rootDir/modules/domain/srs-domain-person/srs-domain-person-jooq" as File
 include ':srs-domain-person-module'
 project(':srs-domain-person-module').projectDir = "$rootDir/modules/domain/srs-domain-person/srs-domain-person-module" as File
 

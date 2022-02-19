@@ -48,12 +48,12 @@ subprojects {
                                 generate {
                                     deprecated = false
                                     records = true
-                                    immutablePojos = true
+                                    immutablePojos = false
                                     fluentSetters = true
                                 }
                                 target {
                                     packageName = jooqProps.packageName
-                                    directory = 'build/generated-src/jooq/main'  // default (can be omitted)
+                                    directory = 'src/main/java'
                                 }
                             }
                         }
