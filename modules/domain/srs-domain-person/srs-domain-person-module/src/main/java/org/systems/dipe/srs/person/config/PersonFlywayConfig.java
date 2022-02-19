@@ -17,7 +17,7 @@ public class PersonFlywayConfig {
                         .baselineOnMigrate(true)
                         .locations("sql/person/postgresql")
                         .table("schema_version")
-                        .schemas("srs_person")
+                        .schemas("srs_people")
                         .load()
         );
     }

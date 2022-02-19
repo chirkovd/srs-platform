@@ -24,7 +24,7 @@ public class JPersonRecord extends UpdatableRecordImpl<JPersonRecord> implements
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>srs_person.person.person_id</code>.
+     * Setter for <code>srs_people.person.person_id</code>.
      */
     public JPersonRecord setPersonId(UUID value) {
         set(0, value);
@@ -32,14 +32,14 @@ public class JPersonRecord extends UpdatableRecordImpl<JPersonRecord> implements
     }
 
     /**
-     * Getter for <code>srs_person.person.person_id</code>.
+     * Getter for <code>srs_people.person.person_id</code>.
      */
     public UUID getPersonId() {
         return (UUID) get(0);
     }
 
     /**
-     * Setter for <code>srs_person.person.username</code>.
+     * Setter for <code>srs_people.person.username</code>.
      */
     public JPersonRecord setUsername(String value) {
         set(1, value);
@@ -47,14 +47,14 @@ public class JPersonRecord extends UpdatableRecordImpl<JPersonRecord> implements
     }
 
     /**
-     * Getter for <code>srs_person.person.username</code>.
+     * Getter for <code>srs_people.person.username</code>.
      */
     public String getUsername() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>srs_person.person.created</code>.
+     * Setter for <code>srs_people.person.created</code>.
      */
     public JPersonRecord setCreated(LocalDateTime value) {
         set(2, value);
@@ -62,7 +62,7 @@ public class JPersonRecord extends UpdatableRecordImpl<JPersonRecord> implements
     }
 
     /**
-     * Getter for <code>srs_person.person.created</code>.
+     * Getter for <code>srs_people.person.created</code>.
      */
     public LocalDateTime getCreated() {
         return (LocalDateTime) get(2);

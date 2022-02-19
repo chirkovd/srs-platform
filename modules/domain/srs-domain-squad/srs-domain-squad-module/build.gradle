@@ -1,5 +1,9 @@
 dependencies {
     implementation project(':srs-domain-squad-api')
+    implementation project(':srs-domain-squad-jooq')
+
+    implementation 'org.flywaydb:flyway-core'
 
     compileClasspath 'org.springframework.boot:spring-boot-starter'
+    compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
 }

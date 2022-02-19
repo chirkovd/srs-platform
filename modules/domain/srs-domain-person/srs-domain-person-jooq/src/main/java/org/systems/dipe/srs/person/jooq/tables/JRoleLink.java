@@ -10,7 +10,7 @@ import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 import org.systems.dipe.srs.person.jooq.Indexes;
-import org.systems.dipe.srs.person.jooq.JSrsPerson;
+import org.systems.dipe.srs.person.jooq.JSrsPeople;
 import org.systems.dipe.srs.person.jooq.Keys;
 import org.systems.dipe.srs.person.jooq.tables.records.JRoleLinkRecord;
 
@@ -29,7 +29,7 @@ public class JRoleLink extends TableImpl<JRoleLinkRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>srs_person.role_link</code>
+     * The reference instance of <code>srs_people.role_link</code>
      */
     public static final JRoleLink ROLE_LINK = new JRoleLink();
 
@@ -42,17 +42,17 @@ public class JRoleLink extends TableImpl<JRoleLinkRecord> {
     }
 
     /**
-     * The column <code>srs_person.role_link.role_id</code>.
+     * The column <code>srs_people.role_link.role_id</code>.
      */
     public final TableField<JRoleLinkRecord, UUID> ROLE_ID = createField(DSL.name("role_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>srs_person.role_link.person_id</code>.
+     * The column <code>srs_people.role_link.person_id</code>.
      */
     public final TableField<JRoleLinkRecord, UUID> PERSON_ID = createField(DSL.name("person_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>srs_person.role_link.created</code>.
+     * The column <code>srs_people.role_link.created</code>.
      */
     public final TableField<JRoleLinkRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
 
@@ -65,21 +65,21 @@ public class JRoleLink extends TableImpl<JRoleLinkRecord> {
     }
 
     /**
-     * Create an aliased <code>srs_person.role_link</code> table reference
+     * Create an aliased <code>srs_people.role_link</code> table reference
      */
     public JRoleLink(String alias) {
         this(DSL.name(alias), ROLE_LINK);
     }
 
     /**
-     * Create an aliased <code>srs_person.role_link</code> table reference
+     * Create an aliased <code>srs_people.role_link</code> table reference
      */
     public JRoleLink(Name alias) {
         this(alias, ROLE_LINK);
     }
 
     /**
-     * Create a <code>srs_person.role_link</code> table reference
+     * Create a <code>srs_people.role_link</code> table reference
      */
     public JRoleLink() {
         this(DSL.name("role_link"), null);
@@ -91,38 +91,38 @@ public class JRoleLink extends TableImpl<JRoleLinkRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JSrsPerson.SRS_PERSON;
+        return aliased() ? null : JSrsPeople.SRS_PEOPLE;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.IX_SRS_PERSON_ROLE_LINK_ROLE_PERSON);
+        return Arrays.asList(Indexes.IX_SRS_PEOPLE_ROLE_LINK_ROLE_PERSON);
     }
 
     @Override
     public List<ForeignKey<JRoleLinkRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.ROLE_LINK__FK_SRS_PERSON_ROLE_LINK_ROLE, Keys.ROLE_LINK__FK_SRS_PERSON_ROLE_LINK_PERSON);
+        return Arrays.asList(Keys.ROLE_LINK__FK_SRS_PEOPLE_ROLE_LINK_ROLE, Keys.ROLE_LINK__FK_SRS_PEOPLE_ROLE_LINK_PERSON);
     }
 
     private transient JRole _role;
     private transient JPerson _person;
 
     /**
-     * Get the implicit join path to the <code>srs_person.role</code> table.
+     * Get the implicit join path to the <code>srs_people.role</code> table.
      */
     public JRole role() {
         if (_role == null)
-            _role = new JRole(this, Keys.ROLE_LINK__FK_SRS_PERSON_ROLE_LINK_ROLE);
+            _role = new JRole(this, Keys.ROLE_LINK__FK_SRS_PEOPLE_ROLE_LINK_ROLE);
 
         return _role;
     }
 
     /**
-     * Get the implicit join path to the <code>srs_person.person</code> table.
+     * Get the implicit join path to the <code>srs_people.person</code> table.
      */
     public JPerson person() {
         if (_person == null)
-            _person = new JPerson(this, Keys.ROLE_LINK__FK_SRS_PERSON_ROLE_LINK_PERSON);
+            _person = new JPerson(this, Keys.ROLE_LINK__FK_SRS_PEOPLE_ROLE_LINK_PERSON);
 
         return _person;
     }

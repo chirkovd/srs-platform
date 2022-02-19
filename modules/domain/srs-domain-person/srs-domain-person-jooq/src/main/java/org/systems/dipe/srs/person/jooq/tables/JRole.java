@@ -10,7 +10,7 @@ import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 import org.systems.dipe.srs.person.jooq.Indexes;
-import org.systems.dipe.srs.person.jooq.JSrsPerson;
+import org.systems.dipe.srs.person.jooq.JSrsPeople;
 import org.systems.dipe.srs.person.jooq.Keys;
 import org.systems.dipe.srs.person.jooq.tables.records.JRoleRecord;
 
@@ -29,7 +29,7 @@ public class JRole extends TableImpl<JRoleRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>srs_person.role</code>
+     * The reference instance of <code>srs_people.role</code>
      */
     public static final JRole ROLE = new JRole();
 
@@ -42,22 +42,22 @@ public class JRole extends TableImpl<JRoleRecord> {
     }
 
     /**
-     * The column <code>srs_person.role.role_id</code>.
+     * The column <code>srs_people.role.role_id</code>.
      */
     public final TableField<JRoleRecord, UUID> ROLE_ID = createField(DSL.name("role_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>srs_person.role.role</code>.
+     * The column <code>srs_people.role.role</code>.
      */
     public final TableField<JRoleRecord, String> ROLE_ = createField(DSL.name("role"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>srs_person.role.description</code>.
+     * The column <code>srs_people.role.description</code>.
      */
     public final TableField<JRoleRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>srs_person.role.created</code>.
+     * The column <code>srs_people.role.created</code>.
      */
     public final TableField<JRoleRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
 
@@ -70,21 +70,21 @@ public class JRole extends TableImpl<JRoleRecord> {
     }
 
     /**
-     * Create an aliased <code>srs_person.role</code> table reference
+     * Create an aliased <code>srs_people.role</code> table reference
      */
     public JRole(String alias) {
         this(DSL.name(alias), ROLE);
     }
 
     /**
-     * Create an aliased <code>srs_person.role</code> table reference
+     * Create an aliased <code>srs_people.role</code> table reference
      */
     public JRole(Name alias) {
         this(alias, ROLE);
     }
 
     /**
-     * Create a <code>srs_person.role</code> table reference
+     * Create a <code>srs_people.role</code> table reference
      */
     public JRole() {
         this(DSL.name("role"), null);
@@ -96,17 +96,17 @@ public class JRole extends TableImpl<JRoleRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JSrsPerson.SRS_PERSON;
+        return aliased() ? null : JSrsPeople.SRS_PEOPLE;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.IX_SRS_PERSON_ROLE_ROLE);
+        return Arrays.asList(Indexes.IX_SRS_PEOPLE_ROLE_ROLE);
     }
 
     @Override
     public UniqueKey<JRoleRecord> getPrimaryKey() {
-        return Keys.PK_SRS_PERSON_ROLE;
+        return Keys.PK_SRS_PEOPLE_ROLE;
     }
 
     @Override

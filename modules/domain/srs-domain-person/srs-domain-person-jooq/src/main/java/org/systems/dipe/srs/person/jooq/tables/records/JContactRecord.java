@@ -24,7 +24,7 @@ public class JContactRecord extends UpdatableRecordImpl<JContactRecord> implemen
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>srs_person.contact.contact_id</code>.
+     * Setter for <code>srs_people.contact.contact_id</code>.
      */
     public JContactRecord setContactId(UUID value) {
         set(0, value);
@@ -32,14 +32,14 @@ public class JContactRecord extends UpdatableRecordImpl<JContactRecord> implemen
     }
 
     /**
-     * Getter for <code>srs_person.contact.contact_id</code>.
+     * Getter for <code>srs_people.contact.contact_id</code>.
      */
     public UUID getContactId() {
         return (UUID) get(0);
     }
 
     /**
-     * Setter for <code>srs_person.contact.person_id</code>.
+     * Setter for <code>srs_people.contact.person_id</code>.
      */
     public JContactRecord setPersonId(UUID value) {
         set(1, value);
@@ -47,14 +47,14 @@ public class JContactRecord extends UpdatableRecordImpl<JContactRecord> implemen
     }
 
     /**
-     * Getter for <code>srs_person.contact.person_id</code>.
+     * Getter for <code>srs_people.contact.person_id</code>.
      */
     public UUID getPersonId() {
         return (UUID) get(1);
     }
 
     /**
-     * Setter for <code>srs_person.contact.phone</code>.
+     * Setter for <code>srs_people.contact.phone</code>.
      */
     public JContactRecord setPhone(String value) {
         set(2, value);
@@ -62,14 +62,14 @@ public class JContactRecord extends UpdatableRecordImpl<JContactRecord> implemen
     }
 
     /**
-     * Getter for <code>srs_person.contact.phone</code>.
+     * Getter for <code>srs_people.contact.phone</code>.
      */
     public String getPhone() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>srs_person.contact.email</code>.
+     * Setter for <code>srs_people.contact.email</code>.
      */
     public JContactRecord setEmail(String value) {
         set(3, value);
@@ -77,14 +77,14 @@ public class JContactRecord extends UpdatableRecordImpl<JContactRecord> implemen
     }
 
     /**
-     * Getter for <code>srs_person.contact.email</code>.
+     * Getter for <code>srs_people.contact.email</code>.
      */
     public String getEmail() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>srs_person.contact.created</code>.
+     * Setter for <code>srs_people.contact.created</code>.
      */
     public JContactRecord setCreated(LocalDateTime value) {
         set(4, value);
@@ -92,7 +92,7 @@ public class JContactRecord extends UpdatableRecordImpl<JContactRecord> implemen
     }
 
     /**
-     * Getter for <code>srs_person.contact.created</code>.
+     * Getter for <code>srs_people.contact.created</code>.
      */
     public LocalDateTime getCreated() {
         return (LocalDateTime) get(4);

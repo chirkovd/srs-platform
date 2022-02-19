@@ -3,11 +3,15 @@ rootProject.name = 'srs-platform'
 // domain
 include ':srs-domain-inventory-api'
 project(':srs-domain-inventory-api').projectDir = "$rootDir/modules/domain/srs-domain-inventory/srs-domain-inventory-api" as File
+include ':srs-domain-inventory-jooq'
+project(':srs-domain-inventory-jooq').projectDir = "$rootDir/modules/domain/srs-domain-inventory/srs-domain-inventory-jooq" as File
 include ':srs-domain-inventory-module'
 project(':srs-domain-inventory-module').projectDir = "$rootDir/modules/domain/srs-domain-inventory/srs-domain-inventory-module" as File
 
 include ':srs-domain-location-api'
 project(':srs-domain-location-api').projectDir = "$rootDir/modules/domain/srs-domain-location/srs-domain-location-api" as File
+include ':srs-domain-location-jooq'
+project(':srs-domain-location-jooq').projectDir = "$rootDir/modules/domain/srs-domain-location/srs-domain-location-jooq" as File
 include ':srs-domain-location-module'
 project(':srs-domain-location-module').projectDir = "$rootDir/modules/domain/srs-domain-location/srs-domain-location-module" as File
 
@@ -20,16 +24,22 @@ project(':srs-domain-person-module').projectDir = "$rootDir/modules/domain/srs-d
 
 include ':srs-domain-request-api'
 project(':srs-domain-request-api').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-api" as File
+include ':srs-domain-request-jooq'
+project(':srs-domain-request-jooq').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-jooq" as File
 include ':srs-domain-request-module'
 project(':srs-domain-request-module').projectDir = "$rootDir/modules/domain/srs-domain-request/srs-domain-request-module" as File
 
 include ':srs-domain-search-process-api'
 project(':srs-domain-search-process-api').projectDir = "$rootDir/modules/domain/srs-domain-search-process/srs-domain-search-process-api" as File
+include ':srs-domain-search-process-jooq'
+project(':srs-domain-search-process-jooq').projectDir = "$rootDir/modules/domain/srs-domain-search-process/srs-domain-search-process-jooq" as File
 include ':srs-domain-search-process-module'
 project(':srs-domain-search-process-module').projectDir = "$rootDir/modules/domain/srs-domain-search-process/srs-domain-search-process-module" as File
 
 include ':srs-domain-squad-api'
 project(':srs-domain-squad-api').projectDir = "$rootDir/modules/domain/srs-domain-squad/srs-domain-squad-api" as File
+include ':srs-domain-squad-jooq'
+project(':srs-domain-squad-jooq').projectDir = "$rootDir/modules/domain/srs-domain-squad/srs-domain-squad-jooq" as File
 include ':srs-domain-squad-module'
 project(':srs-domain-squad-module').projectDir = "$rootDir/modules/domain/srs-domain-squad/srs-domain-squad-module" as File
 
