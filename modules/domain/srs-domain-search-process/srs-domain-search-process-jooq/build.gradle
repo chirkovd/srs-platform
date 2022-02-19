@@ -7,6 +7,6 @@ dependencies {
 
 ext.jooqProps = [
         db         : 'jdbc:postgresql://localhost:5432/srs-platform',
-        packageName: 'org.systems.dipe.srs.person.jooq',
-        inputSchema: 'srs_searches'
+        packageName: 'org.systems.dipe.srs.search.jooq',
+        inputSchema: 'searches'
 ]
