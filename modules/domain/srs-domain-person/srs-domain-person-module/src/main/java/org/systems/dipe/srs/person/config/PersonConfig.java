@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.event.EventListener;
 import org.systems.dipe.srs.person.roles.RoleClient;
 
@@ -14,6 +15,7 @@ import java.util.Collections;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PersonConfig {
 
+    @Import(PersonFlywayConfig.class)
     @ComponentScan(basePackages = "org.systems.dipe.srs.person")
     public static class Module {
 

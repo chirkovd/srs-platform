@@ -9,7 +9,5 @@ public interface RoleClient {
 
     Collection<Role> search(RoleSearch search);
 
-    RoleLink assign(String roleId, String personId);
-
-    Map<RoleLink, Role> find(String personId);
+    void assign(String roleId, String personId);
 }

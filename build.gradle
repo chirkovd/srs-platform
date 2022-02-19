@@ -26,6 +26,7 @@ allprojects {
         options.encoding = "$encoding"
     }
 
+    apply plugin: "nu.studer.jooq"
     apply plugin: 'io.spring.dependency-management'
 
     repositories {
@@ -41,6 +42,9 @@ allprojects {
             dependency 'org.apache.commons:commons-lang3:3.12.0'
 
             dependency 'org.jooq:jooq:3.16.4'
+            dependency 'org.jooq:jooq-meta:3.16.4'
+            dependency 'org.jooq:jooq-codegen:3.16.4'
+            dependency 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
         }
     }
 
