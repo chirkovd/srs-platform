@@ -1,4 +1,6 @@
 package org.systems.dipe.srs.squad;
 
-public record Equipment() {
+import java.time.ZonedDateTime;
+
+public record Equipment(String inventoryId, String squadId, ZonedDateTime created) {
 }
