@@ -55,20 +55,12 @@ public class PersonClientImpl implements PersonClient {
                             .collect(Collectors.toSet()),
                     person.getPersonId()
             );
+        } else {
+            log.error("Roles are missing for person {}", person);
+            throw new IllegalArgumentException("Person without role is not valid");
         }
 
-        Collection<Person> people = find(
-                PersonSearch.builder()
-                        .personIds(Set.of(person.getPersonId()))
-                        .withDetails(true)
-                        .build()
-        );
-        if (!people.isEmpty()) {
-            return people.iterator().next();
-        } else {
-            log.error("Cannot find new person by id {}", person.getPersonId());
-            throw new IllegalStateException("Person was not stored");
-        }
+        return getPerson(person.getPersonId());
     }
 
     @Override
@@ -89,7 +81,7 @@ public class PersonClientImpl implements PersonClient {
                 person.getPersonId()
         );
 
-        return person;
+        return getPerson(person.getPersonId());
     }
 
     @Override
@@ -109,6 +101,21 @@ public class PersonClientImpl implements PersonClient {
         }
 
         return people;
+    }
+
+    private Person getPerson(String personId) {
+        Collection<Person> people = find(
+                PersonSearch.builder()
+                        .personIds(Set.of(personId))
+                        .withDetails(true)
+                        .build()
+        );
+        if (!people.isEmpty()) {
+            return people.iterator().next();
+        } else {
+            log.error("Cannot find new person by id {}", personId);
+            throw new IllegalStateException("Person was not stored");
+        }
     }
 
     private void loadRoles(Map<String, Person> personMap) {

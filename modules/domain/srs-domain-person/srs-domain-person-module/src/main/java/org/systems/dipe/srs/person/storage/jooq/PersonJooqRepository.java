@@ -38,6 +38,7 @@ public class PersonJooqRepository implements PersonRepository {
 
         dsl.update(JPerson.PERSON)
                 .set(record)
+                .where(JPerson.PERSON.PERSON_ID.eq(record.getPersonId()))
                 .execute();
     }
 

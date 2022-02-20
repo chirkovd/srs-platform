@@ -16,6 +16,7 @@ import org.systems.dipe.srs.person.roles.RoleClient;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -32,21 +33,25 @@ class PersonClientTest extends SrsDbTest {
     @BeforeEach
     void setUp() {
         roles = roleClient.all().stream().collect(
-                Collectors.toMap(Role::getRole, Function.identity()));
+                Collectors.toMap(Role::getRole, Function.identity())
+        );
     }
 
     @Test
     void create() {
         Person person = new Person();
+        person.setPersonId(UUID.randomUUID().toString());
         person.setFirstName("FirstName");
         person.setLastName("LastName");
 
         Contact contact = new Contact();
+        contact.setPersonId(person.getPersonId());
         contact.setEmail("person@email.com");
         contact.setPhone("+7-999-99-99");
         person.setContacts(Set.of(contact));
 
         Identification identification = new Identification();
+        identification.setPersonId(person.getPersonId());
         identification.setId("9040 030303");
         identification.setType("passport");
         person.setIdentifications(Set.of(identification));
@@ -68,10 +73,25 @@ class PersonClientTest extends SrsDbTest {
     }
 
     @Test
-    void update() {
-    }
+    void updatePerson() {
+        Person person = new Person();
+        person.setPersonId(UUID.randomUUID().toString());
+        person.setFirstName("FirstName");
+        person.setLastName("LastName");
 
-    @Test
-    void find() {
+        person.setRoles(List.of(
+                roles.get(RoleAlias.TARGET)
+        ));
+
+        Person result = personClient.create(person);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getFirstName(), "FirstName");
+
+        person.setFirstName("FirstNameNew");
+        result = personClient.update(person);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getFirstName(), "FirstNameNew");
     }
 }
