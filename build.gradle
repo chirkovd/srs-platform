@@ -5,11 +5,14 @@ buildscript {
         springBootVersion = '2.6.3'
         testContainersVersion = "1.16.3"
     }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
 }
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.6.3'
     id "nu.studer.jooq" version "7.1.1"
 }
 
@@ -83,6 +86,14 @@ allprojects {
     test {
         useJUnitPlatform()
     }
+}
+
+subprojects {
+
+    if (project.name.endsWith("-service")) {
+        apply from: "${rootDir}/gradle/service.gradle"
+    }
+
 }
 
 apply from: "${rootDir}/gradle/jooq.gradle"
