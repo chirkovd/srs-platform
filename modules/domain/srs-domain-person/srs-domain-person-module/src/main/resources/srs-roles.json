@@ -1,18 +1,18 @@
 [
   {
-    "role": "Supervisor",
+    "role": "SUPERVISOR",
     "description": "Current role grants access to review search requests, check it and approve.\nRequires assessment."
   },
   {
-    "role": "Customer",
+    "role": "CUSTOMER",
     "description": "Default role - current user is able to submit new search requests.\nFill information about missing people."
   },
   {
-    "role": "Volunteer",
+    "role": "VOLUNTEER",
     "description": "Current role grants access to be included into squads.\nAny person can be a volunteer.\nVolunteers are notified by the system with new requests"
   },
   {
-    "role": "Target",
+    "role": "TARGET",
     "description": "Missing person. Is added as default role for people from search request."
   }
 ]

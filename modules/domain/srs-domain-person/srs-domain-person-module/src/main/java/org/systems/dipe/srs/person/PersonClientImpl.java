@@ -16,6 +16,8 @@ import org.systems.dipe.srs.person.roles.Role;
 import org.systems.dipe.srs.person.roles.RoleClient;
 import org.systems.dipe.srs.person.storage.PersonRepository;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -36,6 +38,9 @@ public class PersonClientImpl implements PersonClient {
     public Person create(Person person) {
         if (Objects.isNull(person.getPersonId())) {
             person.setPersonId(UUID.randomUUID().toString());
+        }
+        if (Objects.isNull(person.getCreated())) {
+            person.setCreated(ZonedDateTime.now(ZoneId.of("UTC")));
         }
 
         personRepository.create(person);

@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS request
     supervisor_id   UUID,
 
     approved        TIMESTAMP,
-    created         TIMESTAMP       NOT NULL DEFAULT now(),
+    created         TIMESTAMP       NOT NULL,
 
     CONSTRAINT "PK.requests.request" PRIMARY KEY (request_id)
 );
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS request_item
     target_id   UUID            NOT NULL,
 
     approved    TIMESTAMP,
-    created     TIMESTAMP       NOT NULL DEFAULT now(),
+    created     TIMESTAMP       NOT NULL,
 
     CONSTRAINT "PK.requests.request_item" PRIMARY KEY (item_id),
     CONSTRAINT "FK.requests.request_item.request_id" FOREIGN KEY (request_id) REFERENCES request (request_id)
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS request_location
     location_id UUID            NOT NULL,
     request_id  UUID            NOT NULL,
 
-    created     TIMESTAMP       NOT NULL DEFAULT now(),
+    created     TIMESTAMP       NOT NULL,
 
     CONSTRAINT "FK.requests.request_location.request_id" FOREIGN KEY (request_id) REFERENCES request (request_id)
 );

@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.person.storage;
+package org.systems.dipe.srs.person.storage.jooq;
 
 import lombok.AllArgsConstructor;
 import org.jooq.impl.DefaultDSLContext;
@@ -8,6 +8,7 @@ import org.systems.dipe.srs.person.Person;
 import org.systems.dipe.srs.person.PersonSearch;
 import org.systems.dipe.srs.person.jooq.tables.JPerson;
 import org.systems.dipe.srs.person.jooq.tables.records.JPersonRecord;
+import org.systems.dipe.srs.person.storage.PersonRepository;
 import org.systems.dipe.srs.person.storage.mapper.PeopleMapper;
 
 import java.util.Collection;

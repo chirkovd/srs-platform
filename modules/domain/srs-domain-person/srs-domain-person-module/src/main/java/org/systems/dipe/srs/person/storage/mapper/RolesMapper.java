@@ -1,10 +1,10 @@
 package org.systems.dipe.srs.person.storage.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import org.systems.dipe.srs.person.Person;
-import org.systems.dipe.srs.person.jooq.tables.records.JPersonRecord;
+import org.systems.dipe.srs.person.jooq.tables.records.JRoleRecord;
+import org.systems.dipe.srs.person.roles.Role;
+import org.systems.dipe.srs.person.roles.RoleAlias;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,14 +13,19 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN) //TODO set ERROR
-public interface PeopleMapper {
+public interface RolesMapper {
 
-    JPersonRecord toJooq(Person person);
+    JRoleRecord toJooq(Role role);
 
-    @Mapping(target = "roles", ignore = true)
-    @Mapping(target = "contacts", ignore = true)
-    @Mapping(target = "identifications", ignore = true)
-    Person fromJooq(JPersonRecord record);
+    Role fromJooq(JRoleRecord record);
+
+    default RoleAlias toRole(String alias) {
+        return RoleAlias.valueOf(alias);
+    }
+
+    default String fromRole(RoleAlias alias) {
+        return alias.name();
+    }
 
     default LocalDateTime fromZdt(ZonedDateTime zdt) {
         return Optional.ofNullable(zdt).map(ZonedDateTime::toLocalDateTime).orElse(null);

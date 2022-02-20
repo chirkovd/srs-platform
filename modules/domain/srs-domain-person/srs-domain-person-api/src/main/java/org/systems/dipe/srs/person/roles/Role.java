@@ -14,7 +14,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public final class Role {
     private String roleId;
-    private String role;
+    private RoleAlias role;
     private String description;
     private ZonedDateTime created;
 

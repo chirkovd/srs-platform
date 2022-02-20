@@ -5,28 +5,34 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.systems.dipe.srs.SrsDbTest;
 import org.systems.dipe.srs.person.config.TestConfig;
 import org.systems.dipe.srs.person.contacts.Contact;
 import org.systems.dipe.srs.person.identifications.Identification;
 import org.systems.dipe.srs.person.roles.Role;
+import org.systems.dipe.srs.person.roles.RoleAlias;
+import org.systems.dipe.srs.person.roles.RoleClient;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @SpringBootTest(classes = TestConfig.class)
-class PersonClientImplTest {
+class PersonClientTest extends SrsDbTest {
 
     @Autowired
     private PersonClient personClient;
+    @Autowired
+    private RoleClient roleClient;
 
-    private Map<String, Role> roles;
+    private Map<RoleAlias, Role> roles;
 
     @BeforeEach
     void setUp() {
-        //TODO create roles
-        roles = new HashMap<>();
+        roles = roleClient.all().stream().collect(
+                Collectors.toMap(Role::getRole, Function.identity()));
     }
 
     @Test
@@ -46,8 +52,8 @@ class PersonClientImplTest {
         person.setIdentifications(Set.of(identification));
 
         person.setRoles(List.of(
-                roles.get("CUSTOMER"),
-                roles.get("VOLUNTEER")
+                roles.get(RoleAlias.CUSTOMER),
+                roles.get(RoleAlias.VOLUNTEER)
         ));
 
         Person result = personClient.create(person);
@@ -55,6 +61,7 @@ class PersonClientImplTest {
         Assertions.assertNotNull(result);
         Assertions.assertEquals(result.getFirstName(), person.getFirstName());
         Assertions.assertEquals(result.getLastName(), person.getLastName());
+        Assertions.assertNotNull(result.getCreated());
         Assertions.assertNotNull(result.getIdentifications());
         Assertions.assertNotNull(result.getContacts());
         Assertions.assertNotNull(result.getRoles());

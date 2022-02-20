@@ -4,15 +4,16 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.mapstruct:mapstruct'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.core:jackson-core'
 
     compileClasspath 'org.springframework.boot:spring-boot-starter'
     compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
 
-    testRuntimeOnly 'org.postgresql:postgresql'
+    testImplementation project(':srs-test-lib')
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-jooq'
 
     testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
 }
