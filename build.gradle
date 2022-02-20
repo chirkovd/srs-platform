@@ -61,20 +61,11 @@ allprojects {
         implementation 'org.apache.commons:commons-collections4'
         implementation 'org.apache.commons:commons-lang3'
 
-        testImplementation 'org.mockito:mockito-core'
-        testImplementation 'org.junit.jupiter:junit-jupiter'
-        testImplementation 'org.junit.jupiter:junit-jupiter-params'
-
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
 
         testCompileOnly 'org.projectlombok:lombok'
         testAnnotationProcessor 'org.projectlombok:lombok'
-
-        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-
-        compileOnly 'org.mapstruct:mapstruct-processor'
-        annotationProcessor 'org.mapstruct:mapstruct-processor'
     }
 
     configurations {
@@ -92,6 +83,21 @@ subprojects {
 
     if (project.name.endsWith("-service")) {
         apply from: "${rootDir}/gradle/service.gradle"
+    }
+
+    if (project.name.endsWith("-module")) {
+
+        dependencies {
+
+            testImplementation 'org.mockito:mockito-core'
+            testImplementation 'org.junit.jupiter:junit-jupiter'
+            testImplementation 'org.junit.jupiter:junit-jupiter-params'
+
+            annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+            annotationProcessor 'org.mapstruct:mapstruct-processor'
+            annotationProcessor project(":srs-mapstruct-lib")
+        }
+
     }
 
 }
