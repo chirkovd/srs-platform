@@ -63,7 +63,7 @@ public class JComment extends TableImpl<JCommentRecord> {
     /**
      * The column <code>locations.comment.created</code>.
      */
-    public final TableField<JCommentRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JCommentRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JComment(Name alias, Table<JCommentRecord> aliased) {
         this(alias, aliased, null);

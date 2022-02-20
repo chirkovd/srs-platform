@@ -9,14 +9,11 @@ import org.jooq.*;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
-import org.systems.dipe.srs.person.jooq.Indexes;
 import org.systems.dipe.srs.person.jooq.JPeople;
 import org.systems.dipe.srs.person.jooq.Keys;
 import org.systems.dipe.srs.person.jooq.tables.records.JPersonRecord;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -47,14 +44,19 @@ public class JPerson extends TableImpl<JPersonRecord> {
     public final TableField<JPersonRecord, UUID> PERSON_ID = createField(DSL.name("person_id"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
-     * The column <code>people.person.username</code>.
+     * The column <code>people.person.first_name</code>.
      */
-    public final TableField<JPersonRecord, String> USERNAME = createField(DSL.name("username"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+    public final TableField<JPersonRecord, String> FIRST_NAME = createField(DSL.name("first_name"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+
+    /**
+     * The column <code>people.person.last_name</code>.
+     */
+    public final TableField<JPersonRecord, String> LAST_NAME = createField(DSL.name("last_name"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
      * The column <code>people.person.created</code>.
      */
-    public final TableField<JPersonRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JPersonRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JPerson(Name alias, Table<JPersonRecord> aliased) {
         this(alias, aliased, null);
@@ -95,11 +97,6 @@ public class JPerson extends TableImpl<JPersonRecord> {
     }
 
     @Override
-    public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.IX_PEOPLE_PERSON_USERNAME);
-    }
-
-    @Override
     public UniqueKey<JPersonRecord> getPrimaryKey() {
         return Keys.PK_PEOPLE_PERSON;
     }
@@ -131,11 +128,11 @@ public class JPerson extends TableImpl<JPersonRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<UUID, String, LocalDateTime> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row4<UUID, String, String, LocalDateTime> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 }

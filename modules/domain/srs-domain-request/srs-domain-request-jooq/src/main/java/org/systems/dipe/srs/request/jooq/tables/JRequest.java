@@ -64,7 +64,7 @@ public class JRequest extends TableImpl<JRequestRecord> {
     /**
      * The column <code>requests.request.created</code>.
      */
-    public final TableField<JRequestRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JRequestRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JRequest(Name alias, Table<JRequestRecord> aliased) {
         this(alias, aliased, null);

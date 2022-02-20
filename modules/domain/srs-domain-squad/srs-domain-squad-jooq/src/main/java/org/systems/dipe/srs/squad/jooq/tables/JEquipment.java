@@ -54,7 +54,7 @@ public class JEquipment extends TableImpl<JEquipmentRecord> {
     /**
      * The column <code>squads.equipment.created</code>.
      */
-    public final TableField<JEquipmentRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JEquipmentRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JEquipment(Name alias, Table<JEquipmentRecord> aliased) {
         this(alias, aliased, null);

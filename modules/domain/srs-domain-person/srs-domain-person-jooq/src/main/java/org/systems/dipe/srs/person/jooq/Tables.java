@@ -4,10 +4,7 @@
 package org.systems.dipe.srs.person.jooq;
 
 
-import org.systems.dipe.srs.person.jooq.tables.JContact;
-import org.systems.dipe.srs.person.jooq.tables.JPerson;
-import org.systems.dipe.srs.person.jooq.tables.JRole;
-import org.systems.dipe.srs.person.jooq.tables.JRoleLink;
+import org.systems.dipe.srs.person.jooq.tables.*;
 
 
 /**
@@ -20,6 +17,11 @@ public class Tables {
      * The table <code>people.contact</code>.
      */
     public static final JContact CONTACT = JContact.CONTACT;
+
+    /**
+     * The table <code>people.identification</code>.
+     */
+    public static final JIdentification IDENTIFICATION = JIdentification.IDENTIFICATION;
 
     /**
      * The table <code>people.person</code>.

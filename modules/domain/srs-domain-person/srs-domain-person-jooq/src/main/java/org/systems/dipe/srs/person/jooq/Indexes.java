@@ -8,7 +8,6 @@ import org.jooq.Index;
 import org.jooq.OrderField;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
-import org.systems.dipe.srs.person.jooq.tables.JPerson;
 import org.systems.dipe.srs.person.jooq.tables.JRole;
 import org.systems.dipe.srs.person.jooq.tables.JRoleLink;
 
@@ -23,7 +22,6 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
-    public static final Index IX_PEOPLE_PERSON_USERNAME = Internal.createIndex(DSL.name("IX_people.person.username"), JPerson.PERSON, new OrderField[] { JPerson.PERSON.USERNAME }, true);
     public static final Index IX_PEOPLE_ROLE_ROLE = Internal.createIndex(DSL.name("IX_people.role.role"), JRole.ROLE, new OrderField[] { JRole.ROLE.ROLE_ }, true);
     public static final Index IX_PEOPLE_ROLE_LINK_ROLE_PERSON = Internal.createIndex(DSL.name("IX_people.role_link.role_person"), JRoleLink.ROLE_LINK, new OrderField[] { JRoleLink.ROLE_LINK.ROLE_ID, JRoleLink.ROLE_LINK.PERSON_ID }, true);
 }

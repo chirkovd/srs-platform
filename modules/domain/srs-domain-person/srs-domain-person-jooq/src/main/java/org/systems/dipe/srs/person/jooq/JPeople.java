@@ -7,10 +7,7 @@ package org.systems.dipe.srs.person.jooq;
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
-import org.systems.dipe.srs.person.jooq.tables.JContact;
-import org.systems.dipe.srs.person.jooq.tables.JPerson;
-import org.systems.dipe.srs.person.jooq.tables.JRole;
-import org.systems.dipe.srs.person.jooq.tables.JRoleLink;
+import org.systems.dipe.srs.person.jooq.tables.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +30,11 @@ public class JPeople extends SchemaImpl {
      * The table <code>people.contact</code>.
      */
     public final JContact CONTACT = JContact.CONTACT;
+
+    /**
+     * The table <code>people.identification</code>.
+     */
+    public final JIdentification IDENTIFICATION = JIdentification.IDENTIFICATION;
 
     /**
      * The table <code>people.person</code>.
@@ -66,6 +68,7 @@ public class JPeople extends SchemaImpl {
     public final List<Table<?>> getTables() {
         return Arrays.asList(
             JContact.CONTACT,
+            JIdentification.IDENTIFICATION,
             JPerson.PERSON,
             JRole.ROLE,
             JRoleLink.ROLE_LINK

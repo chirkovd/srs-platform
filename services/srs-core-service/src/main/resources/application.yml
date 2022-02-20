@@ -9,5 +9,6 @@ spring:
 logging:
   level:
     root: INFO
+    org.jooq.Constants: OFF
     org.systems.dipe: DEBUG
   config: classpath:logback.xml

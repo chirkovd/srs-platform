@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS squad
 (
     squad_id    UUID            NOT NULL,
 
-    created     TIMESTAMP       NOT NULL DEFAULT now(),
+    created     TIMESTAMP       NOT NULL,
 
     CONSTRAINT "PK.squads.squad" PRIMARY KEY (squad_id)
 );
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS member
     volunteer_id    UUID            NOT NULL,
     head            boolean         DEFAULT false,
 
-    created         TIMESTAMP       NOT NULL DEFAULT now(),
+    created         TIMESTAMP       NOT NULL,
 
     CONSTRAINT "PK.squads.member" PRIMARY KEY (member_id),
     CONSTRAINT "FK.squads.member.squad" FOREIGN KEY (squad_id) REFERENCES squad (squad_id)
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS equipment
     inventory_id    UUID            NOT NULL,
     squad_id        UUID            NOT NULL,
 
-    created         TIMESTAMP       NOT NULL DEFAULT now(),
+    created         TIMESTAMP       NOT NULL,
 
     CONSTRAINT "FK.squads.equipment.squad" FOREIGN KEY (squad_id) REFERENCES squad (squad_id)
 );

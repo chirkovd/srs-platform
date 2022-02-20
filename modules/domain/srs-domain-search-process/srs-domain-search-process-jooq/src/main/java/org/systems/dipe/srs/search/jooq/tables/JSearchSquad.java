@@ -54,7 +54,7 @@ public class JSearchSquad extends TableImpl<JSearchSquadRecord> {
     /**
      * The column <code>searches.search_squad.created</code>.
      */
-    public final TableField<JSearchSquadRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JSearchSquadRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JSearchSquad(Name alias, Table<JSearchSquadRecord> aliased) {
         this(alias, aliased, null);

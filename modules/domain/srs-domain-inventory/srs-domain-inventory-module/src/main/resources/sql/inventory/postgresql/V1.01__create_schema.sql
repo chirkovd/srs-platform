@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS inventory
     inventory_id    UUID            NOT NULL,
     name            VARCHAR(100)    NOT NULL,
 
-    created  TIMESTAMP              NOT NULL DEFAULT now(),
+    created  TIMESTAMP              NOT NULL,
 
     CONSTRAINT "PK.inventories.inventory" PRIMARY KEY (inventory_id)
 );

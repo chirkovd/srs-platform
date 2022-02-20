@@ -54,7 +54,7 @@ public class JRoleLink extends TableImpl<JRoleLinkRecord> {
     /**
      * The column <code>people.role_link.created</code>.
      */
-    public final TableField<JRoleLinkRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JRoleLinkRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JRoleLink(Name alias, Table<JRoleLinkRecord> aliased) {
         this(alias, aliased, null);
