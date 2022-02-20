@@ -46,7 +46,7 @@ public class JSquad extends TableImpl<JSquadRecord> {
     /**
      * The column <code>squads.squad.created</code>.
      */
-    public final TableField<JSquadRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JSquadRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JSquad(Name alias, Table<JSquadRecord> aliased) {
         this(alias, aliased, null);

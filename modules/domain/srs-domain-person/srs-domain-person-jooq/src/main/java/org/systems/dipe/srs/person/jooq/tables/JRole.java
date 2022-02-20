@@ -59,7 +59,7 @@ public class JRole extends TableImpl<JRoleRecord> {
     /**
      * The column <code>people.role.created</code>.
      */
-    public final TableField<JRoleRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JRoleRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JRole(Name alias, Table<JRoleRecord> aliased) {
         this(alias, aliased, null);

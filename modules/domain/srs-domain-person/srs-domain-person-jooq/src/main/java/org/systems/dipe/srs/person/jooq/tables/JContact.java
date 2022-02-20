@@ -63,7 +63,7 @@ public class JContact extends TableImpl<JContactRecord> {
     /**
      * The column <code>people.contact.created</code>.
      */
-    public final TableField<JContactRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JContactRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JContact(Name alias, Table<JContactRecord> aliased) {
         this(alias, aliased, null);

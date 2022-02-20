@@ -54,7 +54,7 @@ public class JRequestLocation extends TableImpl<JRequestLocationRecord> {
     /**
      * The column <code>requests.request_location.created</code>.
      */
-    public final TableField<JRequestLocationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JRequestLocationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JRequestLocation(Name alias, Table<JRequestLocationRecord> aliased) {
         this(alias, aliased, null);

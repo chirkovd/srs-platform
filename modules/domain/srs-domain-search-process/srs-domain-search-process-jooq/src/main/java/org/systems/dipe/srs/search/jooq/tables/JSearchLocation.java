@@ -54,7 +54,7 @@ public class JSearchLocation extends TableImpl<JSearchLocationRecord> {
     /**
      * The column <code>searches.search_location.created</code>.
      */
-    public final TableField<JSearchLocationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JSearchLocationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JSearchLocation(Name alias, Table<JSearchLocationRecord> aliased) {
         this(alias, aliased, null);

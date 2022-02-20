@@ -56,7 +56,7 @@ public class JSearchProcess extends TableImpl<JSearchProcessRecord> {
     /**
      * The column <code>searches.search_process.created</code>.
      */
-    public final TableField<JSearchProcessRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JSearchProcessRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JSearchProcess(Name alias, Table<JSearchProcessRecord> aliased) {
         this(alias, aliased, null);

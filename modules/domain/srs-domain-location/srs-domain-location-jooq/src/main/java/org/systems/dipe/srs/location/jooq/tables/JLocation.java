@@ -46,7 +46,7 @@ public class JLocation extends TableImpl<JLocationRecord> {
     /**
      * The column <code>locations.location.created</code>.
      */
-    public final TableField<JLocationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JLocationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JLocation(Name alias, Table<JLocationRecord> aliased) {
         this(alias, aliased, null);

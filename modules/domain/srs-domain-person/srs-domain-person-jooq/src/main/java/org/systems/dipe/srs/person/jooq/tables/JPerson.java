@@ -56,7 +56,7 @@ public class JPerson extends TableImpl<JPersonRecord> {
     /**
      * The column <code>people.person.created</code>.
      */
-    public final TableField<JPersonRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JPersonRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JPerson(Name alias, Table<JPersonRecord> aliased) {
         this(alias, aliased, null);

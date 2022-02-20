@@ -51,7 +51,7 @@ public class JInventory extends TableImpl<JInventoryRecord> {
     /**
      * The column <code>inventories.inventory.created</code>.
      */
-    public final TableField<JInventoryRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JInventoryRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JInventory(Name alias, Table<JInventoryRecord> aliased) {
         this(alias, aliased, null);

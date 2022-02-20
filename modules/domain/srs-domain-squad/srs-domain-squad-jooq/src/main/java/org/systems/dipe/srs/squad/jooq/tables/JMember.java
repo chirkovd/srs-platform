@@ -63,7 +63,7 @@ public class JMember extends TableImpl<JMemberRecord> {
     /**
      * The column <code>squads.member.created</code>.
      */
-    public final TableField<JMemberRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JMemberRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JMember(Name alias, Table<JMemberRecord> aliased) {
         this(alias, aliased, null);

@@ -63,7 +63,7 @@ public class JPoint extends TableImpl<JPointRecord> {
     /**
      * The column <code>locations.point.created</code>.
      */
-    public final TableField<JPointRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JPointRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JPoint(Name alias, Table<JPointRecord> aliased) {
         this(alias, aliased, null);

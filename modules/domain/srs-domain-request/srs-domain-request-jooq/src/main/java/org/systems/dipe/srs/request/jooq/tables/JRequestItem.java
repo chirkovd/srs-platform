@@ -63,7 +63,7 @@ public class JRequestItem extends TableImpl<JRequestItemRecord> {
     /**
      * The column <code>requests.request_item.created</code>.
      */
-    public final TableField<JRequestItemRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JRequestItemRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JRequestItem(Name alias, Table<JRequestItemRecord> aliased) {
         this(alias, aliased, null);

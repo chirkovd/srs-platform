@@ -58,7 +58,7 @@ public class JIdentification extends TableImpl<JIdentificationRecord> {
     /**
      * The column <code>people.identification.created</code>.
      */
-    public final TableField<JIdentificationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<JIdentificationRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private JIdentification(Name alias, Table<JIdentificationRecord> aliased) {
         this(alias, aliased, null);
