@@ -9,6 +9,8 @@ public interface PointsRepository {
 
     void create(Collection<Point> points);
 
+    void update(Collection<Point> points);
+
     Collection<Point> search(PointsSearch search);
 
 }

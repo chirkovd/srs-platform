@@ -13,4 +13,5 @@ public class PointsSearch {
 
     private final Collection<String> pointIds;
     private final Collection<String> locationIds;
+    private final boolean withDetails;
 }

@@ -10,6 +10,4 @@ public interface LocationsClient {
 
     Collection<Location> search(LocationsSearch search);
 
-
-
 }

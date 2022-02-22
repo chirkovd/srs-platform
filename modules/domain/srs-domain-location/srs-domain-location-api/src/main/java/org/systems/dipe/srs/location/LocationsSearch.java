@@ -11,5 +11,6 @@ import java.util.Set;
 @AllArgsConstructor
 public final class LocationsSearch {
     private final Set<String> locationIds;
+    private final boolean withDetails;
 
 }

@@ -7,9 +7,9 @@ import java.util.Collection;
 
 public interface LocationsRepository {
 
-    Location create(Location location);
+    void create(Location location);
 
-    Location update(Location location);
+    void update(Location location);
 
     Collection<Location> search(LocationsSearch search);
 }
