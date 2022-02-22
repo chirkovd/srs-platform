@@ -37,3 +37,5 @@ CREATE TABLE IF NOT EXISTS comment
     CONSTRAINT "PK.locations.comment" PRIMARY KEY (comment_id),
     CONSTRAINT "FK.locations.comment.point" FOREIGN KEY (point_id) REFERENCES point (point_id)
 );
+
+CREATE INDEX IF NOT EXISTS "IX_locations.comment.author" ON comment (author_id);

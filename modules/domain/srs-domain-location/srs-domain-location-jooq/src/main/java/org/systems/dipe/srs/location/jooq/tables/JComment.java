@@ -9,6 +9,7 @@ import org.jooq.*;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
+import org.systems.dipe.srs.location.jooq.Indexes;
 import org.systems.dipe.srs.location.jooq.JLocations;
 import org.systems.dipe.srs.location.jooq.Keys;
 import org.systems.dipe.srs.location.jooq.tables.records.JCommentRecord;
@@ -101,6 +102,11 @@ public class JComment extends TableImpl<JCommentRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : JLocations.LOCATIONS;
+    }
+
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.IX_LOCATIONS_COMMENT_AUTHOR);
     }
 
     @Override

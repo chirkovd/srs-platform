@@ -3,6 +3,8 @@ rootProject.name = 'srs-platform'
 // libs
 include ':srs-test-lib'
 project(':srs-test-lib').projectDir = "$rootDir/lib/srs-test-lib" as File
+include ':srs-module-lib'
+project(':srs-module-lib').projectDir = "$rootDir/lib/srs-module-lib" as File
 include ':srs-mapstruct-lib'
 project(':srs-mapstruct-lib').projectDir = "$rootDir/lib/srs-mapstruct-lib" as File
 

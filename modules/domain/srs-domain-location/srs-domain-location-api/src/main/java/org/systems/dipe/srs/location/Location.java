@@ -1,7 +1,19 @@
 package org.systems.dipe.srs.location;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public record Location(String locationId, ZonedDateTime created, List<Point> points) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public final class Location {
+    private String locationId;
+    private ZonedDateTime created;
+    private List<Point> points;
 }
