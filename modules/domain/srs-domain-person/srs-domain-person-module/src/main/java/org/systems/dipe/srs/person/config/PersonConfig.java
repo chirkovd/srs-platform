@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.io.Resource;
 import org.systems.dipe.srs.person.roles.Role;
-import org.systems.dipe.srs.person.roles.RoleClient;
+import org.systems.dipe.srs.person.roles.RolesClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,9 +31,9 @@ public class PersonConfig {
         @Bean
         public PersonRolesConfig personRoles(
                 @Value("classpath:srs-roles.json") Resource resource,
-                RoleClient roleClient, ObjectMapper objectMapper
+                RolesClient rolesClient, ObjectMapper objectMapper
         ) {
-            return new PersonRolesConfig(roleClient, resource, objectMapper);
+            return new PersonRolesConfig(rolesClient, resource, objectMapper);
         }
 
     }
@@ -42,20 +42,20 @@ public class PersonConfig {
     @AllArgsConstructor
     private static class PersonRolesConfig {
 
-        private final RoleClient roleClient;
+        private final RolesClient rolesClient;
         private final Resource resource;
         private final ObjectMapper objectMapper;
 
         @EventListener(classes = ApplicationReadyEvent.class)
         public void onEvent(ApplicationReadyEvent event) {
-            if (CollectionUtils.isNotEmpty(roleClient.all())) {
+            if (CollectionUtils.isNotEmpty(rolesClient.all())) {
                 return;
             }
             try (InputStream inputStream = resource.getInputStream()) {
                 List<Role> roles = objectMapper.readValue(
                         inputStream, new TypeReference<>() {
                         });
-                roleClient.create(roles);
+                rolesClient.create(roles);
             } catch (IOException e) {
                 log.error("Cannot upload roles", e);
             }
