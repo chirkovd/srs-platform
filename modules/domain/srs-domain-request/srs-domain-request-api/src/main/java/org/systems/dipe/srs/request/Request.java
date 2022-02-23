@@ -1,9 +1,23 @@
 package org.systems.dipe.srs.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public record Request(String requestId, String customerId, String supervisorId, ZonedDateTime created,
-                      ZonedDateTime approved, List<RequestItem> items, List<RequestLocation> locations) {
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Request {
+    private String requestId;
+    private String customerId;
+    private String supervisorId;
+    private ZonedDateTime created;
+    private ZonedDateTime approved;
+    private List<RequestItem> items;
+    private List<RequestLocation> locations;
 }

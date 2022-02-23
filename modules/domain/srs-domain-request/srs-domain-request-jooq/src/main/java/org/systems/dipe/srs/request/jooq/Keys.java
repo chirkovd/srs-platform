@@ -30,6 +30,7 @@ public class Keys {
 
     public static final UniqueKey<JRequestRecord> PK_REQUESTS_REQUEST = Internal.createUniqueKey(JRequest.REQUEST, DSL.name("PK.requests.request"), new TableField[] { JRequest.REQUEST.REQUEST_ID }, true);
     public static final UniqueKey<JRequestItemRecord> PK_REQUESTS_REQUEST_ITEM = Internal.createUniqueKey(JRequestItem.REQUEST_ITEM, DSL.name("PK.requests.request_item"), new TableField[] { JRequestItem.REQUEST_ITEM.ITEM_ID }, true);
+    public static final UniqueKey<JRequestLocationRecord> PK_REQUESTS_REQUEST_LOCATION = Internal.createUniqueKey(JRequestLocation.REQUEST_LOCATION, DSL.name("PK.requests.request_location"), new TableField[] { JRequestLocation.REQUEST_LOCATION.LOCATION_ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions

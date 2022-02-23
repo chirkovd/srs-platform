@@ -100,6 +100,11 @@ public class JRequestLocation extends TableImpl<JRequestLocationRecord> {
     }
 
     @Override
+    public UniqueKey<JRequestLocationRecord> getPrimaryKey() {
+        return Keys.PK_REQUESTS_REQUEST_LOCATION;
+    }
+
+    @Override
     public List<ForeignKey<JRequestLocationRecord, ?>> getReferences() {
         return Arrays.asList(Keys.REQUEST_LOCATION__FK_REQUESTS_REQUEST_LOCATION_REQUEST_ID);
     }

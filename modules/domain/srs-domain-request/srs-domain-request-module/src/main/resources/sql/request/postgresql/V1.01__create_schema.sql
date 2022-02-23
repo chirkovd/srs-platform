@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS request_item
     target_id   UUID            NOT NULL,
 
     approved    TIMESTAMP,
+    dismissed   TIMESTAMP,
     created     TIMESTAMP       NOT NULL,
 
     CONSTRAINT "PK.requests.request_item" PRIMARY KEY (item_id),
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS request_location
 
     created     TIMESTAMP       NOT NULL,
 
+    CONSTRAINT "PK.requests.request_location" PRIMARY KEY (location_id),
     CONSTRAINT "FK.requests.request_location.request_id" FOREIGN KEY (request_id) REFERENCES request (request_id)
 );
 

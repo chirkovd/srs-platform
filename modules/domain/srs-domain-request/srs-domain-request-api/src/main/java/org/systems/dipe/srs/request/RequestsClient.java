@@ -2,7 +2,7 @@ package org.systems.dipe.srs.request;
 
 import java.util.Collection;
 
-public interface RequestClient {
+public interface RequestsClient {
 
     Request create(Request request);
 
@@ -10,8 +10,5 @@ public interface RequestClient {
 
     void approve(String requestId);
 
-    void addItems(Collection<RequestItem> items);
-
-    void addLocations(Collection<RequestLocation> locations);
-
+    Collection<Request> search(RequestsSearch search);
 }
