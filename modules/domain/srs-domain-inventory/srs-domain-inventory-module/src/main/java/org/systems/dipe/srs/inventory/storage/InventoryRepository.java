@@ -6,7 +6,8 @@ import org.systems.dipe.srs.inventory.InventorySearch;
 import java.util.List;
 
 public interface InventoryRepository {
-    Inventory create(Inventory inventory);
+
+    void create(Inventory inventory);
 
     List<Inventory> search(InventorySearch search);
 }
