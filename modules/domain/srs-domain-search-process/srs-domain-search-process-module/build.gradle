@@ -1,9 +1,18 @@
 dependencies {
+    implementation project(':srs-module-lib')
     implementation project(':srs-domain-search-process-api')
     implementation project(':srs-domain-search-process-jooq')
 
     implementation 'org.flywaydb:flyway-core'
+    implementation 'org.mapstruct:mapstruct'
 
     compileClasspath 'org.springframework.boot:spring-boot-starter'
     compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
+
+    testImplementation project(':srs-test-lib')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-jooq'
+
+    testImplementation 'org.testcontainers:junit-jupiter'
 }
