@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS equipment
 
     created         TIMESTAMP       NOT NULL,
 
+    CONSTRAINT "PK.squads.equipment" PRIMARY KEY (inventory_id),
     CONSTRAINT "FK.squads.equipment.squad" FOREIGN KEY (squad_id) REFERENCES squad (squad_id)
 );
 
