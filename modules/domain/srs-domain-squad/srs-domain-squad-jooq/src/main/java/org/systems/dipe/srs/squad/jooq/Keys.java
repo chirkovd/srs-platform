@@ -28,6 +28,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<JEquipmentRecord> PK_SQUADS_EQUIPMENT = Internal.createUniqueKey(JEquipment.EQUIPMENT, DSL.name("PK.squads.equipment"), new TableField[] { JEquipment.EQUIPMENT.INVENTORY_ID }, true);
     public static final UniqueKey<JMemberRecord> PK_SQUADS_MEMBER = Internal.createUniqueKey(JMember.MEMBER, DSL.name("PK.squads.member"), new TableField[] { JMember.MEMBER.MEMBER_ID }, true);
     public static final UniqueKey<JSquadRecord> PK_SQUADS_SQUAD = Internal.createUniqueKey(JSquad.SQUAD, DSL.name("PK.squads.squad"), new TableField[] { JSquad.SQUAD.SQUAD_ID }, true);
 

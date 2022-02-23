@@ -100,6 +100,11 @@ public class JEquipment extends TableImpl<JEquipmentRecord> {
     }
 
     @Override
+    public UniqueKey<JEquipmentRecord> getPrimaryKey() {
+        return Keys.PK_SQUADS_EQUIPMENT;
+    }
+
+    @Override
     public List<ForeignKey<JEquipmentRecord, ?>> getReferences() {
         return Arrays.asList(Keys.EQUIPMENT__FK_SQUADS_EQUIPMENT_SQUAD);
     }
