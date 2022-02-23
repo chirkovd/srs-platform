@@ -61,6 +61,11 @@ public class JRequestItem extends TableImpl<JRequestItemRecord> {
     public final TableField<JRequestItemRecord, LocalDateTime> APPROVED = createField(DSL.name("approved"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
+     * The column <code>requests.request_item.dismissed</code>.
+     */
+    public final TableField<JRequestItemRecord, LocalDateTime> DISMISSED = createField(DSL.name("dismissed"), SQLDataType.LOCALDATETIME(6), this, "");
+
+    /**
      * The column <code>requests.request_item.created</code>.
      */
     public final TableField<JRequestItemRecord, LocalDateTime> CREATED = createField(DSL.name("created"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
@@ -152,11 +157,11 @@ public class JRequestItem extends TableImpl<JRequestItemRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<UUID, UUID, UUID, LocalDateTime, LocalDateTime> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row6<UUID, UUID, UUID, LocalDateTime, LocalDateTime, LocalDateTime> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 }
