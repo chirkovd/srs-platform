@@ -100,6 +100,11 @@ public class JSearchSquad extends TableImpl<JSearchSquadRecord> {
     }
 
     @Override
+    public UniqueKey<JSearchSquadRecord> getPrimaryKey() {
+        return Keys.PK_SEARCHES_SEARCH_SQUAD;
+    }
+
+    @Override
     public List<ForeignKey<JSearchSquadRecord, ?>> getReferences() {
         return Arrays.asList(Keys.SEARCH_SQUAD__FK_SEARCHES_SEARCH_SQUAD_PROCESS);
     }

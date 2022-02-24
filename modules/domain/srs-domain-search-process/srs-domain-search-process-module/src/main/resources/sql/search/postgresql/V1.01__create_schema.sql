@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS search_location
 
     created        TIMESTAMP       NOT NULL,
 
+    CONSTRAINT "PK.searches.search_location" PRIMARY KEY (location_id),
     CONSTRAINT "FK.searches.search_location.process" FOREIGN KEY (process_id) REFERENCES search_process (process_id)
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE IF NOT EXISTS search_squad
 
     created        TIMESTAMP       NOT NULL,
 
+    CONSTRAINT "PK.searches.search_squad" PRIMARY KEY (squad_id),
     CONSTRAINT "FK.searches.search_squad.process" FOREIGN KEY (process_id) REFERENCES search_process (process_id)
 );
 

@@ -81,19 +81,23 @@ public class RequestsClientImpl implements RequestsClient {
         if (!requests.isEmpty() && search.isWithDetails()) {
             Set<String> requestIds = GroupUtils.extractUnique(requests, Request::getRequestId);
 
-            Collection<RequestItem> items = itemsClient.search(
-                    RequestItemsSearch.builder()
-                            .requestIds(requestIds)
-                            .build()
-            );
-            Collection<RequestLocation> locations = locationsClient.search(
-                    RequestLocationsSearch.builder()
-                            .requestsIds(requestIds)
-                            .build()
+            Map<String, List<RequestItem>> itemsMap = GroupUtils.groupMultipleBy(
+                    itemsClient.search(
+                            RequestItemsSearch.builder()
+                                    .requestIds(requestIds)
+                                    .build()
+                    ),
+                    RequestItem::getRequestId
             );
 
-            Map<String, List<RequestItem>> itemsMap = GroupUtils.groupMultipleBy(items, RequestItem::getRequestId);
-            Map<String, List<RequestLocation>> locationsMap = GroupUtils.groupMultipleBy(locations, RequestLocation::getRequestId);
+            Map<String, List<RequestLocation>> locationsMap = GroupUtils.groupMultipleBy(
+                    locationsClient.search(
+                            RequestLocationsSearch.builder()
+                                    .requestsIds(requestIds)
+                                    .build()
+                    ),
+                    RequestLocation::getRequestId
+            );
 
             for (Request request : requests) {
                 request.setItems(itemsMap.get(request.getRequestId()));

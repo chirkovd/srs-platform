@@ -15,11 +15,11 @@ import org.systems.dipe.srs.person.identifications.IdentificationsSearch;
 import org.systems.dipe.srs.person.roles.Role;
 import org.systems.dipe.srs.person.roles.RolesClient;
 import org.systems.dipe.srs.person.storage.PeopleRepository;
+import org.systems.dipe.srs.utils.GroupUtils;
 import org.systems.dipe.srs.utils.TimeUtils;
 import org.systems.dipe.srs.utils.UuidUtils;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -92,8 +92,7 @@ public class PeopleClientImpl implements PeopleClient {
         Collection<Person> people = peopleRepository.find(search);
 
         if (!people.isEmpty() && search.isWithDetails()) {
-            Map<String, Person> personMap = people.stream().collect(
-                    Collectors.toMap(Person::getPersonId, Function.identity()));
+            Map<String, Person> personMap = GroupUtils.groupBy(people, Person::getPersonId);
 
             loadIdentifications(personMap);
             loadContacts(personMap);
