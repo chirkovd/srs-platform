@@ -72,19 +72,23 @@ public class SquadsClientImpl implements SquadsClient {
         if (!squads.isEmpty() && search.isWithDetails()) {
             Set<String> squadIds = GroupUtils.extractUnique(squads, Squad::getSquadId);
 
-            Collection<Member> members = membersClient.search(
-                    MembersSearch.builder()
-                            .squadIds(squadIds)
-                            .build()
-            );
-            Collection<Equipment> equipments = equipmentsClient.search(
-                    EquipmentsSearch.builder()
-                            .squadIds(squadIds)
-                            .build()
+            Map<String, List<Member>> membersMap = GroupUtils.groupMultipleBy(
+                    membersClient.search(
+                            MembersSearch.builder()
+                                    .squadIds(squadIds)
+                                    .build()
+                    ),
+                    Member::getSquadId
             );
 
-            Map<String, List<Member>> membersMap = GroupUtils.groupMultipleBy(members, Member::getSquadId);
-            Map<String, List<Equipment>> equipmentsMap = GroupUtils.groupMultipleBy(equipments, Equipment::getSquadId);
+            Map<String, List<Equipment>> equipmentsMap = GroupUtils.groupMultipleBy(
+                    equipmentsClient.search(
+                            EquipmentsSearch.builder()
+                                    .squadIds(squadIds)
+                                    .build()
+                    ),
+                    Equipment::getSquadId
+            );
 
             for (Squad squad : squads) {
                 squad.setMembers(membersMap.get(squad.getSquadId()));

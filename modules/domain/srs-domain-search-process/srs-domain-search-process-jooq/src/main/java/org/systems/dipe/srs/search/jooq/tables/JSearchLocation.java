@@ -100,6 +100,11 @@ public class JSearchLocation extends TableImpl<JSearchLocationRecord> {
     }
 
     @Override
+    public UniqueKey<JSearchLocationRecord> getPrimaryKey() {
+        return Keys.PK_SEARCHES_SEARCH_LOCATION;
+    }
+
+    @Override
     public List<ForeignKey<JSearchLocationRecord, ?>> getReferences() {
         return Arrays.asList(Keys.SEARCH_LOCATION__FK_SEARCHES_SEARCH_LOCATION_PROCESS);
     }

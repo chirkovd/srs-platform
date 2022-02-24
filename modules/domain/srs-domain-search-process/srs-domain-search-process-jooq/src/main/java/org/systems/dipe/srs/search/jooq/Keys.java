@@ -28,7 +28,9 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<JSearchLocationRecord> PK_SEARCHES_SEARCH_LOCATION = Internal.createUniqueKey(JSearchLocation.SEARCH_LOCATION, DSL.name("PK.searches.search_location"), new TableField[] { JSearchLocation.SEARCH_LOCATION.LOCATION_ID }, true);
     public static final UniqueKey<JSearchProcessRecord> PK_SEARCHES_SEARCH_PROCESS = Internal.createUniqueKey(JSearchProcess.SEARCH_PROCESS, DSL.name("PK.searches.search_process"), new TableField[] { JSearchProcess.SEARCH_PROCESS.PROCESS_ID }, true);
+    public static final UniqueKey<JSearchSquadRecord> PK_SEARCHES_SEARCH_SQUAD = Internal.createUniqueKey(JSearchSquad.SEARCH_SQUAD, DSL.name("PK.searches.search_squad"), new TableField[] { JSearchSquad.SEARCH_SQUAD.SQUAD_ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions

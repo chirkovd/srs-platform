@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.squad.storage.EquipmentsRepository;
 import org.systems.dipe.srs.utils.TimeUtils;
-import org.systems.dipe.srs.utils.UuidUtils;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -49,7 +48,7 @@ public class EquipmentsClientImpl implements EquipmentsClient {
     private static void prepareEquipments(Collection<Equipment> equipments) {
         for (Equipment equipment : equipments) {
             if (Objects.isNull(equipment.getInventoryId())) {
-                equipment.setInventoryId(UuidUtils.newStr());
+                throw new IllegalArgumentException("Inventory id is missing");
             }
             if (Objects.isNull(equipment.getCreated())) {
                 equipment.setCreated(TimeUtils.now());

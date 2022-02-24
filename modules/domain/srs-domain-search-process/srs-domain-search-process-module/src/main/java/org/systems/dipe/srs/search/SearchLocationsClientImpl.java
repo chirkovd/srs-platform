@@ -1,10 +1,10 @@
-package org.systems.dipe.srs.request;
+package org.systems.dipe.srs.search;
 
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.systems.dipe.srs.request.storage.RequestLocationsRepository;
+import org.systems.dipe.srs.search.storage.SearchLocationsRepository;
 import org.systems.dipe.srs.utils.TimeUtils;
 
 import java.util.Collection;
@@ -14,12 +14,12 @@ import java.util.Objects;
 @Service
 @Transactional
 @AllArgsConstructor
-public class RequestLocationsClientImpl implements RequestLocationsClient {
+public class SearchLocationsClientImpl implements SearchLocationsClient {
 
-    private final RequestLocationsRepository repository;
+    private final SearchLocationsRepository repository;
 
     @Override
-    public void create(Collection<RequestLocation> locations) {
+    public void create(Collection<SearchLocation> locations) {
         if (CollectionUtils.isEmpty(locations)) {
             return;
         }
@@ -28,7 +28,7 @@ public class RequestLocationsClientImpl implements RequestLocationsClient {
     }
 
     @Override
-    public void update(Collection<RequestLocation> locations) {
+    public void update(Collection<SearchLocation> locations) {
         if (CollectionUtils.isEmpty(locations)) {
             return;
         }
@@ -37,16 +37,16 @@ public class RequestLocationsClientImpl implements RequestLocationsClient {
     }
 
     @Override
-    public Collection<RequestLocation> search(RequestLocationsSearch search) {
-        if (CollectionUtils.isEmpty(search.getLocationIds())
-                && CollectionUtils.isEmpty(search.getRequestsIds())) {
+    public Collection<SearchLocation> search(SearchLocationsSearch search) {
+        if (CollectionUtils.isEmpty(search.getSearchIds())
+                && CollectionUtils.isEmpty(search.getLocationIds())) {
             return Collections.emptyList();
         }
         return repository.search(search);
     }
 
-    private static void prepareLocations(Collection<RequestLocation> locations) {
-        for (RequestLocation location : locations) {
+    private static void prepareLocations(Collection<SearchLocation> locations) {
+        for (SearchLocation location : locations) {
             if (Objects.isNull(location.getLocationId())) {
                 throw new IllegalArgumentException("Location id is missing");
             }

@@ -63,16 +63,18 @@ public class LocationsClientImpl implements LocationsClient {
         }
         Collection<Location> locations = repository.search(search);
         if (CollectionUtils.isNotEmpty(locations) && search.isWithDetails()) {
-            Collection<Point> points = pointsClient.search(
-                    PointsSearch.builder()
-                            .locationIds(GroupUtils.extractUnique(
-                                    locations,
-                                    Location::getLocationId
-                            ))
-                            .withDetails(true)
-                            .build()
+            Set<String> locationIds = GroupUtils.extractUnique(locations, Location::getLocationId);
+
+            Map<String, List<Point>> pointsMap = GroupUtils.groupMultipleBy(
+                    pointsClient.search(
+                            PointsSearch.builder()
+                                    .locationIds(locationIds)
+                                    .withDetails(true)
+                                    .build()
+                    ),
+                    Point::getLocationId
             );
-            Map<String, List<Point>> pointsMap = GroupUtils.groupMultipleBy(points, Point::getLocationId);
+
             for (Location location : locations) {
                 location.setPoints(pointsMap.get(location.getLocationId()));
             }
