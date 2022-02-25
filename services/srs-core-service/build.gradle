@@ -5,10 +5,15 @@ dependencies {
     implementation project(':srs-domain-request-module')
     implementation project(':srs-domain-squad-module')
     implementation project(':srs-domain-search-process-module')
+    implementation project(':srs-camunda-module')
 
     runtimeOnly 'org.postgresql:postgresql'
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
+    implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"
 }

@@ -1,0 +1,16 @@
+dependencies {
+    implementation project(':srs-module-lib')
+    implementation project(':srs-camunda-api')
+    implementation project(':srs-camunda-jooq')
+    implementation project(':srs-camunda-flows')
+
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.mapstruct:mapstruct'
+
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
+    compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
+    compileClasspath 'org.springframework.boot:spring-boot-starter-amqp'
+
+    compileClasspath "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
+    compileClasspath "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"
+}

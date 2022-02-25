@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.systems.dipe.srs.inventory.config.InventoryConfig;
 import org.systems.dipe.srs.location.config.LocationConfig;
+import org.systems.dipe.srs.orchestration.config.CamundaConfig;
 import org.systems.dipe.srs.person.config.PersonConfig;
 import org.systems.dipe.srs.request.config.RequestConfig;
 import org.systems.dipe.srs.search.config.SearchProcessConfig;
@@ -18,7 +19,8 @@ import org.systems.dipe.srs.squad.config.SquadConfig;
         RequestConfig.Module.class,
         LocationConfig.Module.class,
         SquadConfig.Module.class,
-        SearchProcessConfig.Module.class
+        SearchProcessConfig.Module.class,
+        CamundaConfig.Module.class
 })
 @SpringBootApplication
 @EnableTransactionManagement

@@ -54,6 +54,14 @@ project(':srs-domain-squad-module').projectDir = "$rootDir/modules/domain/srs-do
 // integrations
 
 // orchestration
+include ':srs-camunda-api'
+project(':srs-camunda-api').projectDir = "$rootDir/modules/orchestration/srs-camunda-api" as File
+include ':srs-camunda-flows'
+project(':srs-camunda-flows').projectDir = "$rootDir/modules/orchestration/srs-camunda-flows" as File
+include ':srs-camunda-jooq'
+project(':srs-camunda-jooq').projectDir = "$rootDir/modules/orchestration/srs-camunda-jooq" as File
+include ':srs-camunda-module'
+project(':srs-camunda-module').projectDir = "$rootDir/modules/orchestration/srs-camunda-module" as File
 
 // services
 include ':srs-core-service'

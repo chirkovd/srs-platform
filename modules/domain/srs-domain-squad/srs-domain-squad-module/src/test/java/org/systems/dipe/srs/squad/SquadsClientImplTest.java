@@ -9,6 +9,7 @@ import org.systems.dipe.srs.squad.config.TestConfig;
 import org.systems.dipe.srs.utils.UuidUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @SpringBootTest(classes = TestConfig.class)
@@ -28,7 +29,7 @@ class SquadsClientImplTest extends SrsDbTest {
             Member member = new Member();
             member.setVolunteerId(UuidUtils.newStr());
             return member;
-        }).toList();
+        }).collect(Collectors.toList());
         members.get(0).setHead(true);
 
         squad.setEquipments(List.of(equipment));
@@ -52,7 +53,7 @@ class SquadsClientImplTest extends SrsDbTest {
             Member member = new Member();
             member.setVolunteerId(UuidUtils.newStr());
             return member;
-        }).toList();
+        }).collect(Collectors.toList());
         members.get(0).setHead(true);
 
         squad.setEquipments(List.of(equipment));
@@ -69,7 +70,7 @@ class SquadsClientImplTest extends SrsDbTest {
             Member member = new Member();
             member.setVolunteerId(UuidUtils.newStr());
             return member;
-        }).toList());
+        }).collect(Collectors.toList()));
         result.getMembers().get(1).setHead(true);
 
         result = squadsClient.update(result);

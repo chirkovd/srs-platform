@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':srs-module-lib')
+    implementation project(':srs-camunda-api')
+
+    compileClasspath 'org.camunda.bpm:camunda-engine'
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
+}
