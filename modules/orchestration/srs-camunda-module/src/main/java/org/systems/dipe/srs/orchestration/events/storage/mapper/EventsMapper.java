@@ -24,7 +24,7 @@ public abstract class EventsMapper implements CommonMapper {
     @Mapping(target = "message", ignore = true)
     @Mapping(target = "error", ignore = true)
     @Mapping(target = "retryAt", ignore = true)
-    abstract JEventRecord toJooq(Event event);
+    public abstract JEventRecord toJooq(Event event);
 
     @AfterMapping
     protected void afterMapping(@MappingTarget JEventRecord record, Event event) {
@@ -40,14 +40,14 @@ public abstract class EventsMapper implements CommonMapper {
     }
 
     @Mapping(target = "message", ignore = true)
-    abstract Event fromJooq(JEventRecord record);
+    public abstract Event fromJooq(JEventRecord record);
 
     @AfterMapping
     protected void afterMapping(@MappingTarget Event event, JEventRecord record) {
         if (Objects.isNull(record.getMessage())) {
             return;
         }
-        event.setMessage(objectMapper.convertValue(record.getMessage(), event.getType().message()));
+        event.setMessage(objectMapper.convertValue(record.getMessage(), event.getType().getMessageType()));
     }
 
     protected String fromEventType(EventType eventType) {

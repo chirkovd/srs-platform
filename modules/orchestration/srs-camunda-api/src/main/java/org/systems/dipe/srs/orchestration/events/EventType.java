@@ -4,5 +4,5 @@ public interface EventType {
 
     String getId();
 
-    Class<? extends EventMessage> message();
+    Class<? extends EventMessage> getMessageType();
 }

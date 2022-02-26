@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class Event<T extends EventMessage> {
 
-    private long eventId;
+    private Integer eventId;
     private EventStatus status;
     private EventType type;
     private T message;
