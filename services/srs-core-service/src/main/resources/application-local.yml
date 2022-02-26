@@ -3,4 +3,8 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5432/srs-platform
     username: master
     password: secret
-
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: master
+    password: secret

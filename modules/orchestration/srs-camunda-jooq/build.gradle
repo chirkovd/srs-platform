@@ -4,3 +4,9 @@ dependencies {
 
     jooqGenerator 'org.postgresql:postgresql'
 }
+
+ext.jooqProps = [
+        db         : 'jdbc:postgresql://localhost:5432/srs-platform',
+        packageName: 'org.systems.dipe.srs.orchestration',
+        inputSchema: 'orchestration'
+]

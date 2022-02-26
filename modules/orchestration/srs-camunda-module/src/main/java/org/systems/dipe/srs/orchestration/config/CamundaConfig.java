@@ -12,7 +12,10 @@ public class CamundaConfig {
 
     @EnableProcessApplication
     @PropertySource("camunda.properties")
-    @Import(CamundaFlowsConfig.Module.class)
+    @Import({
+            CamundaFlowsConfig.Module.class,
+            CamundaFlywayConfig.class
+    })
     @ComponentScan(basePackages = "org.systems.dipe.srs.orchestration")
     public static class Module {
 
