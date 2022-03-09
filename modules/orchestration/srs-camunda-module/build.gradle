@@ -13,4 +13,16 @@ dependencies {
 
     compileClasspath "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
     compileClasspath "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"
+
+    testImplementation project(':srs-test-lib')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-jooq'
+    testImplementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    testImplementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
+    testImplementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"
+
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.awaitility:awaitility'
 }

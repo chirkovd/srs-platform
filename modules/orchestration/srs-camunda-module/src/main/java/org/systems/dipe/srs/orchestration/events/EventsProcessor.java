@@ -7,8 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.orchestration.events.evaluators.EventsEvaluator;
 import org.systems.dipe.srs.orchestration.events.storage.EventsRepository;
 import org.systems.dipe.srs.utils.GroupUtils;
+import org.systems.dipe.srs.utils.TimeUtils;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -21,6 +23,12 @@ public class EventsProcessor implements EventQueue {
     @Override
     @Transactional
     public <T extends EventMessage> void pushEvent(Event<T> event) {
+        if (Objects.isNull(event.getCreated())) {
+            event.setCreated(TimeUtils.now());
+        }
+        if (Objects.isNull(event.getStatus())) {
+            event.setStatus(EventStatus.NEW);
+        }
         repository.save(event);
     }
 

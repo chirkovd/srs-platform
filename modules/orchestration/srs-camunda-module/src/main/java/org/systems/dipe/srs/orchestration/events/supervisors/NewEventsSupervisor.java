@@ -24,6 +24,7 @@ public class NewEventsSupervisor implements ApplicationListener<ApplicationReady
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
+        log.info("Start to process new events");
         timer.schedule(new TimerTask() {
             @Override
             public void run() {

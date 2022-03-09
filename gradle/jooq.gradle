@@ -1,4 +1,3 @@
-
 subprojects {
     afterEvaluate { project ->
         if (project.hasProperty('jooqProps')) {
@@ -32,18 +31,6 @@ subprojects {
                                         includes = jooqProps.includes
                                     }
                                     excludes = 'schema_version'
-                                    forcedTypes {
-                                        forcedType {
-                                            name = 'varchar'
-                                            includeExpression = '.*'
-                                            includeTypes = 'JSONB?'
-                                        }
-                                        forcedType {
-                                            name = 'varchar'
-                                            includeExpression = '.*'
-                                            includeTypes = 'INET'
-                                        }
-                                    }
                                 }
                                 generate {
                                     deprecated = false

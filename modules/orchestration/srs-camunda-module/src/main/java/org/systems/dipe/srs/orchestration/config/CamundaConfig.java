@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 public class CamundaConfig {
 
     @EnableProcessApplication
-    @PropertySource("camunda.properties")
+    @PropertySource("classpath:camunda.properties")
     @Import({
             CamundaFlowsConfig.Module.class,
             CamundaFlywayConfig.class

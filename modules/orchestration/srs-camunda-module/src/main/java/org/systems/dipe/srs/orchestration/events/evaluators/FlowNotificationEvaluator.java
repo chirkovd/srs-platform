@@ -30,7 +30,7 @@ public class FlowNotificationEvaluator {
     public void notifyFlow(Event event) {
         EventType type = event.getType();
         EventMessage message = event.getMessage();
-        String messageName = message.getClass().getName();
+        String messageName = message.getClass().getSimpleName();
 
         ExecutionQuery executionQuery = runtimeService.createExecutionQuery()
                 .messageEventSubscriptionName(messageName)

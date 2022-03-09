@@ -24,6 +24,7 @@ public class RetriedEventsSupervisor implements ApplicationListener<ApplicationR
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
+        log.info("Start to process failed events");
         timer.schedule(new TimerTask() {
             @Override
             public void run() {

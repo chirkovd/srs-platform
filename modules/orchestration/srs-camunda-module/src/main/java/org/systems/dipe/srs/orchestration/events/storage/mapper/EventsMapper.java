@@ -3,6 +3,7 @@ package org.systems.dipe.srs.orchestration.events.storage.mapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.jooq.JSONB;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.systems.dipe.srs.mappers.CommonMapper;
@@ -10,6 +11,7 @@ import org.systems.dipe.srs.orchestration.events.Event;
 import org.systems.dipe.srs.orchestration.events.EventStatus;
 import org.systems.dipe.srs.orchestration.events.EventType;
 import org.systems.dipe.srs.orchestration.events.EventTypeProvider;
+import org.systems.dipe.srs.orchestration.tables.JEvent;
 import org.systems.dipe.srs.orchestration.tables.records.JEventRecord;
 
 import java.util.Objects;
@@ -28,11 +30,15 @@ public abstract class EventsMapper implements CommonMapper {
 
     @AfterMapping
     protected void afterMapping(@MappingTarget JEventRecord record, Event event) {
+        if (Objects.isNull(event.getEventId())) {
+            // use event id sequence
+            record.changed(JEvent.EVENT.EVENT_ID, false);
+        }
         if (Objects.isNull(event.getMessage())) {
             return;
         }
         try {
-            record.setMessage(objectMapper.writeValueAsString(event.getMessage()));
+            record.setMessage(JSONB.jsonb(objectMapper.writeValueAsString(event.getMessage())));
         } catch (JsonProcessingException e) {
             record.setError(e.getMessage());
             record.setStatus(EventStatus.ERROR.name());
@@ -44,10 +50,15 @@ public abstract class EventsMapper implements CommonMapper {
 
     @AfterMapping
     protected void afterMapping(@MappingTarget Event event, JEventRecord record) {
-        if (Objects.isNull(record.getMessage())) {
+        JSONB message = record.getMessage();
+        if (Objects.isNull(message)) {
             return;
         }
-        event.setMessage(objectMapper.convertValue(record.getMessage(), event.getType().getMessageType()));
+        try {
+            event.setMessage(objectMapper.readValue(message.data(), event.getType().getMessageType()));
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException(e.getMessage());
+        }
     }
 
     protected String fromEventType(EventType eventType) {
