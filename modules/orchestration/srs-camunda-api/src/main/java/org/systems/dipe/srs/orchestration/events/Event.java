@@ -19,4 +19,9 @@ public class Event<T extends EventMessage> {
     private T message;
     private ZonedDateTime created;
 
+    public Event(EventType type, T message) {
+        this.type = type;
+        this.message = message;
+    }
+
 }

@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.orchestration;
+package org.systems.dipe.srs.orchestration.flows;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;

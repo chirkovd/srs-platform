@@ -1,9 +1,10 @@
-package org.systems.dipe.srs.orchestration.events;
+package org.systems.dipe.srs.orchestration.events.supervisors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.systems.dipe.srs.orchestration.events.EventsProcessor;
 
 import javax.annotation.PreDestroy;
 import java.util.Timer;
@@ -11,14 +12,14 @@ import java.util.TimerTask;
 
 @Slf4j
 @Component
-public class NewEventsSupervisor implements ApplicationListener<ApplicationReadyEvent> {
+public class RetriedEventsSupervisor implements ApplicationListener<ApplicationReadyEvent> {
 
     private final Timer timer;
     private final EventsProcessor eventsProcessor;
 
-    public NewEventsSupervisor(EventsProcessor eventsProcessor) {
+    public RetriedEventsSupervisor(EventsProcessor eventsProcessor) {
         this.eventsProcessor = eventsProcessor;
-        this.timer = new Timer("SRS-New-Events-Supervisor");
+        this.timer = new Timer("SRS-Retried-Events-Supervisor");
     }
 
     @Override
@@ -31,12 +32,12 @@ public class NewEventsSupervisor implements ApplicationListener<ApplicationReady
                     return;
                 }
 
-                int events = eventsProcessor.evaluateUnprocessedEvents();
+                int events = eventsProcessor.evaluateRetriedEvents();
                 if (events > 0) {
-                    log.debug("Load and evaluate unprocessed events [{}]", events);
+                    log.debug("Load and evaluate retried events [{}]", events);
                 }
             }
-        }, 5_000, 5_000);
+        }, 5_000, 60_000);
     }
 
     @PreDestroy

@@ -4,16 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.systems.dipe.srs.orchestration.events.EventMessage;
 import org.systems.dipe.srs.orchestration.events.EventType;
+import org.systems.dipe.srs.orchestration.flows.request.messages.ApproveRequestMessage;
+import org.systems.dipe.srs.orchestration.flows.request.messages.CompleteRequestMessage;
+import org.systems.dipe.srs.orchestration.flows.request.messages.SubmitRequestMessage;
 
 import java.util.Objects;
 
 @Getter
 @AllArgsConstructor
 public enum SrsEventType implements EventType {
-    START_REQUEST_FLOW(null),
-    REQUEST_APPROVED(null),
-    REQUEST_COMPLETED(null);
+    REQUEST_FLOW_STARTED(SrsVariables.REQUEST_FLOW, SubmitRequestMessage.class),
+    REQUEST_APPROVED(SrsVariables.REQUEST_FLOW, ApproveRequestMessage.class),
+    REQUEST_COMPLETED(SrsVariables.REQUEST_FLOW, CompleteRequestMessage.class);
 
+    private final String flow;
     private final Class<? extends EventMessage> messageType;
 
     @Override
