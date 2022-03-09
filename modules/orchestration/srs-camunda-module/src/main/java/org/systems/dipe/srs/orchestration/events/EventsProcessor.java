@@ -1,6 +1,7 @@
 package org.systems.dipe.srs.orchestration.events;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,10 +10,12 @@ import org.systems.dipe.srs.orchestration.events.storage.EventsRepository;
 import org.systems.dipe.srs.utils.GroupUtils;
 import org.systems.dipe.srs.utils.TimeUtils;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class EventsProcessor implements EventQueue {
@@ -65,7 +68,14 @@ public class EventsProcessor implements EventQueue {
                 repository.setStatus(Set.of(event.getEventId()), EventStatus.COMPLETE);
 
                 eventsCount++;
-                // TODO add special exception handler for retry.
+            } catch (RetryEventException re) {
+                ZonedDateTime now = TimeUtils.now();
+                if (event.getCreated().isBefore(now.minusMinutes(5))) {
+                    repository.failEvent(event.getEventId(), "Cannot retry");
+                } else {
+                    log.debug("Retry event {} later, after 20 sec", event.getEventId());
+                    repository.retryEvent(event.getEventId(), now.plusSeconds(20));
+                }
             } catch (Exception e) {
                 repository.failEvent(event.getEventId(), e.getMessage());
             }

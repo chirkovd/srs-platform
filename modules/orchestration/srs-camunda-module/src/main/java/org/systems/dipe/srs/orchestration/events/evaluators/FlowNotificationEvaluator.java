@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.systems.dipe.srs.orchestration.events.Event;
 import org.systems.dipe.srs.orchestration.events.EventMessage;
 import org.systems.dipe.srs.orchestration.events.EventType;
+import org.systems.dipe.srs.orchestration.events.RetryEventException;
 
 import java.util.List;
 import java.util.Objects;
@@ -50,7 +51,7 @@ public class FlowNotificationEvaluator {
             if (CollectionUtils.isEmpty(instances)) {
                 log.warn("There is no active subscription and active processes, skip event");
             } else {
-                throw new IllegalStateException("Subscription is not found, retry later");
+                throw new RetryEventException("Subscription is not found, retry later");
             }
         } else {
             runtimeService.messageEventReceived(messageName, execution.getId(), message.variables());

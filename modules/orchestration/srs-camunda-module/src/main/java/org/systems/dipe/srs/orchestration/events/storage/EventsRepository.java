@@ -4,6 +4,7 @@ import org.systems.dipe.srs.orchestration.events.Event;
 import org.systems.dipe.srs.orchestration.events.EventMessage;
 import org.systems.dipe.srs.orchestration.events.EventStatus;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 
 public interface EventsRepository {
@@ -17,4 +18,6 @@ public interface EventsRepository {
     void failEvent(Integer eventId, String exception);
 
     Collection<Event> loadRetriedEvents();
+
+    void retryEvent(Integer eventId, ZonedDateTime invokeAfter);
 }

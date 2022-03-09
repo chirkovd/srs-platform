@@ -12,6 +12,7 @@ import org.systems.dipe.srs.orchestration.events.storage.mapper.EventsMapper;
 import org.systems.dipe.srs.orchestration.tables.JEvent;
 import org.systems.dipe.srs.utils.TimeUtils;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 
 @Repository
@@ -62,5 +63,14 @@ public class EventsJooqRepository implements EventsRepository {
                         JEvent.EVENT.STATUS.eq(EventStatus.RETRY.name()))
                 .fetch()
                 .map(mapper::fromJooq);
+    }
+
+    @Override
+    public void retryEvent(Integer eventId, ZonedDateTime invokeAfter) {
+        dsl.update(JEvent.EVENT)
+                .set(JEvent.EVENT.STATUS, EventStatus.RETRY.name())
+                .set(JEvent.EVENT.RETRY_AT, TimeUtils.fromZdt(invokeAfter))
+                .where(JEvent.EVENT.EVENT_ID.eq(eventId))
+                .execute();
     }
 }
