@@ -7,7 +7,7 @@ import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.systems.dipe.srs.SrsDbTest;
+import org.systems.dipe.srs.SrsIntegrationTest;
 import org.systems.dipe.srs.orchestration.config.TestConfig;
 import org.systems.dipe.srs.orchestration.external.RequestsFacadeTestImpl;
 import org.systems.dipe.srs.utils.UuidUtils;
@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @Slf4j
 @SpringBootTest(classes = TestConfig.class)
-public class PositiveFlowTest extends SrsDbTest {
+public class PositiveFlowTest extends SrsIntegrationTest {
 
     @Autowired
     private RuntimeService runtimeService;
