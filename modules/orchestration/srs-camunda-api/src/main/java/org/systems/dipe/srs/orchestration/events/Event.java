@@ -15,12 +15,10 @@ public class Event<T extends EventMessage> {
 
     private Integer eventId;
     private EventStatus status;
-    private EventType type;
     private T message;
     private ZonedDateTime created;
 
-    public Event(EventType type, T message) {
-        this.type = type;
+    public Event(T message) {
         this.message = message;
     }
 

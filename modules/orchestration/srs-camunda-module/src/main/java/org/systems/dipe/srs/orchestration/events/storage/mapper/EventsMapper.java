@@ -8,9 +8,8 @@ import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.systems.dipe.srs.mappers.CommonMapper;
 import org.systems.dipe.srs.orchestration.events.Event;
+import org.systems.dipe.srs.orchestration.events.EventMessage;
 import org.systems.dipe.srs.orchestration.events.EventStatus;
-import org.systems.dipe.srs.orchestration.events.EventType;
-import org.systems.dipe.srs.orchestration.events.EventTypeProvider;
 import org.systems.dipe.srs.orchestration.tables.JEvent;
 import org.systems.dipe.srs.orchestration.tables.records.JEventRecord;
 
@@ -21,7 +20,6 @@ import java.util.Objects;
 public abstract class EventsMapper implements CommonMapper {
 
     private ObjectMapper objectMapper;
-    private EventTypeProvider eventTypeProvider;
 
     @Mapping(target = "message", ignore = true)
     @Mapping(target = "error", ignore = true)
@@ -55,27 +53,15 @@ public abstract class EventsMapper implements CommonMapper {
             return;
         }
         try {
-            event.setMessage(objectMapper.readValue(message.data(), event.getType().getMessageType()));
+            event.setMessage(objectMapper.readValue(message.data(), EventMessage.class));
         } catch (JsonProcessingException e) {
+            log.error("Cannot deserialize message from {}", message.data());
             throw new IllegalStateException(e.getMessage());
         }
-    }
-
-    protected String fromEventType(EventType eventType) {
-        return eventType.getId();
-    }
-
-    protected EventType toEventType(String eventType) {
-        return eventTypeProvider.provide(eventType);
     }
 
     @Autowired
     public void setObjectMapper(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
-    }
-
-    @Autowired
-    public void setEventTypeProvider(EventTypeProvider eventTypeProvider) {
-        this.eventTypeProvider = eventTypeProvider;
     }
 }

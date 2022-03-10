@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS event
     event_id    SERIAL,
     
     status      VARCHAR(50) NOT NULL,
-    type        VARCHAR(100) NOT NULL,
 
     message     JSONB       NOT NULL,
     error       TEXT,

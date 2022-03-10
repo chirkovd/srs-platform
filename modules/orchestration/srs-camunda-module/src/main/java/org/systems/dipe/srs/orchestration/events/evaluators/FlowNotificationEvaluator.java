@@ -9,10 +9,7 @@ import org.camunda.bpm.engine.runtime.ExecutionQuery;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstanceQuery;
 import org.springframework.stereotype.Component;
-import org.systems.dipe.srs.orchestration.events.Event;
-import org.systems.dipe.srs.orchestration.events.EventMessage;
-import org.systems.dipe.srs.orchestration.events.EventType;
-import org.systems.dipe.srs.orchestration.events.RetryEventException;
+import org.systems.dipe.srs.orchestration.events.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,14 +20,15 @@ import java.util.Objects;
 public class FlowNotificationEvaluator {
 
     private final RuntimeService runtimeService;
+    private final EventTypeProvider typeProvider;
 
     /**
      * Search active execution process that is waiting for message.
      * Find subscription and notify flow.
      */
     public void notifyFlow(Event event) {
-        EventType type = event.getType();
         EventMessage message = event.getMessage();
+        EventType type = typeProvider.provide(message.getType());
         String messageName = message.getClass().getSimpleName();
 
         ExecutionQuery executionQuery = runtimeService.createExecutionQuery()

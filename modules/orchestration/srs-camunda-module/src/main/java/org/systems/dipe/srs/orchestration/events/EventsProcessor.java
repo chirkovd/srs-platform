@@ -18,14 +18,13 @@ import java.util.Set;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class EventsProcessor implements EventQueue {
+public class EventsProcessor {
 
     private final EventsRepository repository;
     private final EventsEvaluator evaluator;
 
-    @Override
     @Transactional
-    public <T extends EventMessage> void pushEvent(Event<T> event) {
+    public <T extends EventMessage> void processEvent(Event<T> event) {
         if (Objects.isNull(event.getCreated())) {
             event.setCreated(TimeUtils.now());
         }

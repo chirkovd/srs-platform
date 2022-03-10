@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.systems.dipe.srs.orchestration.SrsEventType;
 import org.systems.dipe.srs.orchestration.SrsVariables;
 import org.systems.dipe.srs.orchestration.events.EventMessage;
 
@@ -19,6 +20,11 @@ public class ApproveRequestMessage implements EventMessage {
     @JsonCreator
     public ApproveRequestMessage(String requestId) {
         this.requestId = requestId;
+    }
+
+    @Override
+    public String getType() {
+        return SrsEventType.REQUEST_APPROVED.getId();
     }
 
     @Override

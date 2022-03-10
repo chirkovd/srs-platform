@@ -1,11 +1,17 @@
 package org.systems.dipe.srs.orchestration.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Collections;
 import java.util.Map;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS
+)
 public interface EventMessage {
+
+    String getType();
 
     @JsonIgnore
     default boolean isRunner() {

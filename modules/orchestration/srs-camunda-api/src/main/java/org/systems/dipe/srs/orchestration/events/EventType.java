@@ -5,6 +5,4 @@ public interface EventType {
     String getId();
 
     String getFlow();
-
-    Class<? extends EventMessage> getMessageType();
 }

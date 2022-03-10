@@ -50,11 +50,6 @@ public class JEvent extends TableImpl<JEventRecord> {
     public final TableField<JEventRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
     /**
-     * The column <code>orchestration.event.type</code>.
-     */
-    public final TableField<JEventRecord, String> TYPE = createField(DSL.name("type"), SQLDataType.VARCHAR(100).nullable(false), this, "");
-
-    /**
      * The column <code>orchestration.event.message</code>.
      */
     public final TableField<JEventRecord, JSONB> MESSAGE = createField(DSL.name("message"), SQLDataType.JSONB.nullable(false), this, "");
@@ -154,11 +149,11 @@ public class JEvent extends TableImpl<JEventRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, String, String, JSONB, String, LocalDateTime, LocalDateTime> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row6<Integer, String, JSONB, String, LocalDateTime, LocalDateTime> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 }

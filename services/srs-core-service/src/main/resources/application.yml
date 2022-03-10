@@ -7,6 +7,8 @@ spring:
     enabled: false
   rabbitmq:
     virtual-host: /
+  jackson:
+    default-property-inclusion: non_null
 
 logging:
   level:
