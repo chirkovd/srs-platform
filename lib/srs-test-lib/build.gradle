@@ -4,6 +4,7 @@ dependencies {
 
     implementation 'org.testcontainers:junit-jupiter'
     implementation 'org.testcontainers:postgresql'
+    implementation 'org.testcontainers:rabbitmq'
 
     runtimeOnly 'org.postgresql:postgresql'
 }

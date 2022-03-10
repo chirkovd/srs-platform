@@ -18,6 +18,23 @@ services:
     networks:
       - srs-platform
 
+  rabbitmq:
+    container_name: srs-rabbitmq
+    hostname: ${RABBITMQ_HOST}
+    image: rabbitmq:${RABBITMQ_VERSION}
+    restart: on-failure
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    ports:
+#      - 25672:25672
+      - ${RABBITMQ_MNG_PORT}:15672
+#      - 4369:4369
+#      - 5671:5671
+      - ${RABBITMQ_PORT}:5672
+    networks:
+      - srs-platform
+
 volumes:
   postgresql:
     driver: local

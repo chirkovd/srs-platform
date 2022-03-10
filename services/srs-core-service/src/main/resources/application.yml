@@ -5,6 +5,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   flyway:
     enabled: false
+  rabbitmq:
+    virtual-host: /
+  jackson:
+    default-property-inclusion: non_null
 
 logging:
   level:

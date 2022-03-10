@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: test
+
+logging:
+  level:
+    root: INFO
+    org.jooq.Constants: OFF
+    org.systems.dipe: DEBUG
