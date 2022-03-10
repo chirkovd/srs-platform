@@ -73,8 +73,8 @@ public class EventsProcessor implements EventQueue {
                 if (event.getCreated().isBefore(now.minusMinutes(5))) {
                     repository.failEvent(event.getEventId(), "Cannot retry");
                 } else {
-                    log.debug("Retry event {} later, after 20 sec", event.getEventId());
-                    repository.retryEvent(event.getEventId(), now.plusSeconds(20));
+                    log.debug("Retry event {} later, after 60 sec", event.getEventId());
+                    repository.retryEvent(event.getEventId(), now.plusMinutes(1));
                 }
             } catch (Exception e) {
                 repository.failEvent(event.getEventId(), e.getMessage());

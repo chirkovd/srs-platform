@@ -38,7 +38,7 @@ public class FlowNotificationEvaluator {
                 .processDefinitionKey(type.getFlow())
                 .active();
 
-        message.subscription().forEach(executionQuery::variableValueEquals);
+        message.subscription().forEach(executionQuery::processVariableValueEquals);
 
         Execution execution = executionQuery.singleResult();
         if (Objects.isNull(execution)) {

@@ -25,4 +25,9 @@ public class ApproveRequestMessage implements EventMessage {
     public Map<String, Object> subscription() {
         return Map.of(SrsVariables.REQUEST_ID, requestId);
     }
+
+    @Override
+    public Map<String, Object> variables() {
+        return Map.of(SrsVariables.REQUEST_ID, requestId);
+    }
 }
