@@ -5,7 +5,7 @@ services:
   postgresql:
     container_name: srs-postgresql
     hostname: ${POSTGRES_HOST}
-    image: postgres:${POSTGRES_VERSION}
+    build: srs-postgresql
     restart: on-failure
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -17,6 +17,7 @@ services:
       - postgresql:/var/lib/postgresql/data/
     networks:
       - srs-platform
+    command: postgres -c 'shared_preload_libraries='pg_stat_statements'' -c 'pg_stat_statements.max=10000' -c 'pg_stat_statements.track=all'
 
   rabbitmq:
     container_name: srs-rabbitmq
