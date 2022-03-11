@@ -5,6 +5,8 @@ buildscript {
         springBootVersion = '2.6.3'
         testContainersVersion = "1.16.3"
         camundaVersion = "7.16.0"
+
+        allureVersion = "2.17.3"
     }
 
     dependencies {
@@ -15,6 +17,7 @@ buildscript {
 plugins {
     id 'java'
     id "nu.studer.jooq" version "7.1.1"
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 allprojects {
@@ -59,6 +62,8 @@ allprojects {
 
             dependency 'org.mapstruct:mapstruct:1.4.2.Final'
             dependency 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+            dependency "io.qameta.allure:allure-java-commons:${allureVersion}"
         }
     }
 
@@ -79,8 +84,21 @@ allprojects {
         }
     }
 
+    apply plugin: 'io.qameta.allure'
+
+    allure {
+        autoconfigure = true
+        version = "${allureVersion}"
+
+        useJUnit5 {
+            version = "${allureVersion}"
+        }
+    }
+
     test {
         useJUnitPlatform()
+
+        systemProperty 'allure.results.directory', "$projectDir/build/allure-results"
     }
 }
 
@@ -97,14 +115,21 @@ subprojects {
             testImplementation 'org.mockito:mockito-core'
             testImplementation 'org.junit.jupiter:junit-jupiter'
             testImplementation 'org.junit.jupiter:junit-jupiter-params'
+            testImplementation 'io.qameta.allure:allure-java-commons'
 
             annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
             annotationProcessor 'org.mapstruct:mapstruct-processor'
             annotationProcessor project(":srs-mapstruct-lib")
         }
-
     }
 
+}
+
+//executes test tasks in all subprojects and generates single test report
+task singleTestReport(type: TestReport) {
+    destinationDir = file("${rootProject.buildDir}/reports/allTests")
+    // Include the results from the `test` task in all subprojects
+    reportOn subprojects*.test
 }
 
 apply from: "${rootDir}/gradle/jooq.gradle"
