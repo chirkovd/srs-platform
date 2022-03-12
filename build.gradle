@@ -5,16 +5,24 @@ buildscript {
         springBootVersion = '2.6.3'
         testContainersVersion = "1.16.3"
         camundaVersion = "7.16.0"
+
+        allureVersion = "2.17.3"
     }
 
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.qameta.allure.gradle.adapter:allure-adapter-plugin:2.9.6"
     }
 }
 
 plugins {
     id 'java'
     id "nu.studer.jooq" version "7.1.1"
+    id 'io.qameta.allure-aggregate-report' version '2.9.6'
+}
+
+allure {
+    version.set("${allureVersion}")
 }
 
 allprojects {
@@ -59,6 +67,8 @@ allprojects {
 
             dependency 'org.mapstruct:mapstruct:1.4.2.Final'
             dependency 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+            dependency "io.qameta.allure:allure-java-commons:${allureVersion}"
         }
     }
 
@@ -97,14 +107,35 @@ subprojects {
             testImplementation 'org.mockito:mockito-core'
             testImplementation 'org.junit.jupiter:junit-jupiter'
             testImplementation 'org.junit.jupiter:junit-jupiter-params'
+            testImplementation 'io.qameta.allure:allure-java-commons'
 
             annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
             annotationProcessor 'org.mapstruct:mapstruct-processor'
             annotationProcessor project(":srs-mapstruct-lib")
         }
 
+        apply plugin: 'io.qameta.allure-adapter'
+
+        allure {
+            version.set("${allureVersion}")
+            adapter {
+                allureJavaVersion.set("${allureVersion}")
+                frameworks {
+                    junit5 {
+                        adapterVersion.set("${allureVersion}")
+                    }
+                }
+            }
+        }
     }
 
+}
+
+//executes test tasks in all subprojects and generates single test report
+task singleTestReport(type: TestReport) {
+    destinationDir = file("${rootProject.buildDir}/reports/allTests")
+    // Include the results from the `test` task in all subprojects
+    reportOn subprojects*.test
 }
 
 apply from: "${rootDir}/gradle/jooq.gradle"
