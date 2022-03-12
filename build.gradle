@@ -11,13 +11,18 @@ buildscript {
 
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.qameta.allure.gradle.adapter:allure-adapter-plugin:2.9.6"
     }
 }
 
 plugins {
     id 'java'
     id "nu.studer.jooq" version "7.1.1"
-    id 'io.qameta.allure' version '2.9.6'
+    id 'io.qameta.allure-aggregate-report' version '2.9.6'
+}
+
+allure {
+    version.set("${allureVersion}")
 }
 
 allprojects {
@@ -84,21 +89,8 @@ allprojects {
         }
     }
 
-    apply plugin: 'io.qameta.allure'
-
-    allure {
-        autoconfigure = true
-        version = "${allureVersion}"
-
-        useJUnit5 {
-            version = "${allureVersion}"
-        }
-    }
-
     test {
         useJUnitPlatform()
-
-        systemProperty 'allure.results.directory', "$projectDir/build/allure-results"
     }
 }
 
@@ -120,6 +112,20 @@ subprojects {
             annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
             annotationProcessor 'org.mapstruct:mapstruct-processor'
             annotationProcessor project(":srs-mapstruct-lib")
+        }
+
+        apply plugin: 'io.qameta.allure-adapter'
+
+        allure {
+            version.set("${allureVersion}")
+            adapter {
+                allureJavaVersion.set("${allureVersion}")
+                frameworks {
+                    junit5 {
+                        adapterVersion.set("${allureVersion}")
+                    }
+                }
+            }
         }
     }
 
