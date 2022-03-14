@@ -61,6 +61,7 @@ public class EventsJooqRepository implements EventsRepository {
         return dsl.selectFrom(JEvent.EVENT)
                 .where(JEvent.EVENT.RETRY_AT.lessOrEqual(TimeUtils.fromZdt(TimeUtils.now())),
                         JEvent.EVENT.STATUS.eq(EventStatus.RETRY.name()))
+                .limit(100)
                 .fetch()
                 .map(mapper::fromJooq);
     }

@@ -8,5 +8,7 @@ public interface SearchProcessClient {
 
     SearchProcess update(SearchProcess process);
 
+    void updateStatus(String searchId, SearchProcessStatus status);
+
     Collection<SearchProcess> search(SearchProcessSearch search);
 }

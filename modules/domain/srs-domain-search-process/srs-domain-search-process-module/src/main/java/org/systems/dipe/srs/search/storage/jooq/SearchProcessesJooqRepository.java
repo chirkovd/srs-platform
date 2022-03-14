@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.search.SearchProcess;
 import org.systems.dipe.srs.search.SearchProcessSearch;
+import org.systems.dipe.srs.search.SearchProcessStatus;
 import org.systems.dipe.srs.search.jooq.tables.JSearchProcess;
 import org.systems.dipe.srs.search.jooq.tables.records.JSearchProcessRecord;
 import org.systems.dipe.srs.search.storage.SearchProcessesRepository;
@@ -39,6 +40,14 @@ public class SearchProcessesJooqRepository implements SearchProcessesRepository 
         dsl.update(JSearchProcess.SEARCH_PROCESS)
                 .set(record)
                 .where(JSearchProcess.SEARCH_PROCESS.PROCESS_ID.eq(UUID.fromString(process.getSearchId())))
+                .execute();
+    }
+
+    @Override
+    public void updateStatus(String searchId, SearchProcessStatus status) {
+        dsl.update(JSearchProcess.SEARCH_PROCESS)
+                .set(JSearchProcess.SEARCH_PROCESS.STATUS, status.name())
+                .where(JSearchProcess.SEARCH_PROCESS.PROCESS_ID.eq(UUID.fromString(searchId)))
                 .execute();
     }
 

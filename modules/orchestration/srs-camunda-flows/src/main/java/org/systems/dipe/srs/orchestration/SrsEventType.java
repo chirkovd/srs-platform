@@ -12,7 +12,14 @@ import java.util.Objects;
 public enum SrsEventType implements EventType {
     REQUEST_FLOW_STARTED(SrsVariables.REQUEST_FLOW),
     REQUEST_APPROVED(SrsVariables.REQUEST_FLOW),
-    REQUEST_COMPLETED(SrsVariables.REQUEST_FLOW);
+    REQUEST_COMPLETED(SrsVariables.REQUEST_FLOW),
+    REQUEST_CANCELLED(SrsVariables.REQUEST_FLOW),
+
+    SEARCH_FLOW_STARTED(SrsVariables.SEARCH_FLOW),
+    SEARCH_SQUAD_CREATED(SrsVariables.SEARCH_FLOW),
+    SEARCH_COMPLETED(SrsVariables.SEARCH_FLOW),
+    SEARCH_CANCELLED(SrsVariables.SEARCH_FLOW),
+    ;
 
     private final String flow;
 

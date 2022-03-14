@@ -14,7 +14,9 @@ public class RequestStartProcessor extends BaseProcess {
     public void execution(DelegateExecution execution) throws Exception {
         String requestId = (String) execution.getVariable(SrsVariables.REQUEST_ID);
 
-        log.debug("Request {} was submitted, start item flows", requestId);
-        // TODO start request item flows
+        log.debug("Request {} was submitted, create notifications and run auto-checks", requestId);
+
+        // TODO create notifications
+        // TODO run auto-checks
     }
 }

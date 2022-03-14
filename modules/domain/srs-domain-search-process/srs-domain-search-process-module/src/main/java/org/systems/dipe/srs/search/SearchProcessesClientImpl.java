@@ -69,6 +69,11 @@ public class SearchProcessesClientImpl implements SearchProcessClient {
     }
 
     @Override
+    public void updateStatus(String searchId, SearchProcessStatus status) {
+        repository.updateStatus(searchId, status);
+    }
+
+    @Override
     public Collection<SearchProcess> search(SearchProcessSearch search) {
         if (CollectionUtils.isEmpty(search.getSearchIds())
                 && CollectionUtils.isEmpty(search.getRequestIds())) {
