@@ -9,12 +9,14 @@ import org.systems.dipe.srs.orchestration.external.RequestsFacade;
 import org.systems.dipe.srs.orchestration.external.SearchProcessFacade;
 import org.systems.dipe.srs.orchestration.flows.BaseProcess;
 import org.systems.dipe.srs.request.Request;
+import org.systems.dipe.srs.search.SearchLocation;
 import org.systems.dipe.srs.search.SearchProcess;
 import org.systems.dipe.srs.search.SearchProcessStatus;
 import org.systems.dipe.srs.search.SearchSquad;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @AllArgsConstructor
@@ -33,9 +35,15 @@ public class SearchStartProcessor extends BaseProcess {
         Request request = Objects.requireNonNull(requestsFacade.find(requestId));
         SearchProcess searchProcess = Objects.requireNonNull(searchProcessFacade.find(searchId));
 
-        // TODO add location and
         SearchSquad searchSquad = new SearchSquad();
         searchProcess.setSquads(List.of(searchSquad));
+        searchProcess.setLocations(request.getLocations().stream()
+                .map(location -> {
+                    SearchLocation sl = new SearchLocation();
+                    sl.setLocationId(location.getLocationId());
+                    return sl;
+                })
+                .collect(Collectors.toList()));
         searchProcess.setStatus(SearchProcessStatus.IN_PROGRESS);
         searchProcessFacade.update(searchProcess);
     }

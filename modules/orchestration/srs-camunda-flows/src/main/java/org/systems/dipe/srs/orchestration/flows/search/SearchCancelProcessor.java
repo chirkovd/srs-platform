@@ -8,10 +8,7 @@ import org.systems.dipe.srs.orchestration.OrchestrationClient;
 import org.systems.dipe.srs.orchestration.SrsVariables;
 import org.systems.dipe.srs.orchestration.external.SearchProcessFacade;
 import org.systems.dipe.srs.orchestration.flows.BaseProcess;
-import org.systems.dipe.srs.search.SearchProcess;
 import org.systems.dipe.srs.search.SearchProcessStatus;
-
-import java.util.Objects;
 
 @Slf4j
 @AllArgsConstructor
@@ -26,9 +23,8 @@ public class SearchCancelProcessor extends BaseProcess {
         String requestId = (String) execution.getVariable(SrsVariables.REQUEST_ID);
         String searchId = (String) execution.getVariable(SrsVariables.SEARCH_ID);
 
-        SearchProcess searchProcess = Objects.requireNonNull(searchProcessFacade.find(searchId));
-        searchProcess.setStatus(SearchProcessStatus.CANCELLED);
-        searchProcessFacade.update(searchProcess);
+        // update state
+        searchProcessFacade.updateStatus(searchId, SearchProcessStatus.CANCELLED);
 
         log.debug("Search process {} is cancelled, cancel request {}", searchId, requestId);
         orchestrationClient.cancelRequest(requestId);

@@ -2,6 +2,7 @@ package org.systems.dipe.srs.orchestration.external;
 
 import lombok.Getter;
 import org.systems.dipe.srs.search.SearchProcess;
+import org.systems.dipe.srs.search.SearchProcessStatus;
 import org.systems.dipe.srs.utils.UuidUtils;
 
 import java.util.HashMap;
@@ -36,5 +37,10 @@ public class SearchProcessFacadeTestImpl implements SearchProcessFacade {
             }
         });
         return searchProcess;
+    }
+
+    @Override
+    public void updateStatus(String searchId, SearchProcessStatus status) {
+        // ignore
     }
 }

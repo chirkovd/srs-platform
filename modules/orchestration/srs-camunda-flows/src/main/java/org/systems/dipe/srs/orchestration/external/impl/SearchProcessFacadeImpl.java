@@ -7,6 +7,7 @@ import org.systems.dipe.srs.orchestration.external.SearchProcessFacade;
 import org.systems.dipe.srs.search.SearchProcess;
 import org.systems.dipe.srs.search.SearchProcessClient;
 import org.systems.dipe.srs.search.SearchProcessSearch;
+import org.systems.dipe.srs.search.SearchProcessStatus;
 
 import java.util.Collection;
 import java.util.Set;
@@ -37,5 +38,10 @@ public class SearchProcessFacadeImpl implements SearchProcessFacade {
                         .build()
         );
         return processes.isEmpty() ? null : processes.iterator().next();
+    }
+
+    @Override
+    public void updateStatus(String searchId, SearchProcessStatus status) {
+        client.updateStatus(searchId, status);
     }
 }
