@@ -45,7 +45,18 @@ public class PeopleClientImpl implements PeopleClient {
 
         peopleRepository.create(person);
 
+        if (CollectionUtils.isNotEmpty(person.getIdentifications())) {
+            for (Identification identification : person.getIdentifications()) {
+                identification.setPersonId(person.getPersonId());
+            }
+        }
         identificationsClient.create(person.getIdentifications());
+
+        if (CollectionUtils.isNotEmpty(person.getContacts())) {
+            for (Contact contact : person.getContacts()) {
+                contact.setPersonId(person.getPersonId());
+            }
+        }
         contactsClient.create(person.getContacts());
 
         if (CollectionUtils.isNotEmpty(person.getRoles())) {

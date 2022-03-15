@@ -4,15 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.systems.dipe.srs.platform.people.PersonDto;
+import org.systems.dipe.srs.platform.people.RoleDto;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -34,16 +36,16 @@ public class SrsRestClientImpl implements SrsRestClient {
 
     @Override
     public PersonDto registerNewPerson(PersonDto person) {
-        URI uri = URI.create(srsUri + "/person");
+        return restTemplate.postForObject(URI.create(srsUri + "/person"), person, PersonDto.class);
+    }
 
-        ResponseEntity<PersonDto> responseEntity;
-        try {
-            responseEntity = restTemplate.postForEntity(uri, person, PersonDto.class);
-        } catch (RestClientException e) {
-            log.error("Cannot register new person [{}], cause {}", uri, e.getMessage());
-            throw new IllegalArgumentException("Cannot register new person", e);
-        }
-
-        return responseEntity.getBody();
+    @Override
+    public List<RoleDto> rolesDictionary() {
+        return restTemplate.exchange(
+                URI.create(srsUri + "/person/roles"),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<RoleDto>>() {
+                }).getBody();
     }
 }
