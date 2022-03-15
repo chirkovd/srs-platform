@@ -1,17 +1,22 @@
 dependencies {
+    // domain
     implementation project(':srs-domain-inventory-module')
     implementation project(':srs-domain-location-module')
     implementation project(':srs-domain-person-module')
     implementation project(':srs-domain-request-module')
     implementation project(':srs-domain-squad-module')
     implementation project(':srs-domain-search-process-module')
+    // orchestration
     implementation project(':srs-camunda-module')
+    // platform
+    implementation project(':srs-platform-rest-module')
 
     runtimeOnly 'org.postgresql:postgresql'
 
+    // starters
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
     implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"

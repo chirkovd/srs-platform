@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: srs-test-platform
+  jackson:
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    root: INFO
+    org.systems.dipe: DEBUG
+  config: classpath:logback.xml

@@ -1,0 +1,12 @@
+dependencies {
+    implementation project(':srs-module-lib')
+    implementation project(':srs-platform-rest-api')
+
+    // domain
+    implementation project(':srs-domain-person-api')
+
+    implementation 'org.mapstruct:mapstruct'
+
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
+    compileClasspath 'org.springframework.boot:spring-boot-starter-web'
+}

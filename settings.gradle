@@ -63,7 +63,15 @@ project(':srs-camunda-jooq').projectDir = "$rootDir/modules/orchestration/srs-ca
 include ':srs-camunda-module'
 project(':srs-camunda-module').projectDir = "$rootDir/modules/orchestration/srs-camunda-module" as File
 
+// platform
+include ':srs-platform-rest-api'
+project(':srs-platform-rest-api').projectDir = "$rootDir/modules/platform/srs-platform-rest-api" as File
+include ':srs-platform-rest-module'
+project(':srs-platform-rest-module').projectDir = "$rootDir/modules/platform/srs-platform-rest-module" as File
+
 // services
 include ':srs-core-service'
 project(':srs-core-service').projectDir = "$rootDir/services/srs-core-service" as File
+include ':srs-test-service'
+project(':srs-test-service').projectDir = "$rootDir/services/srs-test-service" as File
 
