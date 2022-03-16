@@ -4,13 +4,17 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 import org.systems.dipe.srs.person.PeopleClient;
+import org.systems.dipe.srs.person.Person;
 import org.systems.dipe.srs.person.roles.RolesClient;
 import org.systems.dipe.srs.platform.external.PeopleFacade;
 import org.systems.dipe.srs.platform.mappers.PeopleDtoMapper;
-import org.systems.dipe.srs.platform.people.PersonDto;
+import org.systems.dipe.srs.platform.people.PersonInDto;
+import org.systems.dipe.srs.platform.people.PersonOutDto;
 import org.systems.dipe.srs.platform.people.RoleDto;
+import org.systems.dipe.srs.utils.GroupUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,12 +27,15 @@ public class PeopleFacadeImpl implements PeopleFacade {
     private final PeopleDtoMapper mapper;
 
     @Override
-    public PersonDto create(PersonDto person) {
-        return mapper.toDto(
-                peopleClient.create(
-                        mapper.fromDto(person)
-                )
-        );
+    public PersonOutDto create(PersonInDto personIn) {
+        Person person = peopleClient.create(mapper.fromInDto(personIn));
+
+        PersonOutDto personOut = mapper.toOutDto(person);
+
+        Map<String, RoleDto> roleMap = GroupUtils.groupBy(roles(), RoleDto::getRoleId);
+        personOut.setRoles(person.getRoleIds().stream().map(roleMap::get).collect(Collectors.toSet()));
+
+        return personOut;
     }
 
     @Override

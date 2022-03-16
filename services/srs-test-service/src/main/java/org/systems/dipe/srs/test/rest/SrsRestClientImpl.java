@@ -9,7 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.systems.dipe.srs.platform.people.PersonDto;
+import org.systems.dipe.srs.platform.people.PersonInDto;
 import org.systems.dipe.srs.platform.people.RoleDto;
 
 import java.net.URI;
@@ -35,8 +35,8 @@ public class SrsRestClientImpl implements SrsRestClient {
     }
 
     @Override
-    public PersonDto registerNewPerson(PersonDto person) {
-        return restTemplate.postForObject(URI.create(srsUri + "/person"), person, PersonDto.class);
+    public PersonInDto registerNewPerson(PersonInDto person) {
+        return restTemplate.postForObject(URI.create(srsUri + "/person"), person, PersonInDto.class);
     }
 
     @Override

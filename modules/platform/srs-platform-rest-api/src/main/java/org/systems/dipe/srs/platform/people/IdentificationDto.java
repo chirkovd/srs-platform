@@ -14,7 +14,6 @@ public class IdentificationDto {
 
     private String id;
     private String type;
-    private String personId;
     private ZonedDateTime created;
 
     @Override

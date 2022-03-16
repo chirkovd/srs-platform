@@ -3,14 +3,15 @@ package org.systems.dipe.srs.platform.people;
 import lombok.*;
 
 import java.time.ZonedDateTime;
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public final class PersonDto {
+public final class PersonInDto {
 
     //TODO add validation annotations
 
@@ -19,7 +20,7 @@ public final class PersonDto {
     private String lastName;
     private ZonedDateTime created;
 
-    private Collection<RoleDto> roles;
-    private Collection<ContactDto> contacts;
-    private Collection<IdentificationDto> identifications;
+    private Set<String> roleIds;
+    private List<ContactDto> contacts;
+    private Set<IdentificationDto> identifications;
 }

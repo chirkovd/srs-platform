@@ -48,7 +48,7 @@ class PeopleClientTest extends SrsDbTest {
         contact.setPersonId(person.getPersonId());
         contact.setEmail("person@email.com");
         contact.setPhone("+7-999-99-99");
-        person.setContacts(Set.of(contact));
+        person.setContacts(List.of(contact));
 
         Identification identification = new Identification();
         identification.setPersonId(person.getPersonId());
@@ -56,9 +56,9 @@ class PeopleClientTest extends SrsDbTest {
         identification.setType("passport");
         person.setIdentifications(Set.of(identification));
 
-        person.setRoles(List.of(
-                roles.get(RoleAlias.CUSTOMER),
-                roles.get(RoleAlias.VOLUNTEER)
+        person.setRoleIds(Set.of(
+                roles.get(RoleAlias.CUSTOMER).getRoleId(),
+                roles.get(RoleAlias.VOLUNTEER).getRoleId()
         ));
 
         Person result = peopleClient.create(person);
@@ -69,7 +69,7 @@ class PeopleClientTest extends SrsDbTest {
         Assertions.assertNotNull(result.getCreated());
         Assertions.assertNotNull(result.getIdentifications());
         Assertions.assertNotNull(result.getContacts());
-        Assertions.assertNotNull(result.getRoles());
+        Assertions.assertNotNull(result.getRoleIds());
     }
 
     @Test
@@ -79,8 +79,8 @@ class PeopleClientTest extends SrsDbTest {
         person.setFirstName("FirstName");
         person.setLastName("LastName");
 
-        person.setRoles(List.of(
-                roles.get(RoleAlias.TARGET)
+        person.setRoleIds(Set.of(
+                roles.get(RoleAlias.TARGET).getRoleId()
         ));
 
         Person result = peopleClient.create(person);

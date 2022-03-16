@@ -12,7 +12,7 @@ public interface PeopleMapper extends CommonMapper {
 
     JPersonRecord toJooq(Person person);
 
-    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "roleIds", ignore = true)
     @Mapping(target = "contacts", ignore = true)
     @Mapping(target = "identifications", ignore = true)
     Person fromJooq(JPersonRecord record);

@@ -3,10 +3,10 @@ package org.systems.dipe.srs.person;
 import lombok.*;
 import org.systems.dipe.srs.person.contacts.Contact;
 import org.systems.dipe.srs.person.identifications.Identification;
-import org.systems.dipe.srs.person.roles.Role;
 
 import java.time.ZonedDateTime;
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public final class Person {
     private String lastName;
     private ZonedDateTime created;
 
-    private Collection<Role> roles;
-    private Collection<Contact> contacts;
-    private Collection<Identification> identifications;
+    private Set<String> roleIds;
+    private List<Contact> contacts;
+    private Set<Identification> identifications;
 }

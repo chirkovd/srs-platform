@@ -12,7 +12,6 @@ import java.util.Objects;
 @AllArgsConstructor
 public final class ContactDto {
     private String contactId;
-    private String personId;
     private String phone;
     private String email;
     private ZonedDateTime created;
