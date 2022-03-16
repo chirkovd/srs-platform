@@ -8,7 +8,11 @@ import org.systems.dipe.srs.person.Person;
 import org.systems.dipe.srs.person.contacts.Contact;
 import org.systems.dipe.srs.person.identifications.Identification;
 import org.systems.dipe.srs.person.roles.Role;
-import org.systems.dipe.srs.platform.people.*;
+import org.systems.dipe.srs.platform.people.in.ContactInDto;
+import org.systems.dipe.srs.platform.people.in.IdentificationInDto;
+import org.systems.dipe.srs.platform.people.in.PersonInDto;
+import org.systems.dipe.srs.platform.people.out.PersonOutDto;
+import org.systems.dipe.srs.platform.people.out.RoleOutDto;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface PeopleDtoMapper extends CommonMapper {
@@ -19,11 +23,11 @@ public interface PeopleDtoMapper extends CommonMapper {
     Person fromInDto(PersonInDto personInDto);
 
     @Mapping(target = "personId", ignore = true)
-    Contact fromInContactDto(ContactDto contactDto);
+    Contact fromInContactDto(ContactInDto contactInDto);
 
     @Mapping(target = "personId", ignore = true)
-    Identification fromInIdentificationDto(IdentificationDto identificationDto);
+    Identification fromInIdentificationDto(IdentificationInDto identificationInDto);
 
-    RoleDto toDto(Role role);
+    RoleOutDto toDto(Role role);
 
 }

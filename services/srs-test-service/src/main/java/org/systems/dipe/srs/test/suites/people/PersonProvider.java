@@ -2,9 +2,9 @@ package org.systems.dipe.srs.test.suites.people;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
-import org.systems.dipe.srs.platform.people.ContactDto;
-import org.systems.dipe.srs.platform.people.IdentificationDto;
-import org.systems.dipe.srs.platform.people.PersonInDto;
+import org.systems.dipe.srs.platform.people.in.ContactInDto;
+import org.systems.dipe.srs.platform.people.in.IdentificationInDto;
+import org.systems.dipe.srs.platform.people.in.PersonInDto;
 
 import java.util.List;
 import java.util.Set;
@@ -18,15 +18,15 @@ public class PersonProvider {
         personInDto.setLastName(RandomStringUtils.randomAlphabetic(6));
         personInDto.setRoleIds(roles);
 
-        ContactDto contactDto = new ContactDto();
-        contactDto.setEmail(RandomStringUtils.randomAlphabetic(6) + "@dipe.com");
-        contactDto.setPhone(RandomStringUtils.randomNumeric(9));
-        personInDto.setContacts(List.of(contactDto));
+        ContactInDto contactInDto = new ContactInDto();
+        contactInDto.setEmail(RandomStringUtils.randomAlphabetic(6) + "@dipe.com");
+        contactInDto.setPhone(RandomStringUtils.randomNumeric(9));
+        personInDto.setContacts(List.of(contactInDto));
 
-        IdentificationDto identificationDto = new IdentificationDto();
-        identificationDto.setId(RandomStringUtils.randomNumeric(10));
-        identificationDto.setType("passport");
-        personInDto.setIdentifications(Set.of(identificationDto));
+        IdentificationInDto identificationInDto = new IdentificationInDto();
+        identificationInDto.setId(RandomStringUtils.randomNumeric(10));
+        identificationInDto.setType("passport");
+        personInDto.setIdentifications(Set.of(identificationInDto));
 
         return personInDto;
     }

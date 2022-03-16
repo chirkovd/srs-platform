@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.platform.people;
+package org.systems.dipe.srs.platform.people.in;
 
 import lombok.*;
 
@@ -10,22 +10,25 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class IdentificationDto {
+public final class ContactInDto {
 
-    private String id;
-    private String type;
+    //TODO add validation annotations
+
+    private String contactId;
+    private String phone;
+    private String email;
     private ZonedDateTime created;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        IdentificationDto that = (IdentificationDto) o;
-        return Objects.equals(id, that.id) && Objects.equals(type, that.type);
+        ContactInDto contact = (ContactInDto) o;
+        return Objects.equals(contactId, contact.contactId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type);
+        return Objects.hash(contactId);
     }
 }

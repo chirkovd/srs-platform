@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.platform.people;
+package org.systems.dipe.srs.platform.people.out;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public final class RoleDto {
+public final class RoleOutDto {
     private String roleId;
     private String role;
     private String description;
@@ -22,7 +22,7 @@ public final class RoleDto {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != getClass()) return false;
-        var that = (RoleDto) obj;
+        var that = (RoleOutDto) obj;
         return Objects.equals(roleId, that.roleId);
     }
 

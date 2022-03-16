@@ -9,8 +9,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.systems.dipe.srs.platform.people.PersonInDto;
-import org.systems.dipe.srs.platform.people.RoleDto;
+import org.systems.dipe.srs.platform.people.in.PersonInDto;
+import org.systems.dipe.srs.platform.people.out.RoleOutDto;
+import org.systems.dipe.srs.platform.requests.in.RequestInDto;
+import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -40,12 +42,17 @@ public class SrsRestClientImpl implements SrsRestClient {
     }
 
     @Override
-    public List<RoleDto> rolesDictionary() {
+    public List<RoleOutDto> rolesDictionary() {
         return restTemplate.exchange(
                 URI.create(srsUri + "/person/roles"),
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<RoleDto>>() {
+                new ParameterizedTypeReference<List<RoleOutDto>>() {
                 }).getBody();
+    }
+
+    @Override
+    public RequestOutDto submitRequest(RequestInDto request) {
+        return restTemplate.postForObject(URI.create(srsUri + "/request"), request, RequestOutDto.class);
     }
 }

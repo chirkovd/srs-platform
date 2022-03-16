@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.platform.people;
+package org.systems.dipe.srs.platform.people.in;
 
 import lombok.*;
 
@@ -21,6 +21,6 @@ public final class PersonInDto {
     private ZonedDateTime created;
 
     private Set<String> roleIds;
-    private List<ContactDto> contacts;
-    private Set<IdentificationDto> identifications;
+    private List<ContactInDto> contacts;
+    private Set<IdentificationInDto> identifications;
 }

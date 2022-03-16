@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.platform.people;
+package org.systems.dipe.srs.platform.people.out;
 
 import lombok.*;
 
@@ -10,8 +10,9 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public final class ContactDto {
+public final class ContactOutDto {
     private String contactId;
+    private String personId;
     private String phone;
     private String email;
     private ZonedDateTime created;
@@ -20,7 +21,7 @@ public final class ContactDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ContactDto contact = (ContactDto) o;
+        ContactOutDto contact = (ContactOutDto) o;
         return Objects.equals(contactId, contact.contactId);
     }
 

@@ -1,4 +1,4 @@
-package org.systems.dipe.srs.platform.people;
+package org.systems.dipe.srs.platform.people.out;
 
 import lombok.*;
 
@@ -12,14 +12,12 @@ import java.util.Collection;
 @AllArgsConstructor
 public final class PersonOutDto {
 
-    //TODO add validation annotations
-
     private String personId;
     private String firstName;
     private String lastName;
     private ZonedDateTime created;
 
-    private Collection<RoleDto> roles;
-    private Collection<ContactDto> contacts;
-    private Collection<IdentificationDto> identifications;
+    private Collection<RoleOutDto> roles;
+    private Collection<ContactOutDto> contacts;
+    private Collection<IdentificationOutDto> identifications;
 }
