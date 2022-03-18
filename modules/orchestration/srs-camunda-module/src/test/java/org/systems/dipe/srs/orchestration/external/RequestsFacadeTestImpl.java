@@ -13,9 +13,16 @@ public class RequestsFacadeTestImpl implements RequestsFacade {
 
     @Getter
     private final Set<String> requests = new HashSet<>();
+    @Getter
+    private final Set<String> supervisors = new HashSet<>();
 
     @Override
-    public void approve(String requestId) {
+    public void assign(String requestId, String supervisorId) {
+        supervisors.add(supervisorId);
+    }
+
+    @Override
+    public void approve(String requestId, String supervisorId) {
         requests.add(requestId);
     }
 

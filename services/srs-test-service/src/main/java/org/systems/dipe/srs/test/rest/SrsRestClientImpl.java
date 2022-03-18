@@ -10,6 +10,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.systems.dipe.srs.platform.people.in.PersonInDto;
+import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 import org.systems.dipe.srs.platform.people.out.RoleOutDto;
 import org.systems.dipe.srs.platform.requests.in.RequestInDto;
 import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
@@ -37,8 +38,8 @@ public class SrsRestClientImpl implements SrsRestClient {
     }
 
     @Override
-    public PersonInDto registerNewPerson(PersonInDto person) {
-        return restTemplate.postForObject(URI.create(srsUri + "/person"), person, PersonInDto.class);
+    public PersonOutDto createPerson(PersonInDto person) {
+        return restTemplate.postForObject(URI.create(srsUri + "/person"), person, PersonOutDto.class);
     }
 
     @Override
@@ -54,5 +55,20 @@ public class SrsRestClientImpl implements SrsRestClient {
     @Override
     public RequestOutDto submitRequest(RequestInDto request) {
         return restTemplate.postForObject(URI.create(srsUri + "/request"), request, RequestOutDto.class);
+    }
+
+    @Override
+    public RequestOutDto findRequest(String requestId) {
+        return restTemplate.getForObject(URI.create(srsUri + "/request/" + requestId), RequestOutDto.class);
+    }
+
+    @Override
+    public void assignRequest(String requestId, String supervisorId) {
+        restTemplate.put(URI.create(srsUri + "/request/" + requestId + "/assign?supervisorId=" + supervisorId), null);
+    }
+
+    @Override
+    public void approveRequest(String requestId, String supervisorId) {
+        restTemplate.put(URI.create(srsUri + "/request/" + requestId + "/approve?supervisorId=" + supervisorId), null);
     }
 }

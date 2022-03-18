@@ -18,9 +18,15 @@ public class RequestsFacadeImpl implements RequestsFacade {
 
     private final RequestsClient client;
 
+
     @Override
-    public void approve(String requestId) {
-        client.approve(requestId);
+    public void assign(String requestId, String supervisorId) {
+        client.assign(requestId, supervisorId);
+    }
+
+    @Override
+    public void approve(String requestId, String supervisorId) {
+        client.approve(requestId, supervisorId);
     }
 
     @Override

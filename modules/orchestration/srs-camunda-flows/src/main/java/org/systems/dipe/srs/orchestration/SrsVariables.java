@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 public class SrsVariables {
 
     public static final String REQUEST_ID = "requestId";
+    public static final String SUPERVISOR_ID = "supervisorId";
     public static final String SEARCH_ID = "searchId";
 
     public static final String REQUEST_FLOW = "srsRequestFlow";

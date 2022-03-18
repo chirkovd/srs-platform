@@ -4,7 +4,9 @@ public interface OrchestrationClient {
 
     void submitRequest(String requestId);
 
-    void approveRequest(String requestId);
+    void assignRequest(String requestId, String supervisorId);
+
+    void approveRequest(String requestId, String supervisorId);
 
     void completeRequest(String requestId);
 

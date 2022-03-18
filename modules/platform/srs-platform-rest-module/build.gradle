@@ -10,6 +10,7 @@ dependencies {
 
     implementation 'org.mapstruct:mapstruct'
 
+    compileClasspath 'org.springframework:spring-tx'
     compileClasspath 'org.springframework.boot:spring-boot-starter'
     compileClasspath 'org.springframework.boot:spring-boot-starter-web'
 }

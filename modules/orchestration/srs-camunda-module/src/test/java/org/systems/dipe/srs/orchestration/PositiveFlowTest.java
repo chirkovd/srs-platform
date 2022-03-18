@@ -38,10 +38,12 @@ public class PositiveFlowTest extends SrsIntegrationTest {
     @Description("Run common positive flow - check camunda integration")
     public void flowTest() throws InterruptedException {
         String requestId = UuidUtils.newStr();
+        String supervisorId = UuidUtils.newStr();
 
         submitRequest(requestId);
 
-        approveRequest(requestId);
+        assignRequest(requestId, supervisorId);
+        approveRequest(requestId, supervisorId);
 
         String searchId = searchProcessFacade.getRequests().get(requestId);
         Assertions.assertThat(searchId).isNotNull();
@@ -131,9 +133,9 @@ public class PositiveFlowTest extends SrsIntegrationTest {
                 });
     }
 
-    @Step("Approve request {requestId}")
-    private void approveRequest(String requestId) {
-        orchestrationClient.approveRequest(requestId);
+    @Step("Approve request {requestId} by supervisor {supervisorId}")
+    private void approveRequest(String requestId, String supervisorId) {
+        orchestrationClient.approveRequest(requestId, supervisorId);
 
         log.info("Wait for request will be approved: {}", requestId);
         Awaitility.await()
@@ -143,6 +145,21 @@ public class PositiveFlowTest extends SrsIntegrationTest {
                 .until(() -> {
                     log.info("Try to check approved requests: {}", requestId);
                     return requestsFacade.getRequests().contains(requestId);
+                });
+    }
+
+    @Step("Assign request {requestId} to supervisor {supervisorId}")
+    private void assignRequest(String requestId, String supervisorId) {
+        orchestrationClient.assignRequest(requestId, supervisorId);
+
+        log.info("Wait for request will be assigned: {}", requestId);
+        Awaitility.await()
+                .pollInSameThread()
+                .pollInterval(Duration.ofSeconds(5))
+                .timeout(Duration.ofMinutes(1))
+                .until(() -> {
+                    log.info("Try to check assigned request: {}", supervisorId);
+                    return requestsFacade.getSupervisors().contains(supervisorId);
                 });
     }
 

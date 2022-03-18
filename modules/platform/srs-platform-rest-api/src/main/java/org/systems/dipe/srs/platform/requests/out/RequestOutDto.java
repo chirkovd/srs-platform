@@ -20,6 +20,6 @@ public class RequestOutDto {
     private String supervisorId;
     private ZonedDateTime created;
     private ZonedDateTime approved;
-    private List<PersonOutDto> targetPeople;
+    private List<PersonOutDto> people;
     private List<LocationOutDto> locations;
 }

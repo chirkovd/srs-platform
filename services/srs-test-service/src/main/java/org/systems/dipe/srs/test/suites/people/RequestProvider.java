@@ -10,13 +10,11 @@ import java.util.List;
 @Component
 public class RequestProvider {
 
-    public RequestInDto buildNewRequest(String customerId, String supervisorId,
-                                        List<PersonInDto> target, List<LocationInDto> locations) {
+    public RequestInDto buildNewRequest(String customerId, List<PersonInDto> target, List<LocationInDto> locations) {
         RequestInDto requestInDto = new RequestInDto();
         requestInDto.setCustomerId(customerId);
-        requestInDto.setSupervisorId(supervisorId);
         requestInDto.setLocations(locations);
-        requestInDto.setTargetPeople(target);
+        requestInDto.setPeople(target);
         return requestInDto;
     }
 

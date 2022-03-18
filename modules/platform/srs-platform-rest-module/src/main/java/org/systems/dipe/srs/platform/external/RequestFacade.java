@@ -7,4 +7,9 @@ public interface RequestFacade {
 
     RequestOutDto submitRequest(RequestInDto request);
 
+    RequestOutDto findRequest(String requestId);
+
+    void assign(String requestId, String supervisorId);
+
+    void approve(String requestId, String supervisorId);
 }

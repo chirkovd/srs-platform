@@ -1,9 +1,7 @@
 package org.systems.dipe.srs.platform.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.systems.dipe.srs.platform.external.RequestFacade;
 import org.systems.dipe.srs.platform.requests.in.RequestInDto;
 import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
@@ -17,6 +15,23 @@ public class RequestsController {
     @PostMapping("/api/request")
     public RequestOutDto submitRequest(@RequestBody RequestInDto request) {
         return requestFacade.submitRequest(request);
+    }
+
+    @GetMapping("/api/request/{requestId}")
+    public RequestOutDto findRequest(@PathVariable String requestId) {
+        return requestFacade.findRequest(requestId);
+    }
+
+    @PutMapping("/api/request/{requestId}/assign")
+    public void assignRequest(@PathVariable String requestId, @RequestParam String supervisorId) {
+        //TODO take supervisorId from security context
+        requestFacade.assign(requestId, supervisorId);
+    }
+
+    @PutMapping("/api/request/{requestId}/approve")
+    public void approveRequest(@PathVariable String requestId, @RequestParam String supervisorId) {
+        //TODO take supervisorId from security context
+        requestFacade.approve(requestId, supervisorId);
     }
 
 }

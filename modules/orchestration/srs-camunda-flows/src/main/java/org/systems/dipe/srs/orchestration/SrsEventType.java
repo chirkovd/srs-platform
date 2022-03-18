@@ -11,6 +11,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public enum SrsEventType implements EventType {
     REQUEST_FLOW_STARTED(SrsVariables.REQUEST_FLOW),
+    REQUEST_ASSIGNED(SrsVariables.REQUEST_FLOW),
     REQUEST_APPROVED(SrsVariables.REQUEST_FLOW),
     REQUEST_COMPLETED(SrsVariables.REQUEST_FLOW),
     REQUEST_CANCELLED(SrsVariables.REQUEST_FLOW),

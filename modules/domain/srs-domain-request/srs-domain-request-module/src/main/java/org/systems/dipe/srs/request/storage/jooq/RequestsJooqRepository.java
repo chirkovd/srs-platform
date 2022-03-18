@@ -49,6 +49,14 @@ public class RequestsJooqRepository implements RequestsRepository {
     }
 
     @Override
+    public void assign(String requestId, String supervisorId) {
+        dsl.update(JRequest.REQUEST)
+                .set(JRequest.REQUEST.SUPERVISOR_ID, UuidUtils.fromStr(supervisorId))
+                .where(JRequest.REQUEST.REQUEST_ID.eq(UuidUtils.fromStr(requestId)))
+                .execute();
+    }
+
+    @Override
     public Collection<Request> search(RequestsSearch search) {
         Collection<Condition> conditions = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(search.getRequestIds())) {

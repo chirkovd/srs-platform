@@ -3,10 +3,7 @@ package org.systems.dipe.srs.orchestration;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.systems.dipe.srs.orchestration.events.EventQueue;
-import org.systems.dipe.srs.orchestration.flows.request.messages.ApproveRequestMessage;
-import org.systems.dipe.srs.orchestration.flows.request.messages.CancelRequestMessage;
-import org.systems.dipe.srs.orchestration.flows.request.messages.CompleteRequestMessage;
-import org.systems.dipe.srs.orchestration.flows.request.messages.SubmitRequestMessage;
+import org.systems.dipe.srs.orchestration.flows.request.messages.*;
 import org.systems.dipe.srs.orchestration.flows.search.messages.SearchCancelMessage;
 import org.systems.dipe.srs.orchestration.flows.search.messages.SearchCompleteMessage;
 import org.systems.dipe.srs.orchestration.flows.search.messages.SearchSquadAssignMessage;
@@ -24,8 +21,13 @@ public class SrsOrchestrationClient implements OrchestrationClient {
     }
 
     @Override
-    public void approveRequest(String requestId) {
-        eventQueue.pushMessage(new ApproveRequestMessage(requestId));
+    public void assignRequest(String requestId, String supervisorId) {
+        eventQueue.pushMessage(new AssignRequestMessage(requestId, supervisorId));
+    }
+
+    @Override
+    public void approveRequest(String requestId, String supervisorId) {
+        eventQueue.pushMessage(new ApproveRequestMessage(requestId, supervisorId));
     }
 
     @Override

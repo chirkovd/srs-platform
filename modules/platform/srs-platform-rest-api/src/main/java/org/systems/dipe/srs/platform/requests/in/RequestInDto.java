@@ -23,6 +23,6 @@ public class RequestInDto {
     private String supervisorId;
     private ZonedDateTime created;
     private ZonedDateTime approved;
-    private List<PersonInDto> targetPeople;
+    private List<PersonInDto> people;
     private List<LocationInDto> locations;
 }

@@ -11,13 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @NoArgsConstructor
-public class ApproveRequestMessage extends AbstractRequestMessage {
+public class AssignRequestMessage extends AbstractRequestMessage {
 
     @Getter
     private String supervisorId;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public ApproveRequestMessage(
+    public AssignRequestMessage(
             @JsonProperty("requestId") String requestId,
             @JsonProperty("supervisorId") String supervisorId
     ) {
@@ -26,14 +26,14 @@ public class ApproveRequestMessage extends AbstractRequestMessage {
     }
 
     @Override
-    public Map<String, Object> subscription() {
-        Map<String, Object> variables = new HashMap<>(super.subscription());
+    public Map<String, Object> variables() {
+        Map<String, Object> variables = new HashMap<>(super.variables());
         variables.put(SrsVariables.SUPERVISOR_ID, supervisorId);
         return variables;
     }
 
     @Override
     public String getType() {
-        return SrsEventType.REQUEST_APPROVED.getId();
+        return SrsEventType.REQUEST_ASSIGNED.getId();
     }
 }
