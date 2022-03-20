@@ -10,6 +10,7 @@ import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 import org.systems.dipe.srs.platform.people.out.RoleOutDto;
 import org.systems.dipe.srs.platform.requests.in.RequestInDto;
 import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
+import org.systems.dipe.srs.platform.search.out.SearchProcessOutDto;
 import org.systems.dipe.srs.test.rest.SrsRestClient;
 import org.systems.dipe.srs.test.suites.people.LocationProvider;
 import org.systems.dipe.srs.test.suites.people.PersonProvider;
@@ -72,10 +73,21 @@ public class SmokeAppRunner implements ApplicationListener<ApplicationReadyEvent
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //TODO approve/dismiss request items
+        log.debug("Approve items");
+        for (String itemId : request.getItemIds()) {
+            restClient.approveRequestItem(itemId);
+        }
 
         restClient.approveRequest(request.getRequestId(), supervisor.getPersonId());
         log.debug("Request was approved");
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        SearchProcessOutDto search = restClient.search(request.getRequestId());
+        log.debug("Search process {} is ready for volunteers", search.getSearchId());
 
         restClient.createPerson(personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId())));
         restClient.createPerson(personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId())));

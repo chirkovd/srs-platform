@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.orchestration.OrchestrationClient;
 import org.systems.dipe.srs.platform.external.OrchestrationFacade;
 
-@Component
 @Transactional
 @AllArgsConstructor
+@Component("platformOrchestrationFacade")
 @ConditionalOnBean(OrchestrationClient.class)
 public class OrchestrationFacadeImpl implements OrchestrationFacade {
 

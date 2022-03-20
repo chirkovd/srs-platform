@@ -14,6 +14,8 @@ import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 import org.systems.dipe.srs.platform.people.out.RoleOutDto;
 import org.systems.dipe.srs.platform.requests.in.RequestInDto;
 import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
+import org.systems.dipe.srs.platform.search.SearchProcessRequest;
+import org.systems.dipe.srs.platform.search.out.SearchProcessOutDto;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -70,5 +72,17 @@ public class SrsRestClientImpl implements SrsRestClient {
     @Override
     public void approveRequest(String requestId, String supervisorId) {
         restTemplate.put(URI.create(srsUri + "/request/" + requestId + "/approve?supervisorId=" + supervisorId), null);
+    }
+
+    @Override
+    public void approveRequestItem(String requestItemId) {
+        restTemplate.put(URI.create(srsUri + "/request-item/" + requestItemId + "/approve"), null);
+    }
+
+    @Override
+    public SearchProcessOutDto search(String requestId) {
+        SearchProcessRequest request = new SearchProcessRequest();
+        request.setRequestId(requestId);
+        return restTemplate.postForObject(srsUri + "/search-process/search", request, SearchProcessOutDto.class);
     }
 }

@@ -25,14 +25,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component
 @Transactional
 @AllArgsConstructor
-@ConditionalOnBean(RequestsClient.class)
+@Component("platformRequestFacade")
+@ConditionalOnBean({RequestsClient.class, RequestItemsClient.class})
 public class RequestFacadeImpl implements RequestFacade {
 
-    private final RequestsClient client;
-    private final RequestsDtoMapper mapper;
+    private final RequestsClient requestsClient;
+    private final RequestsDtoMapper requestsDtoMapper;
+    private final RequestItemsClient requestItemsClient;
 
     private final PeopleFacade peopleFacade;
     private final LocationsFacade locationsFacade;
@@ -51,7 +52,7 @@ public class RequestFacadeImpl implements RequestFacade {
             people.add(peopleFacade.create(person));
         }
 
-        Request request = mapper.fromInDto(requestInDto);
+        Request request = requestsDtoMapper.fromInDto(requestInDto);
         request.setLocations(locations.stream().map(dto -> {
             RequestLocation location = new RequestLocation();
             location.setLocationId(dto.getLocationId());
@@ -63,7 +64,7 @@ public class RequestFacadeImpl implements RequestFacade {
             return requestItem;
         }).collect(Collectors.toList()));
 
-        RequestOutDto out = mapper.toOutDto(client.create(request));
+        RequestOutDto out = requestsDtoMapper.toOutDto(requestsClient.create(request));
         out.setLocations(locations);
         out.setPeople(people);
 
@@ -74,7 +75,7 @@ public class RequestFacadeImpl implements RequestFacade {
 
     @Override
     public RequestOutDto findRequest(String requestId) {
-        Collection<Request> requests = client.search(RequestsSearch.builder()
+        Collection<Request> requests = requestsClient.search(RequestsSearch.builder()
                 .requestIds(Set.of(requestId))
                 .withDetails(true)
                 .build());
@@ -82,7 +83,7 @@ public class RequestFacadeImpl implements RequestFacade {
             throw new IllegalArgumentException("Cannot find request by id " + requestId);
         }
         Request request = requests.iterator().next();
-        RequestOutDto outDto = mapper.toOutDto(request);
+        RequestOutDto outDto = requestsDtoMapper.toOutDto(request);
         outDto.setLocations(locationsFacade.search(
                 GroupUtils.extractUnique(
                         request.getLocations(),
@@ -105,7 +106,17 @@ public class RequestFacadeImpl implements RequestFacade {
     }
 
     @Override
-    public void approve(String requestId, String supervisorId) {
+    public void approveItem(String requestId, String supervisorId) {
         orchestrationFacade.approveRequest(requestId, supervisorId);
+    }
+
+    @Override
+    public void approveItem(String requestItemId) {
+        requestItemsClient.approve(requestItemId);
+    }
+
+    @Override
+    public void dismissItem(String requestItemId) {
+        requestItemsClient.dismiss(requestItemId);
     }
 }

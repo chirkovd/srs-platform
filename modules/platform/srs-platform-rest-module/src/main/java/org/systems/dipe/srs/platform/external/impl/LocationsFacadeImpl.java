@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component
 @Transactional
 @AllArgsConstructor
+@Component("platformLocationsFacade")
 @ConditionalOnBean(LocationsClient.class)
 public class LocationsFacadeImpl implements LocationsFacade {
 

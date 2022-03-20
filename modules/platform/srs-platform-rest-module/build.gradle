@@ -7,6 +7,9 @@ dependencies {
     implementation project(':srs-domain-person-api')
     implementation project(':srs-domain-location-api')
     implementation project(':srs-domain-request-api')
+    implementation project(':srs-domain-squad-api')
+    implementation project(':srs-domain-inventory-api')
+    implementation project(':srs-domain-search-process-api')
 
     implementation 'org.mapstruct:mapstruct'
 

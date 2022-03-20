@@ -21,9 +21,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component
 @Transactional
 @AllArgsConstructor
+@Component("platformPeopleFacade")
 @ConditionalOnBean(PeopleClient.class)
 public class PeopleFacadeImpl implements PeopleFacade {
 

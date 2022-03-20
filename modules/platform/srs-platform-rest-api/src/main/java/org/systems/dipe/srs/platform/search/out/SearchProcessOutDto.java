@@ -1,27 +1,24 @@
-package org.systems.dipe.srs.platform.requests.out;
+package org.systems.dipe.srs.platform.search.out;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.systems.dipe.srs.platform.locations.out.LocationOutDto;
-import org.systems.dipe.srs.platform.people.out.PersonOutDto;
+import org.systems.dipe.srs.platform.squad.out.SquadOutDto;
 
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestOutDto {
+public class SearchProcessOutDto {
+    private String searchId;
     private String requestId;
-    private String customerId;
-    private String supervisorId;
+    private String status;
     private ZonedDateTime created;
-    private ZonedDateTime approved;
-    private Set<String> itemIds;
-    private List<PersonOutDto> people;
     private List<LocationOutDto> locations;
+    private List<SquadOutDto> squads;
 }

@@ -31,7 +31,17 @@ public class RequestsController {
     @PutMapping("/api/request/{requestId}/approve")
     public void approveRequest(@PathVariable String requestId, @RequestParam String supervisorId) {
         //TODO take supervisorId from security context
-        requestFacade.approve(requestId, supervisorId);
+        requestFacade.approveItem(requestId, supervisorId);
+    }
+
+    @PutMapping("/api/request-item/{requestItemId}/approve")
+    public void approveRequestItem(@PathVariable String requestItemId) {
+        requestFacade.approveItem(requestItemId);
+    }
+
+    @PutMapping("/api/request-item/{requestItemId}/dismiss")
+    public void dismissRequestItem(@PathVariable String requestItemId) {
+        requestFacade.dismissItem(requestItemId);
     }
 
 }

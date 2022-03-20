@@ -11,5 +11,9 @@ public interface RequestFacade {
 
     void assign(String requestId, String supervisorId);
 
-    void approve(String requestId, String supervisorId);
+    void approveItem(String requestId, String supervisorId);
+
+    void approveItem(String requestItemId);
+
+    void dismissItem(String requestItemId);
 }

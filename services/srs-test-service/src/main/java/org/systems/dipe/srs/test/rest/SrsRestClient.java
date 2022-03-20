@@ -5,6 +5,7 @@ import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 import org.systems.dipe.srs.platform.people.out.RoleOutDto;
 import org.systems.dipe.srs.platform.requests.in.RequestInDto;
 import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
+import org.systems.dipe.srs.platform.search.out.SearchProcessOutDto;
 
 import java.util.List;
 
@@ -21,4 +22,9 @@ public interface SrsRestClient {
     void assignRequest(String requestId, String supervisorId);
 
     void approveRequest(String requestId, String supervisorId);
+
+    void approveRequestItem(String requestItemId);
+
+    SearchProcessOutDto search(String requestId);
+
 }

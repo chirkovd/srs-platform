@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.srs.search.storage.SearchSquadsRepository;
 import org.systems.dipe.srs.utils.TimeUtils;
+import org.systems.dipe.srs.utils.UuidUtils;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -48,7 +49,7 @@ public class SearchSquadsClientImpl implements SearchSquadsClient {
     private static void prepareSquads(Collection<SearchSquad> squads) {
         for (SearchSquad squad : squads) {
             if (Objects.isNull(squad.getSquadId())) {
-                throw new IllegalArgumentException("Squad id is missing");
+                squad.setSquadId(UuidUtils.newStr());
             }
             if (Objects.isNull(squad.getCreated())) {
                 squad.setCreated(TimeUtils.now());
