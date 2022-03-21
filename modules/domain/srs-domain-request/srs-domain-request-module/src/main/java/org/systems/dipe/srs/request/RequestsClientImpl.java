@@ -65,8 +65,19 @@ public class RequestsClientImpl implements RequestsClient {
     }
 
     @Override
-    public void approve(String requestId) {
-        Request request = find(requestId);
+    public void assign(String requestId, String supervisorId) {
+        repository.assign(requestId, supervisorId);
+    }
+
+    @Override
+    public void approve(String requestId, String supervisorId) {
+        Collection<Request> requests = search(RequestsSearch.builder()
+                .requestIds(Set.of(requestId))
+                .supervisorIds(Set.of(supervisorId))
+                .withDetails(true)
+                .build());
+
+        Request request = find(requests);
         if (CollectionUtils.isNotEmpty(request.getItems()) && request.getItems().stream()
                 .anyMatch(item -> Objects.isNull(item.getApproved()) && Objects.isNull(item.getDismissed()))) {
             throw new IllegalArgumentException("Not processed item is presented in the request");
@@ -113,10 +124,13 @@ public class RequestsClientImpl implements RequestsClient {
                 .requestIds(Set.of(requestId))
                 .withDetails(true)
                 .build());
+        return find(requests);
+    }
+
+    private static Request find(Collection<Request> requests) {
         if (!requests.isEmpty()) {
             return requests.iterator().next();
         } else {
-            log.error("Cannot find new request {}", requestId);
             throw new IllegalArgumentException("Cannot find request");
         }
     }

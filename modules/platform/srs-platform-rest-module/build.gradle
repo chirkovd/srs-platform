@@ -1,0 +1,19 @@
+dependencies {
+    implementation project(':srs-module-lib')
+    implementation project(':srs-platform-rest-api')
+    implementation project(':srs-camunda-api')
+
+    // domain
+    implementation project(':srs-domain-person-api')
+    implementation project(':srs-domain-location-api')
+    implementation project(':srs-domain-request-api')
+    implementation project(':srs-domain-squad-api')
+    implementation project(':srs-domain-inventory-api')
+    implementation project(':srs-domain-search-process-api')
+
+    implementation 'org.mapstruct:mapstruct'
+
+    compileClasspath 'org.springframework:spring-tx'
+    compileClasspath 'org.springframework.boot:spring-boot-starter'
+    compileClasspath 'org.springframework.boot:spring-boot-starter-web'
+}

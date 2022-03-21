@@ -26,7 +26,7 @@ public class SearchProcessFacadeImpl implements SearchProcessFacade {
 
     @Override
     public SearchProcess update(SearchProcess process) {
-        return client.create(process);
+        return client.update(process);
     }
 
     @Override

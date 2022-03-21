@@ -20,7 +20,6 @@ import org.systems.dipe.srs.utils.TimeUtils;
 import org.systems.dipe.srs.utils.UuidUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -45,16 +44,22 @@ public class PeopleClientImpl implements PeopleClient {
 
         peopleRepository.create(person);
 
+        if (CollectionUtils.isNotEmpty(person.getIdentifications())) {
+            for (Identification identification : person.getIdentifications()) {
+                identification.setPersonId(person.getPersonId());
+            }
+        }
         identificationsClient.create(person.getIdentifications());
+
+        if (CollectionUtils.isNotEmpty(person.getContacts())) {
+            for (Contact contact : person.getContacts()) {
+                contact.setPersonId(person.getPersonId());
+            }
+        }
         contactsClient.create(person.getContacts());
 
-        if (CollectionUtils.isNotEmpty(person.getRoles())) {
-            rolesClient.assign(
-                    person.getRoles().stream()
-                            .map(Role::getRoleId)
-                            .collect(Collectors.toSet()),
-                    person.getPersonId()
-            );
+        if (CollectionUtils.isNotEmpty(person.getRoleIds())) {
+            rolesClient.assign(person.getRoleIds(), person.getPersonId());
         } else {
             log.error("Roles are missing for person {}", person);
             throw new IllegalArgumentException("Person without role is not valid");
@@ -70,16 +75,11 @@ public class PeopleClientImpl implements PeopleClient {
         identificationsClient.update(person.getIdentifications());
         contactsClient.update(person.getContacts());
 
-        if (CollectionUtils.isEmpty(person.getRoles())) {
+        if (CollectionUtils.isEmpty(person.getRoleIds())) {
             log.error("Roles are missing for person {}", person);
             throw new IllegalArgumentException("Person without role is not valid");
         }
-        rolesClient.assign(
-                person.getRoles().stream()
-                        .map(Role::getRoleId)
-                        .collect(Collectors.toSet()),
-                person.getPersonId()
-        );
+        rolesClient.assign(person.getRoleIds(), person.getPersonId());
 
         return getPerson(person.getPersonId());
     }
@@ -122,7 +122,7 @@ public class PeopleClientImpl implements PeopleClient {
         if (MapUtils.isNotEmpty(roleMap)) {
             roleMap.forEach((personId, roles) -> {
                 Person person = personMap.get(personId);
-                person.setRoles(roles);
+                person.setRoleIds(GroupUtils.extractUnique(roles, Role::getRoleId));
             });
         }
     }
@@ -154,7 +154,7 @@ public class PeopleClientImpl implements PeopleClient {
             for (Identification identification : identifications) {
                 Person person = personMap.get(identification.getPersonId());
                 if (Objects.isNull(person.getIdentifications())) {
-                    person.setIdentifications(new ArrayList<>());
+                    person.setIdentifications(new HashSet<>());
                 }
                 person.getIdentifications().add(identification);
             }

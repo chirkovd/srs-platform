@@ -103,7 +103,7 @@ class RequestsClientImplTest extends SrsDbTest {
 
         requestsClient.create(request);
 
-        Assertions.assertThatThrownBy(() -> requestsClient.approve(request.getRequestId()));
+        Assertions.assertThatThrownBy(() -> requestsClient.approve(request.getRequestId(), request.getSupervisorId()));
     }
 
     @Test
@@ -127,11 +127,12 @@ class RequestsClientImplTest extends SrsDbTest {
 
         requestItemsClient.approve(requestItem1.getItemId());
         requestItemsClient.dismiss(requestItem2.getItemId());
-        requestsClient.approve(request.getRequestId());
+        requestsClient.approve(request.getRequestId(), request.getSupervisorId());
 
         Collection<Request> requests = requestsClient.search(
                 RequestsSearch.builder()
                         .requestIds(Set.of(request.getRequestId()))
+                        .supervisorIds(Set.of(request.getSupervisorId()))
                         .build());
 
         Assertions.assertThat(requests).hasSize(1);

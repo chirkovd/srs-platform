@@ -4,7 +4,9 @@ import org.systems.dipe.srs.request.Request;
 
 public interface RequestsFacade {
 
-    void approve(String requestId);
+    void assign(String requestId, String supervisorId);
+
+    void approve(String requestId, String supervisorId);
 
     Request find(String requestId);
 }

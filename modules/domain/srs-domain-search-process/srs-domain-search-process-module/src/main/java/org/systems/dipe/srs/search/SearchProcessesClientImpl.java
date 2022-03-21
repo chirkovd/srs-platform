@@ -28,6 +28,9 @@ public class SearchProcessesClientImpl implements SearchProcessClient {
         if (Objects.isNull(process.getCreated())) {
             process.setCreated(TimeUtils.now());
         }
+        if (Objects.isNull(process.getStatus())) {
+            process.setStatus(SearchProcessStatus.CREATED);
+        }
         repository.create(process);
 
         if (CollectionUtils.isNotEmpty(process.getLocations())) {

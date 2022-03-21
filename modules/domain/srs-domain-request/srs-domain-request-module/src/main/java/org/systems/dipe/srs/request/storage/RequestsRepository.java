@@ -12,5 +12,7 @@ public interface RequestsRepository {
 
     void approve(String requestId);
 
+    void assign(String requestId, String supervisorId);
+
     Collection<Request> search(RequestsSearch search);
 }
