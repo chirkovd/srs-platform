@@ -18,7 +18,6 @@ public class RequestsFacadeImpl implements RequestsFacade {
 
     private final RequestsClient client;
 
-
     @Override
     public void assign(String requestId, String supervisorId) {
         client.assign(requestId, supervisorId);

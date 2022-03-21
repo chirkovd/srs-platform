@@ -11,9 +11,6 @@ import org.systems.dipe.srs.orchestration.external.SearchProcessFacade;
 import org.systems.dipe.srs.orchestration.flows.BaseProcess;
 import org.systems.dipe.srs.search.SearchProcess;
 import org.systems.dipe.srs.search.SearchProcessStatus;
-import org.systems.dipe.srs.search.SearchSquad;
-
-import java.util.List;
 
 @Slf4j
 @AllArgsConstructor
@@ -35,7 +32,6 @@ public class RequestConfirmProcessor extends BaseProcess {
         SearchProcess searchProcess = new SearchProcess();
         searchProcess.setRequestId(requestId);
         searchProcess.setStatus(SearchProcessStatus.CREATED);
-        searchProcess.setSquads(List.of(new SearchSquad()));
 
         log.debug("Search process is created for request {}", requestId);
         searchProcess = searchProcessFacade.create(searchProcess);

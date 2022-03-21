@@ -7,4 +7,6 @@ import java.util.Set;
 
 public interface SquadFacade {
     List<SquadOutDto> search(Set<String> squadIds);
+
+    void joinSquad(String squadId, String volunteerId);
 }

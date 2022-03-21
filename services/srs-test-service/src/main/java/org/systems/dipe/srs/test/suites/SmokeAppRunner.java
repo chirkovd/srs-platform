@@ -5,12 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.systems.dipe.srs.platform.locations.in.CommentInDto;
 import org.systems.dipe.srs.platform.locations.in.LocationInDto;
+import org.systems.dipe.srs.platform.locations.in.PointInDto;
 import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 import org.systems.dipe.srs.platform.people.out.RoleOutDto;
 import org.systems.dipe.srs.platform.requests.in.RequestInDto;
 import org.systems.dipe.srs.platform.requests.out.RequestOutDto;
 import org.systems.dipe.srs.platform.search.out.SearchProcessOutDto;
+import org.systems.dipe.srs.platform.squad.out.SquadOutDto;
 import org.systems.dipe.srs.test.rest.SrsRestClient;
 import org.systems.dipe.srs.test.suites.people.LocationProvider;
 import org.systems.dipe.srs.test.suites.people.PersonProvider;
@@ -34,6 +37,10 @@ public class SmokeAppRunner implements ApplicationListener<ApplicationReadyEvent
     private final LocationProvider locationProvider;
 
     @Override
+    // TODO refine runner
+    // run jobs in cycle, each per logic action
+    // remove thread.sleep
+    // check high-load and pg stat statements - optimize performance
     public void onApplicationEvent(ApplicationReadyEvent event) {
         // Pre-conditions
         //    CUSTOMER,
@@ -89,8 +96,38 @@ public class SmokeAppRunner implements ApplicationListener<ApplicationReadyEvent
         SearchProcessOutDto search = restClient.search(request.getRequestId());
         log.debug("Search process {} is ready for volunteers", search.getSearchId());
 
-        restClient.createPerson(personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId())));
-        restClient.createPerson(personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId())));
-        restClient.createPerson(personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId())));
+        PersonOutDto volunteer1 = restClient.createPerson(
+                personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId()))
+        );
+        PersonOutDto volunteer2 = restClient.createPerson(
+                personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId()))
+        );
+        PersonOutDto volunteer3 = restClient.createPerson(
+                personProvider.buildNew(Set.of(rolesMap.get("VOLUNTEER").getRoleId()))
+        );
+
+        log.debug("Assign volunteers as members to squad");
+        SquadOutDto squad = search.getSquads().iterator().next();
+        restClient.joinSquad(search.getSearchId(), squad.getSquadId(), volunteer1.getPersonId());
+        restClient.joinSquad(search.getSearchId(), squad.getSquadId(), volunteer2.getPersonId());
+        restClient.joinSquad(search.getSearchId(), squad.getSquadId(), volunteer3.getPersonId());
+
+        log.debug("Supervisor confirmation - squad is ready");
+        restClient.approveSquad(search.getSearchId(), supervisor.getPersonId());
+
+        PointInDto targetPoint = locationProvider.newPoint();
+        restClient.addPoint(targetPoint, search.getSearchId(), volunteer1.getPersonId());
+        restClient.addPoint(locationProvider.newPoint(), search.getSearchId(), volunteer2.getPersonId());
+        CommentInDto comment = locationProvider.newComment(volunteer3.getPersonId());
+        restClient.addComment(comment, search.getSearchId(), targetPoint.getPointId(), volunteer3.getPersonId());
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        log.debug("Supervisor notification - search is completed");
+        restClient.completeSearch(search.getSearchId(), supervisor.getPersonId());
     }
 }

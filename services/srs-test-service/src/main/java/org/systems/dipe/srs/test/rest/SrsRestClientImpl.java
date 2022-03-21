@@ -9,6 +9,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.systems.dipe.srs.platform.locations.in.CommentInDto;
+import org.systems.dipe.srs.platform.locations.in.PointInDto;
 import org.systems.dipe.srs.platform.people.in.PersonInDto;
 import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 import org.systems.dipe.srs.platform.people.out.RoleOutDto;
@@ -84,5 +86,36 @@ public class SrsRestClientImpl implements SrsRestClient {
         SearchProcessRequest request = new SearchProcessRequest();
         request.setRequestId(requestId);
         return restTemplate.postForObject(srsUri + "/search-process/search", request, SearchProcessOutDto.class);
+    }
+
+    @Override
+    public void joinSquad(String searchId, String squadId, String volunteerId) {
+        restTemplate.put(URI.create(srsUri + "/search-process/" + searchId
+                + "/squad/" + squadId + "/member?volunteerId=" + volunteerId), null);
+    }
+
+    @Override
+    public void approveSquad(String searchId, String supervisorId) {
+        restTemplate.put(URI.create(srsUri + "/search-process/" + searchId
+                + "/approve-squad?supervisorId=" + supervisorId), null);
+    }
+
+    @Override
+    public void addPoint(PointInDto point, String searchId, String volunteerId) {
+        restTemplate.postForObject(URI.create(srsUri + "/search-process/" + searchId
+                + "/point?volunteerId=" + volunteerId), point, String.class);
+    }
+
+    @Override
+    public void addComment(CommentInDto comment, String searchId, String pointId, String volunteerId) {
+        restTemplate.postForObject(URI.create(srsUri + "/search-process/" + searchId
+                + "/point/" + pointId
+                + "/comment?volunteerId=" + volunteerId), comment, String.class);
+    }
+
+    @Override
+    public void completeSearch(String searchId, String supervisorId) {
+        restTemplate.put(URI.create(srsUri + "/search-process/" + searchId
+                + "/complete?supervisorId=" + supervisorId), null);
     }
 }

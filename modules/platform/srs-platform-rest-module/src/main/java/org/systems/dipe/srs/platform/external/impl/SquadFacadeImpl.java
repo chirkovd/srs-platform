@@ -8,16 +8,10 @@ import org.systems.dipe.srs.platform.external.PeopleFacade;
 import org.systems.dipe.srs.platform.external.SquadFacade;
 import org.systems.dipe.srs.platform.mappers.SquadsDtoMapper;
 import org.systems.dipe.srs.platform.squad.out.SquadOutDto;
-import org.systems.dipe.srs.squad.Member;
-import org.systems.dipe.srs.squad.Squad;
-import org.systems.dipe.srs.squad.SquadsClient;
-import org.systems.dipe.srs.squad.SquadsSearch;
+import org.systems.dipe.srs.squad.*;
 import org.systems.dipe.srs.utils.GroupUtils;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -27,6 +21,7 @@ import java.util.stream.Collectors;
 public class SquadFacadeImpl implements SquadFacade {
 
     private final SquadsClient squadsClient;
+    private final MembersClient membersClient;
     private final SquadsDtoMapper mapper;
 
     private final PeopleFacade peopleFacade;
@@ -50,5 +45,28 @@ public class SquadFacadeImpl implements SquadFacade {
 
             return squadOutDto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void joinSquad(String squadId, String volunteerId) {
+        Collection<Squad> squads = squadsClient.search(
+                SquadsSearch.builder()
+                        .squadIds(Set.of(squadId))
+                        .withDetails(true)
+                        .build());
+
+        // TODO validate existence
+        Squad squad = squads.iterator().next();
+        List<Member> members = squad.getMembers();
+        if (Objects.isNull(members)) {
+            members = new ArrayList<>();
+        }
+
+        Member member = new Member();
+        member.setVolunteerId(volunteerId);
+        member.setSquadId(squadId);
+        members.add(member);
+
+        membersClient.update(members);
     }
 }

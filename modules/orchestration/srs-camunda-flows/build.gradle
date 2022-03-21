@@ -2,6 +2,7 @@ dependencies {
     implementation project(':srs-module-lib')
     implementation project(':srs-camunda-api')
 
+    implementation project(':srs-domain-squad-api')
     implementation project(':srs-domain-request-api')
     implementation project(':srs-domain-search-process-api')
 

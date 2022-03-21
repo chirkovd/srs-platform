@@ -29,4 +29,14 @@ public class OrchestrationFacadeImpl implements OrchestrationFacade {
     public void approveRequest(String requestId, String supervisorId) {
         client.approveRequest(requestId, supervisorId);
     }
+
+    @Override
+    public void assignSquad(String requestId, String searchId) {
+        client.assignSquad(requestId, searchId);
+    }
+
+    @Override
+    public void completeSearchProcess(String requestId, String searchId) {
+        client.completeSearchProcess(requestId, searchId);
+    }
 }

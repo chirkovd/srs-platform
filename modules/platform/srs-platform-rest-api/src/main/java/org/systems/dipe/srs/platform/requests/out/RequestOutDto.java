@@ -1,9 +1,6 @@
 package org.systems.dipe.srs.platform.requests.out;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.systems.dipe.srs.platform.locations.out.LocationOutDto;
 import org.systems.dipe.srs.platform.people.out.PersonOutDto;
 
@@ -13,6 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class RequestOutDto {
