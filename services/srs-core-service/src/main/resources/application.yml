@@ -1,6 +1,6 @@
 spring:
   application:
-    name: srs-core-platform
+    name: srs
   datasource:
     driver-class-name: org.postgresql.Driver
   flyway:

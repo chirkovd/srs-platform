@@ -20,6 +20,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
 
     implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
     implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"

@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    vault:
+      uri: http://localhost:8200
+      token: s.hVUy7AxkyO8I5yvm7iGgGbzC
+
+logging:
+  level:
+    org.springframework.vault: DEBUG
