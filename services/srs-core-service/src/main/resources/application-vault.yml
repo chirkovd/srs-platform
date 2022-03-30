@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    vault:
+      enabled: true
+      uri: http://localhost:8200
+      token: s.hVUy7AxkyO8I5yvm7iGgGbzC
+  config:
+    import: vault://srs/local
+
+logging:
+  level:
+    org.springframework.vault: DEBUG

@@ -8,3 +8,6 @@ spring:
     port: 5672
     username: master
     password: secret
+  cloud:
+    vault:
+      enabled: false

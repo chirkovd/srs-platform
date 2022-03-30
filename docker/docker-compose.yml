@@ -36,6 +36,27 @@ services:
     networks:
       - srs-platform
 
+  vault:
+    container_name: srs-vault
+    hostname: ${VAULT_HOST}
+    image: vault:${VAULT_VERSION}
+    restart: on-failure
+    volumes:
+      - ./srs-vault/config:/vault/config
+#      - ./vault/policies:/vault/policies
+      - ./srs-vault/data:/vault/file
+    ports:
+      - ${VAULT_PORT}:8200
+    environment:
+      - VAULT_ADDR=http://0.0.0.0:8200
+      - VAULT_API_ADDR=http://0.0.0.0:8200
+      - VAULT_ADDRESS=http://0.0.0.0:8200
+    cap_add:
+      - IPC_LOCK
+    command: vault server -config=/vault/config/vault.json
+    networks:
+      - srs-platform
+
 volumes:
   postgresql:
     driver: local
