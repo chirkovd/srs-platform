@@ -57,6 +57,29 @@ services:
     networks:
       - srs-platform
 
+  grafana:
+    container_name: srs-grafana
+    hostname: ${GRAFANA_HOST}
+    build: srs-grafana
+    restart: on-failure
+    ports:
+      - ${GRAFANA_PORT}:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    networks:
+      - srs-platform
+
+  prometheus:
+    container_name: srs-prometheus
+    hostname: ${PROMETHEUS_HOST}
+    build: srs-prometheus
+    restart: on-failure
+    ports:
+      - ${PROMETHEUS_PORT}:9090
+    networks:
+      - srs-platform
+
 volumes:
   postgresql:
     driver: local

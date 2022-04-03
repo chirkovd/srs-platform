@@ -100,6 +100,12 @@ subprojects {
 
     if (project.name.endsWith("-service")) {
         apply from: "${rootDir}/gradle/service.gradle"
+
+        dependencies {
+            implementation 'org.springframework.boot:spring-boot-starter-actuator'
+            // Micrometer Prometheus registry
+            implementation 'io.micrometer:micrometer-registry-prometheus'
+        }
     }
 
     if (project.name.endsWith("-module")) {

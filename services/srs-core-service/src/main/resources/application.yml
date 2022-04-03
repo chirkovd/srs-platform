@@ -10,6 +10,19 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
 
 logging:
   level:
