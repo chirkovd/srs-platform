@@ -5,7 +5,7 @@ spring:
       uri: http://localhost:8200
       token: s.hVUy7AxkyO8I5yvm7iGgGbzC
   config:
-    import: vault://srs/local
+    import: vault://secret/srs/local
 
 logging:
   level:
