@@ -9,5 +9,4 @@ public interface PeopleClient {
     Person update(Person person);
 
     Collection<Person> find(PeopleSearch search);
-
 }

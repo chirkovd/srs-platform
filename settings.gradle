@@ -7,6 +7,8 @@ include ':srs-module-lib'
 project(':srs-module-lib').projectDir = "$rootDir/lib/srs-module-lib" as File
 include ':srs-mapstruct-lib'
 project(':srs-mapstruct-lib').projectDir = "$rootDir/lib/srs-mapstruct-lib" as File
+include ':srs-metrics-lib'
+project(':srs-metrics-lib').projectDir = "$rootDir/lib/srs-metrics-lib" as File
 
 // domain
 include ':srs-domain-inventory-api'
@@ -74,4 +76,5 @@ include ':srs-core-service'
 project(':srs-core-service').projectDir = "$rootDir/services/srs-core-service" as File
 include ':srs-test-service'
 project(':srs-test-service').projectDir = "$rootDir/services/srs-test-service" as File
+
 

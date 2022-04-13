@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(':srs-metrics-lib')
     // domain
     implementation project(':srs-domain-inventory-module')
     implementation project(':srs-domain-location-module')

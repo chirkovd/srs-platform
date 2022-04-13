@@ -1,5 +1,7 @@
 dependencies {
     implementation project(':srs-module-lib')
+    implementation project(':srs-metrics-lib')
+
     implementation project(':srs-domain-person-api')
     implementation project(':srs-domain-person-jooq')
 

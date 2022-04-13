@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.systems.dipe.metrics.SrsMetric;
+import org.systems.dipe.metrics.SrsMetricHolder;
 import org.systems.dipe.srs.inventory.storage.InventoryRepository;
 import org.systems.dipe.srs.utils.TimeUtils;
 import org.systems.dipe.srs.utils.UuidUtils;
@@ -18,7 +20,8 @@ import java.util.Set;
 @Service
 @Transactional
 @AllArgsConstructor
-public class InventoryClientImpl implements InventoryClient {
+@SrsMetric("inventory")
+public class InventoryClientImpl implements InventoryClient, SrsMetricHolder {
 
     private final InventoryRepository inventoryRepository;
 
@@ -53,5 +56,10 @@ public class InventoryClientImpl implements InventoryClient {
             log.error("Cannot find new inventory record by id {}", inventoryId);
             throw new IllegalArgumentException("Cannot find new inventory record");
         }
+    }
+
+    @Override
+    public double initMetric() {
+        return 10;
     }
 }

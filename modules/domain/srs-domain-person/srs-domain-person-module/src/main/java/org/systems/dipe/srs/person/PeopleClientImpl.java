@@ -6,6 +6,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.systems.dipe.metrics.SrsMetric;
+import org.systems.dipe.metrics.SrsMetricHolder;
 import org.systems.dipe.srs.person.contacts.Contact;
 import org.systems.dipe.srs.person.contacts.ContactsClient;
 import org.systems.dipe.srs.person.contacts.ContactsSearch;
@@ -24,8 +26,9 @@ import java.util.*;
 @Slf4j
 @Service
 @Transactional
+@SrsMetric("person")
 @AllArgsConstructor
-public class PeopleClientImpl implements PeopleClient {
+public class PeopleClientImpl implements PeopleClient, SrsMetricHolder {
 
     private final RolesClient rolesClient;
     private final ContactsClient contactsClient;
@@ -159,5 +162,10 @@ public class PeopleClientImpl implements PeopleClient {
                 person.getIdentifications().add(identification);
             }
         }
+    }
+
+    @Override
+    public double initMetric() {
+        return peopleRepository.count();
     }
 }

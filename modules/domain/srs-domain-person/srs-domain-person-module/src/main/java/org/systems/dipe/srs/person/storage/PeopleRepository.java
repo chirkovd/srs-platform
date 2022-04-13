@@ -12,4 +12,6 @@ public interface PeopleRepository {
     void update(Person person);
 
     Collection<Person> find(PeopleSearch search);
+
+    int count();
 }

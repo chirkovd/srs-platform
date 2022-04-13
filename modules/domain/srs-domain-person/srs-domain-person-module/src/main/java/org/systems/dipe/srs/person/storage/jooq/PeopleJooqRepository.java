@@ -48,4 +48,9 @@ public class PeopleJooqRepository implements PeopleRepository {
                 .fetch()
                 .map(mapper::fromJooq);
     }
+
+    @Override
+    public int count() {
+        return dsl.fetchCount(JPerson.PERSON);
+    }
 }
