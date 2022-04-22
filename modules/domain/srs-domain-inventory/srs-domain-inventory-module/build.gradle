@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(':srs-api-lib')
     implementation project(':srs-module-lib')
     implementation project(':srs-metrics-lib')
     implementation project(':srs-domain-inventory-api')

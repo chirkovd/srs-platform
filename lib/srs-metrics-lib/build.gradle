@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(':srs-api-lib')
 
     compileClasspath 'org.springframework.boot:spring-boot-starter'
     compileClasspath 'io.micrometer:micrometer-registry-prometheus'

@@ -1,6 +1,8 @@
 rootProject.name = 'srs-platform'
 
 // libs
+include ':srs-api-lib'
+project(':srs-api-lib').projectDir = "$rootDir/lib/srs-api-lib" as File
 include ':srs-test-lib'
 project(':srs-test-lib').projectDir = "$rootDir/lib/srs-test-lib" as File
 include ':srs-module-lib'

@@ -6,7 +6,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.systems.dipe.metrics.SrsMetric;
-import org.systems.dipe.metrics.SrsMetricHolder;
 import org.systems.dipe.srs.inventory.storage.InventoryRepository;
 import org.systems.dipe.srs.utils.TimeUtils;
 import org.systems.dipe.srs.utils.UuidUtils;
@@ -21,7 +20,7 @@ import java.util.Set;
 @Transactional
 @AllArgsConstructor
 @SrsMetric("inventory")
-public class InventoryClientImpl implements InventoryClient, SrsMetricHolder {
+public class InventoryClientImpl implements InventoryClient {
 
     private final InventoryRepository inventoryRepository;
 
@@ -46,6 +45,12 @@ public class InventoryClientImpl implements InventoryClient, SrsMetricHolder {
         return inventoryRepository.search(search);
     }
 
+    @Override
+    public double count() {
+        return 10;
+    }
+
+
     private Inventory find(String inventoryId) {
         List<Inventory> inventories = search(InventorySearch.builder()
                 .inventoryIds(Set.of(inventoryId))
@@ -56,10 +61,5 @@ public class InventoryClientImpl implements InventoryClient, SrsMetricHolder {
             log.error("Cannot find new inventory record by id {}", inventoryId);
             throw new IllegalArgumentException("Cannot find new inventory record");
         }
-    }
-
-    @Override
-    public double initMetric() {
-        return 10;
     }
 }
