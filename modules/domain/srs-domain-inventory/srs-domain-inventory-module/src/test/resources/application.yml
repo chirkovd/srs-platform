@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: test
+
+logging:
+  level:
+    root: INFO
+    org.systems.dipe: DEBUG
+  config: classpath:logback.xml
