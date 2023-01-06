@@ -1,12 +1,12 @@
 package org.systems.dipe.srs.orchestration.events.supervisors;
 
+import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.systems.dipe.srs.orchestration.events.EventsProcessor;
 
-import javax.annotation.PreDestroy;
 import java.util.Timer;
 import java.util.TimerTask;
 

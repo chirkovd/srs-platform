@@ -6,7 +6,6 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.mapstruct:mapstruct'
-    implementation 'javax.annotation:javax.annotation-api'
 
     compileOnly 'org.springframework.boot:spring-boot-starter'
     compileOnly 'org.springframework.boot:spring-boot-starter-jooq'
