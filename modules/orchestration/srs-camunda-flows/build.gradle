@@ -6,10 +6,10 @@ dependencies {
     implementation project(':srs-domain-request-api')
     implementation project(':srs-domain-search-process-api')
 
-    compileClasspath 'org.camunda.bpm:camunda-engine'
+    compileOnly 'org.camunda.bpm:camunda-engine'
 
-    compileClasspath 'com.fasterxml.jackson.core:jackson-annotations'
+    compileOnly 'com.fasterxml.jackson.core:jackson-annotations'
 
-    compileClasspath 'org.springframework:spring-tx'
-    compileClasspath 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.springframework:spring-tx'
+    compileOnly 'org.springframework.boot:spring-boot-starter'
 }

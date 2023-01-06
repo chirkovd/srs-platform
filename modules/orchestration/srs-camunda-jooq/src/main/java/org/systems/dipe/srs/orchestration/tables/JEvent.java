@@ -5,6 +5,7 @@ package org.systems.dipe.srs.orchestration.tables;
 
 
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;

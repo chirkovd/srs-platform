@@ -2,8 +2,8 @@ buildscript {
     ext {
         encoding = 'UTF-8'
 
-        springBootVersion = '2.6.3'
-        springCloudVersion = "2021.0.1"
+        springBootVersion = '3.0.1'
+        springCloudVersion = "2022.0.0"
         testContainersVersion = "1.16.3"
         camundaVersion = "7.16.0"
 
@@ -18,7 +18,7 @@ buildscript {
 
 plugins {
     id 'java'
-    id "nu.studer.jooq" version "7.1.1"
+    id "nu.studer.jooq" version "8.1"
     id 'io.qameta.allure-aggregate-report' version '2.9.6'
 }
 
@@ -29,12 +29,12 @@ allure {
 allprojects {
 
     group 'org.systems.dipe'
-    version '1.0-SNAPSHOT'
+    version '2.0-SNAPSHOT'
 
     apply plugin: 'java'
 
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 
     tasks.withType(JavaCompile) {
         options.encoding = "$encoding"
@@ -61,11 +61,12 @@ allprojects {
             dependency 'org.apache.commons:commons-collections4:4.4'
             dependency 'org.apache.commons:commons-lang3:3.12.0'
 
-            dependency 'org.jooq:jooq:3.16.4'
-            dependency 'org.jooq:jooq-meta:3.16.4'
-            dependency 'org.jooq:jooq-codegen:3.16.4'
+            dependency 'org.jooq:jooq:3.17.6'
+            dependency 'org.jooq:jooq-meta:3.17.6'
+            dependency 'org.jooq:jooq-codegen:3.17.6'
 
             dependency 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
+            dependency 'javax.annotation:javax.annotation-api:1.3.2'
 
             dependency 'org.mapstruct:mapstruct:1.4.2.Final'
             dependency 'org.mapstruct:mapstruct-processor:1.4.2.Final'

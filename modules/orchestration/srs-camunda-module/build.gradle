@@ -6,13 +6,14 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.mapstruct:mapstruct'
+    implementation 'javax.annotation:javax.annotation-api'
 
-    compileClasspath 'org.springframework.boot:spring-boot-starter'
-    compileClasspath 'org.springframework.boot:spring-boot-starter-jooq'
-    compileClasspath 'org.springframework.boot:spring-boot-starter-amqp'
+    compileOnly 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.springframework.boot:spring-boot-starter-jooq'
+    compileOnly 'org.springframework.boot:spring-boot-starter-amqp'
 
-    compileClasspath "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
-    compileClasspath "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"
+    compileOnly "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp"
+    compileOnly "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest"
 
     testImplementation project(':srs-test-lib')
     testImplementation project(':srs-domain-squad-api')

@@ -1,6 +1,6 @@
 dependencies {
 
-    compileClasspath 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly 'org.springframework.boot:spring-boot-starter-test'
 
     implementation 'org.testcontainers:junit-jupiter'
     implementation 'org.testcontainers:postgresql'
